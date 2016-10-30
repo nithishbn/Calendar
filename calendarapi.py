@@ -1,11 +1,9 @@
-# import calendar
-#
-# cal = calendar.Calendar()
-# print(cal.monthdayscalendar(2016, 2))
-# print(calendar.isleap(2016))
-# print(calendar.day_name())
-import _sqlite3
-conn = _sqlite3.connect('calendar.sqlite')
+import sqlite3
+
+# for line in f:
+#     search = re.findall("^([1-9])", line)
+#     print(search)
+conn = sqlite3.connect('calendar.sqlite')
 cur = conn.cursor()
 cur.executescript('''
 DROP TABLE IF EXISTS Main;
@@ -23,7 +21,11 @@ CREATE TABLE Rithu (RID INTEGER, Name TEXT);
 CREATE TABLE Maasae (MID INTEGER, Name TEXT);
 CREATE TABLE Pakshae (PID INTEGER, Name TEXT);
 CREATE TABLE Vaaram (VID INTEGER, Name TEXT);
-CREATE TABLE Thithi (TID INTEGER, Nane TEXT);
+CREATE TABLE Thithi (TID INTEGER, Name TEXT);
+SELECT Keycode FROM Main;
+''')
+cur.executescript('''
+
 ''')
 
 
