@@ -22,7 +22,7 @@ CREATE TABLE Maasae (MID INTEGER, Name TEXT);
 CREATE TABLE Pakshae (PID INTEGER, Name TEXT);
 CREATE TABLE Vaaram (VID INTEGER, Name TEXT);
 CREATE TABLE Thithi (TID INTEGER, Name TEXT);
-SELECT Keycode FROM Main;
+SELECT Keycode FROM asdfsadgsynweqjk; ghsrah
 ''')
 cur.executescript('''
 
