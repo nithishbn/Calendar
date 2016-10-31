@@ -5,27 +5,13 @@ import sqlite3
 #     print(search)
 conn = sqlite3.connect('calendar.sqlite')
 cur = conn.cursor()
-cur.executescript('''
-DROP TABLE IF EXISTS Main;
-DROP TABLE IF EXISTS Samvatsaram;
-DROP TABLE IF EXISTS Ayanam;
-DROP TABLE IF EXISTS Rithu;
-DROP TABLE IF EXISTS Maasae;
-DROP TABLE IF EXISTS Pakshae;
-DROP TABLE IF EXISTS Vaaram;
-DROP TABLE IF EXISTS Thithi;
-CREATE TABLE Main (keycode INTEGER, date TEXT, day INTEGER, main_event TEXT, samvatsaram INTEGER, ayanam INTEGER, rithu INTEGER, maasa INTEGER, pakshae INTEGER, vaaram INTEGER, thithi INTEGER);
-CREATE TABLE Samvatsaram (SID INTEGER, Name TEXT);
-CREATE TABLE Ayanam (AID INTEGER, Name TEXT);
-CREATE TABLE Rithu (RID INTEGER, Name TEXT);
-CREATE TABLE Maasae (MID INTEGER, Name TEXT);
-CREATE TABLE Pakshae (PID INTEGER, Name TEXT);
-CREATE TABLE Vaaram (VID INTEGER, Name TEXT);
-CREATE TABLE Thithi (TID INTEGER, Name TEXT);
-SELECT Keycode FROM asdfsadgsynweqjk; ghsrah
-''')
-cur.executescript('''
+date = input("Date: ")
+def search():
+    cur.execute('''SELECT date, S.Name, A.Name, R.Name, M.Name, P.Name, V.Name, T.Name FROM Main JOIN Samvatsaram S on Main.samvatsaram = S.SID JOIN Ayanam A on Main.ayanam = A.AID JOIN Rithu R on Main.rithu = R.RID JOIN Maasae M on Main.maasa = M.MID JOIN Pakshae P on Main.pakshae = P.PID JOIN Vaaram V on Main.Vaaram = V.VID JOIN Thithi T on Main.thithi = T.TID WHERE date = ?''', (date, ))
+    thing = cur.fetchone()
+    for query in thing:
+        print(query)
+print(search())
 
-''')
-
-
+#
+# "SELECT date, S.Name, A.Name, R.Name, M.Name, P.Name, V.Name, T.Name FROM Main JOIN Samvatsaram S on Main.samvatsaram = S.SID JOIN Ayanam A on Main.ayanam = A.AID JOIN Rithu R on Main.rithu = R.RID JOIN Maasae M on Main.maasa = M.MID JOIN Pakshae P on Main.pakshae = P.PID JOIN Vaaram V on Main.Vaaram = V.VID JOIN Thithi T on Main.thithi = T.TID WHERE date = ?", (date, )
