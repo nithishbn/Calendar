@@ -5,7 +5,7 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.textinput import TextInput
 from kivy.uix.boxlayout import BoxLayout
 
-class TutorialApp(App):
+class AppThing(App):
     def build(self):
         b = BoxLayout(orientation='vertical')
         t = TextInput(text=' ', size_hint_y=None,height = 200,font_size = 150)
@@ -22,4 +22,4 @@ class TutorialApp(App):
 
 
 if __name__ == "__main__":
-    TutorialApp().run()
+    AppThing().run()
