@@ -1,25 +1,29 @@
 from kivy.app import App
-from kivy.uix.scatter import Scatter
-from kivy.uix.label import Label
-from kivy.uix.floatlayout import FloatLayout
-from kivy.uix.textinput import TextInput
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.button import Button
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.label import Label
+from kivy.uix.textinput import TextInput
+from newuser import newuser
 
-class AppThing(App):
+class LoginScreen(BoxLayout):
+
+    def __init__(self, **kwargs):
+        super(LoginScreen, self).__init__(**kwargs)
+
+        self.add_widget(Label(text='User Name', size_hint_y=None))
+        self.username = TextInput(size_hint_y=None,multiline=False)
+        self.add_widget(self.username)
+        self.add_widget(Label(text='password', size_hint_y=None))
+        self.password = TextInput(password=True, size_hint_y=None,multiline=False)
+        self.add_widget(self.password)
+
+
+
+class MyApp(App):
     def build(self):
-        b = BoxLayout(orientation='vertical')
-        t = TextInput(text=' ', size_hint_y=None,height = 200,font_size = 150)
-        f = FloatLayout()
-        s = Scatter()
-        l = Label(text="Hello!", font_size=150)
-        f.add_widget(s)
-        s.add_widget(l)
-
-        b.add_widget(t)
-        b.add_widget(f)
-        t.bind(text=l.setter('text'))
-        return b
+        return LoginScreen()
 
 
-if __name__ == "__main__":
-    AppThing().run()
+if __name__ == '__main__':
+    MyApp().run()
