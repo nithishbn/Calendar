@@ -1,0 +1,146 @@
+ScreenManager:
+    id: sm
+    LoginScreen:
+        name: 'LoginScreen'
+        id: login
+        manager: sm
+    MenuScreen:
+        name: 'MenuScreen'
+        id: menu
+        manager: sm
+    TodayScreen:
+        name: 'TodayScreen'
+        id: today
+        manager: sm
+        samva: menu.samva
+        avanam: menu.avanam
+        rithu: menu.rithu
+        maasae: menu.maasae
+        pakshae: menu.pakshae
+        thithi: menu.thithi
+
+<LoginScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            orientation: 'horizontal'
+            BoxLayout:
+                orientation: 'vertical'
+                Label:
+                    text: "Username"
+                    font_size: 50
+                    # size_hint_y: None
+                    # height: 50
+                Label:
+                    text:"Password"
+                    font_size: 50
+                    # size_hint_y: None
+            BoxLayout:
+                orientation:'vertical'
+                TextInput:
+                    # height: 50
+                    # size_hint_y: None
+                TextInput:
+                    # size_hint_y: None
+        AnchorLayout:
+            anchor_y: 'bottom'
+            anchor_x: 'center'
+            Button:
+                text:"Login"
+                font_size: 50
+                size_hint_y: None
+                on_press: root.manager.current = 'MenuScreen'
+<MenuScreen>:
+    GridLayout:
+        cols: 2
+        rows: 4
+        minimum_width: 0.2
+        spacing: [0.5, 5.0]
+        padding: 20
+        Button:
+            text:"Today's View"
+            font_size: 45
+            size_hint: 0.5, 1
+            on_press: root.today()
+        Button:
+            text:"Hi"
+            size_hint: 0.5, 1
+        Button:
+            text:"Hi"
+            size_hint: 0.5, 1
+        Button:
+            text:"Hi"
+            size_hint: 0.5, 1
+        Button:
+            text:"Hi"
+            size_hint: 0.5, 1
+        Button:
+            text:"Hi"
+            size_hint: 0.5, 1
+        Button:
+            text:"Hi"
+            size_hint: 0.5, 1
+        Button:
+            text:"Hi"
+            size_hint: 0.5, 1
+            width: 5
+<TodayScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        # padding: 0, -30
+
+        FloatLayout:
+            Label:
+                canvas.before:
+                    Color:
+                        rgba: 1, 0.25, 0, 1
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                text: 'Sunday 01/01/2017'
+                font_size: 45
+                size_hint: None, None
+                size: 0.5, 0.5
+                pos_hint: {'x':0.5, 'y':0.85}
+
+                # size_hint_y: None
+
+        BoxLayout:
+            orientation: 'vertical'
+            padding: 0, 20
+            Label:
+                text: root.samva
+                size_hint: 0.5, 0.25
+                pos_hint:{'x':0.25,'top':0.15}
+                font_size: 40
+            Label:
+                text: root.avanam
+                size_hint: 0.5, 0.25
+                pos_hint:{'x':0.25,'top':0.15}
+                font_size: 40
+            Label:
+                text: root.rithu
+                size_hint: 0.5, 0.25
+                pos_hint:{'x':0.25,'top':0.15}
+                font_size: 40
+            Label:
+                text: root.maasae
+                size_hint: 0.5, 0.25
+                pos_hint:{'x':0.25,'top':0.15}
+                font_size: 40
+            Label:
+                text: root.pakshae
+                size_hint: 0.5, 0.25
+                pos_hint:{'x':0.25,'top':0.15}
+                font_size: 40
+            Label:
+                text: root.thithi
+                size_hint: 0.5, 0.25
+                pos_hint:{'x':0.25,'top':0.15}
+                font_size: 40
+        Button:
+            size_hint: 0.5, .25
+            pos_hint: {'x':.25, 'y': 0.05}
+            text: 'Go Back to Menu'
+            font_size: 35
+            on_press: root.manager.current = 'MenuScreen'

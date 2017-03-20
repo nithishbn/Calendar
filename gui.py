@@ -1,29 +1,68 @@
+import sqlite3
 from kivy.app import App
+from kivy.properties import StringProperty
+from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.button import Button
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.label import Label
-from kivy.uix.textinput import TextInput
-from newuser import newuser
+from kivy.uix.screenmanager import Screen
+from plyer import vibrator
 
-class LoginScreen(BoxLayout):
+class LoginScreen(Screen):
+    pass
+class MenuScreen(Screen):
+    samva = StringProperty('')
+    avanam = StringProperty('')
+    rithu = StringProperty('')
+    maasae = StringProperty('')
+    pakshae = StringProperty('')
+    thithi = StringProperty('')
+    def today(self):
+        # vibrator.vibrate(0.10)
+        self.search()
+        self.manager.current = 'TodayScreen'
 
-    def __init__(self, **kwargs):
-        super(LoginScreen, self).__init__(**kwargs)
+    def search(self):
+        date = "1/1/2017"
+        conn = sqlite3.connect('calendar.sqlite')
+        cur = conn.cursor()
+        cur.execute(
+            '''SELECT date, S.Name, A.Name, R.Name, M.Name, P.Name, V.Name, T.Name FROM Main JOIN Samvatsaram S on Main.samvatsaram = S.SID JOIN Ayanam A on Main.ayanam = A.AID JOIN Rithu R on Main.rithu = R.RID JOIN Maasae M on Main.maasa = M.MID JOIN Pakshae P on Main.pakshae = P.PID JOIN Vaaram V on Main.Vaaram = V.VID JOIN Thithi T on Main.thithi = T.TID WHERE date = ?''',
+            (date,))
+        thing = cur.fetchone()
+        for query in thing:
+            if query == thing[0]:
+                print("Date:", query)
+            elif query == thing[1]:
+                print("Samvatsaramam:", query)
+                self.samva = query
+            elif query == thing[2]:
+                print("Ayanam:", query)
+                self.avanam = query
+            elif query == thing[3]:
+                print("Rithu:", query)
+                self.rithu = query
+            elif query == thing[4]:
+                print("Maasae:", query)
+                self.maasae = query
+            elif query == thing[5]:
+                print("Pakshae:", query)
+                self.pakshae = query
+            elif query == thing[6]:
+                print("Day:", query)
+            elif query == thing[7]:
+                print("Thithi:", query)
+                self.thithi = query
 
-        self.add_widget(Label(text='User Name', size_hint_y=None))
-        self.username = TextInput(size_hint_y=None,multiline=False)
-        self.add_widget(self.username)
-        self.add_widget(Label(text='password', size_hint_y=None))
-        self.password = TextInput(password=True, size_hint_y=None,multiline=False)
-        self.add_widget(self.password)
+
+class TodayScreen(Screen):
+    samva = StringProperty('')
+    avanam = StringProperty('')
+    rithu = StringProperty('')
+    maasae = StringProperty('')
+    pakshae = StringProperty('')
+    thithi = StringProperty('')
+
+class InterfaceApp(App):
+    pass
 
 
-
-class MyApp(App):
-    def build(self):
-        return LoginScreen()
-
-
-if __name__ == '__main__':
-    MyApp().run()
+InterfaceApp().run()
