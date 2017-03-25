@@ -1,55 +1,22 @@
+#: import NoTransition kivy.uix.screenmanager.NoTransition
 ScreenManager:
     id: sm
-    LoginScreen:
-        name: 'LoginScreen'
-        id: login
-        manager: sm
     MenuScreen:
         name: 'MenuScreen'
         id: menu
         manager: sm
+        transition: "NoTransition"
     TodayScreen:
         name: 'TodayScreen'
         id: today
         manager: sm
-        samva: menu.samva
-        avanam: menu.avanam
-        rithu: menu.rithu
-        maasae: menu.maasae
-        pakshae: menu.pakshae
-        thithi: menu.thithi
-
-<LoginScreen>:
-    BoxLayout:
-        orientation: 'vertical'
-        BoxLayout:
-            orientation: 'horizontal'
-            BoxLayout:
-                orientation: 'vertical'
-                Label:
-                    text: "Username"
-                    font_size: 50
-                    # size_hint_y: None
-                    # height: 50
-                Label:
-                    text:"Password"
-                    font_size: 50
-                    # size_hint_y: None
-            BoxLayout:
-                orientation:'vertical'
-                TextInput:
-                    # height: 50
-                    # size_hint_y: None
-                TextInput:
-                    # size_hint_y: None
-        AnchorLayout:
-            anchor_y: 'bottom'
-            anchor_x: 'center'
-            Button:
-                text:"Login"
-                font_size: 50
-                size_hint_y: None
-                on_press: root.manager.current = 'MenuScreen'
+        date: date.date
+        transition: "NoTransition"
+    DateScreen:
+        name: 'DateScreen'
+        id: date
+        manager: sm
+        transition: "NoTransition"
 <MenuScreen>:
     GridLayout:
         cols: 2
@@ -61,7 +28,7 @@ ScreenManager:
             text:"Today's View"
             font_size: 45
             size_hint: 0.5, 1
-            on_press: root.today()
+            on_press: root.manager.current = "DateScreen"
         Button:
             text:"Hi"
             size_hint: 0.5, 1
@@ -84,7 +51,29 @@ ScreenManager:
             text:"Hi"
             size_hint: 0.5, 1
             width: 5
+<DateScreen>:
+    on_pre_enter:
+        root.ids.datething.text = ""
+    Label:
+        text: "Enter Date for details"
+        font_size: 35
+        size_hint: 0.65, 0.25
+        pos_hint: {'center_x': 0.5, 'top': 1}
+    TextInput:
+        id: datething
+        font_size: 35
+        size_hint: 0.65, 0.15
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+    Button:
+        font_size: 35
+        size_hint: 0.65, 0.25
+        pos_hint: {'center_x': 0.5, 'bottom': 1}
+        text: "Submit"
+        on_press: root.selectdate()
+
 <TodayScreen>:
+    on_pre_enter:
+        root.search()
     BoxLayout:
         orientation: 'vertical'
         # padding: 0, -30
@@ -97,7 +86,7 @@ ScreenManager:
                     Rectangle:
                         size: self.size
                         pos: self.pos
-                text: 'Sunday 01/01/2017'
+                text: 'Details'
                 font_size: 45
                 size_hint: None, None
                 size: 0.5, 0.5
@@ -143,4 +132,4 @@ ScreenManager:
             pos_hint: {'x':.25, 'y': 0.05}
             text: 'Go Back to Menu'
             font_size: 35
-            on_press: root.manager.current = 'MenuScreen'
+            on_press: root.manager.current = 'DateScreen'
