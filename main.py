@@ -1,22 +1,35 @@
 import sqlite3
 from kivy.app import App
-from kivy.properties import StringProperty
+from kivy.core.window import Window
+from kivy.properties import StringProperty, ObjectProperty
 from kivy.uix.screenmanager import Screen
 from plyer import vibrator
+import webbrowser
 
 
 class MenuScreen(Screen):
     pass
 
-
 class DateScreen(Screen):
     date = StringProperty('')
+    def __init__(self, **kwargs):
+        super(DateScreen, self).__init__(**kwargs)
+        # Setting it up to listen for keyboard events
+        Window.bind(on_keyboard=self.onBackBtn)
 
+    def onBackBtn(self, window, key, *args):
+        """ To be called whenever user presses Back/Esc Key """
+        # If user presses Back/Esc Key
+        if key == 27:
+            self.manager.current = "MenuScreen"
+            return True
+        return False
     def selectdate(self):
         self.date = self.ids.datething.text
         self.manager.current = "TodayScreen"
 
-
+class ConstructionScreen(Screen):
+    pass
 class TodayScreen(Screen):
     samva = StringProperty('')
     avanam = StringProperty('')
@@ -25,7 +38,18 @@ class TodayScreen(Screen):
     pakshae = StringProperty('')
     thithi = StringProperty('')
     date = StringProperty('')
+    def __init__(self, **kwargs):
+        super(TodayScreen, self).__init__(**kwargs)
+        # Setting it up to listen for keyboard events
+        Window.bind(on_keyboard=self.onBackBtn)
 
+    def onBackBtn(self, window, key, *args):
+        """ To be called whenever user presses Back/Esc Key """
+        # If user presses Back/Esc Key
+        if key == 27:
+            self.manager.current = "DateScreen"
+            return True
+        return False
     def search(self):
         date = self.date
         print(date)
