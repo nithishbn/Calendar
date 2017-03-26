@@ -1,0 +1,135 @@
+#: import NoTransition kivy.uix.screenmanager.NoTransition
+ScreenManager:
+    id: sm
+    MenuScreen:
+        name: 'MenuScreen'
+        id: menu
+        manager: sm
+        transition: "NoTransition"
+    TodayScreen:
+        name: 'TodayScreen'
+        id: today
+        manager: sm
+        date: date.date
+        transition: "NoTransition"
+    DateScreen:
+        name: 'DateScreen'
+        id: date
+        manager: sm
+        transition: "NoTransition"
+<MenuScreen>:
+    GridLayout:
+        cols: 2
+        rows: 4
+        minimum_width: 0.2
+        spacing: [0.5, 5.0]
+        padding: 20
+        Button:
+            text:"Today's View"
+            font_size: 45
+            size_hint: 0.5, 1
+            on_press: root.manager.current = "DateScreen"
+        Button:
+            text:"Hi"
+            size_hint: 0.5, 1
+        Button:
+            text:"Hi"
+            size_hint: 0.5, 1
+        Button:
+            text:"Hi"
+            size_hint: 0.5, 1
+        Button:
+            text:"Hi"
+            size_hint: 0.5, 1
+        Button:
+            text:"Hi"
+            size_hint: 0.5, 1
+        Button:
+            text:"Hi"
+            size_hint: 0.5, 1
+        Button:
+            text:"Hi"
+            size_hint: 0.5, 1
+            width: 5
+<DateScreen>:
+    on_pre_enter:
+        root.ids.datething.text = ""
+    Label:
+        text: "Enter Date for details"
+        font_size: 35
+        size_hint: 0.65, 0.25
+        pos_hint: {'center_x': 0.5, 'top': 1}
+    TextInput:
+        id: datething
+        font_size: 35
+        size_hint: 0.65, 0.15
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+    Button:
+        font_size: 35
+        size_hint: 0.65, 0.25
+        pos_hint: {'center_x': 0.5, 'bottom': 1}
+        text: "Submit"
+        on_press: root.selectdate()
+
+<TodayScreen>:
+    on_pre_enter:
+        root.search()
+    BoxLayout:
+        orientation: 'vertical'
+        # padding: 0, -30
+
+        FloatLayout:
+            Label:
+                canvas.before:
+                    Color:
+                        rgba: 1, 0.25, 0, 1
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                text: 'Details'
+                font_size: 45
+                size_hint: None, None
+                size: 0.5, 0.5
+                pos_hint: {'x':0.5, 'y':0.85}
+
+                # size_hint_y: None
+
+        BoxLayout:
+            orientation: 'vertical'
+            padding: 0, 20
+            Label:
+                text: root.samva
+                size_hint: 0.5, 0.25
+                pos_hint:{'x':0.25,'top':0.15}
+                font_size: 40
+            Label:
+                text: root.avanam
+                size_hint: 0.5, 0.25
+                pos_hint:{'x':0.25,'top':0.15}
+                font_size: 40
+            Label:
+                text: root.rithu
+                size_hint: 0.5, 0.25
+                pos_hint:{'x':0.25,'top':0.15}
+                font_size: 40
+            Label:
+                text: root.maasae
+                size_hint: 0.5, 0.25
+                pos_hint:{'x':0.25,'top':0.15}
+                font_size: 40
+            Label:
+                text: root.pakshae
+                size_hint: 0.5, 0.25
+                pos_hint:{'x':0.25,'top':0.15}
+                font_size: 40
+            Label:
+                text: root.thithi
+                size_hint: 0.5, 0.25
+                pos_hint:{'x':0.25,'top':0.15}
+                font_size: 40
+        Button:
+            size_hint: 0.5, .25
+            pos_hint: {'x':.25, 'y': 0.05}
+            text: 'Go Back to Menu'
+            font_size: 35
+            on_press: root.manager.current = 'DateScreen'

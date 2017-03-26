@@ -1,0 +1,966 @@
+[0m[1;34m# Check configuration tokens[0m
+[0m[1;34m# Ensure build layout[0m
+[0m[1;34m# Check configuration tokens[0m
+[0m[1;34m# Preparing build[0m
+[0m[1;34m# Check requirements for android[0m
+[0m[1;30m# Run 'dpkg --version'[0m
+[0m[1;30m# Cwd None[0m
+Debian 'dpkg' package management program version 1.18.4 (amd64).
+This is free software; see the GNU General Public License version 2 or
+later for copying conditions. There is NO warranty.
+[0m[1;30m# Search for Git (git)[0m
+[0m[1;30m#  -> found at /usr/bin/git[0m
+[0m[1;30m# Search for Cython (cython)[0m
+[0m[1;30m#  -> found at /usr/local/bin/cython[0m
+[0m[1;30m# Search for Java compiler (javac)[0m
+[0m[1;30m#  -> found at /usr/lib/jvm/java-8-openjdk-amd64/bin/javac[0m
+[0m[1;30m# Search for Java keytool (keytool)[0m
+[0m[1;30m#  -> found at /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/keytool[0m
+[0m[1;34m# Install platform[0m
+[0m[1;34m# Apache ANT found at /home/nithish/.buildozer/android/platform/apache-ant-1.9.4[0m
+[0m[1;34m# Android SDK found at /home/nithish/.buildozer/android/platform/android-sdk-20[0m
+[0m[1;34m# Android NDK found at /home/nithish/.buildozer/android/platform/android-ndk-r9c[0m
+[0m[1;34m# Check application requirements[0m
+[0m[1;30m# Run './distribute.sh -l'[0m
+[0m[1;30m# Cwd /home/nithish/Calendar/.buildozer/android/platform/python-for-android[0m
+Available modules: android apsw audiostream bidi boost cherrypy c_igraph click cprotobuf cymunk django docutils ecdsa enum34 evdev ffmpeg ffmpeg2 ffpyplayer ffpyplayer_tito flask freetype gevent greenlet harfbuzz hostpython igraph itsdangerous jinja2 jpeg kivent_core kivent_cymunk kivy leveldb libevent libpq libsodium libswift libtorrent libxml2 libxslt libyaml lxml m2crypto markupsafe midistream msgpack mysql_connector netifaces numpy opencv openssl paramiko pil plyer plyvel png polygon protobuf psutil psycopg2 pyasn1 pycrypto pygame pyjnius pylibpd pyopenssl pyparsing pyqrcode python pyyaml sdl setuptools six sqlalchemy sqlite3 storm swift thrift twisted txws werkzeug wokkel zeroconf zope
+[0m[1;30m# Application requirements already installed, pass[0m
+[0m[1;34m# Check garden requirements[0m
+[0m[1;34m# Compile platform[0m
+[0m[1;30m# Run './distribute.sh -l'[0m
+[0m[1;30m# Cwd /home/nithish/Calendar/.buildozer/android/platform/python-for-android[0m
+Available modules: android apsw audiostream bidi boost cherrypy c_igraph click cprotobuf cymunk django docutils ecdsa enum34 evdev ffmpeg ffmpeg2 ffpyplayer ffpyplayer_tito flask freetype gevent greenlet harfbuzz hostpython igraph itsdangerous jinja2 jpeg kivent_core kivent_cymunk kivy leveldb libevent libpq libsodium libswift libtorrent libxml2 libxslt libyaml lxml m2crypto markupsafe midistream msgpack mysql_connector netifaces numpy opencv openssl paramiko pil plyer plyvel png polygon protobuf psutil psycopg2 pyasn1 pycrypto pygame pyjnius pylibpd pyopenssl pyparsing pyqrcode python pyyaml sdl setuptools six sqlalchemy sqlite3 storm swift thrift twisted txws werkzeug wokkel zeroconf zope
+[0m[1;34m# Distribution already compiled, pass.[0m
+[0m[1;34m# Build the application #25[0m
+[0m[1;30m# Copy application source from /home/nithish/Calendar[0m
+[0m[1;30m# Create directory /home/nithish/Calendar/.buildozer/android/app[0m
+[0m[1;30m# Copy /home/nithish/Calendar/presplash1.jpg[0m
+[0m[1;30m# Copy /home/nithish/Calendar/interface.kv[0m
+[0m[1;30m# Copy /home/nithish/Calendar/icon.png[0m
+[0m[1;30m# Copy /home/nithish/Calendar/presplash.jpg[0m
+[0m[1;30m# Copy /home/nithish/Calendar/calendar.sqlite[0m
+[0m[1;30m# Copy /home/nithish/Calendar/main.py[0m
+[0m[1;30m# Create directory /home/nithish/Calendar/.buildozer/android/app/random[0m
+[0m[1;30m# Copy /home/nithish/Calendar/random/pong.py[0m
+[0m[1;30m# Copy /home/nithish/Calendar/random/example.kv[0m
+[0m[1;30m# Copy /home/nithish/Calendar/random/newuser.py[0m
+[0m[1;30m# Copy /home/nithish/Calendar/random/My.kv[0m
+[0m[1;30m# Copy /home/nithish/Calendar/random/stuffwoo.py[0m
+[0m[1;30m# Copy /home/nithish/Calendar/random/pong.kv[0m
+[0m[1;34m# Package the application[0m
+[0m[1;30m# project.properties updated[0m
+[0m[1;30m# Run "python build.py --name 'SVETA Temple' --version 0.1 --package org.test.templeapp --sdk 19 --minsdk 9 --private /home/nithish/Calendar/.buildozer/android/app --presplash /home/nithish/Calendar/./presplash.jpg --icon /home/nithish/Calendar/./icon.png --orientation portrait debug"[0m
+[0m[1;30m# Cwd /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp[0m
+Updated project.properties
+Updated local.properties
+----------
+build.xml: Failed to find version-tag string. File must be updated.
+In order to not erase potential customizations, the file will not be automatically regenerated.
+If no changes have been made to the file, delete it manually and run the command again.
+If you have made customizations to the build process, the file must be manually updated.
+It is recommended to:
+	* Copy current file to a safe location.
+	* Delete original file.
+	* Run command again to generate a new file.
+	* Port customizations to the new file, by looking at the new rules file
+	  located at <SDK>/tools/ant/build.xml
+	* Update file to contain
+	      version-tag: custom
+	  to prevent file from being rewritten automatically by the SDK tools.
+----------
+Updated file ./proguard-project.txt
+It seems that there are sub-projects. If you want to update them
+please use the --subprojects parameter.
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/include ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/include/python2.7 ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7 ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/bsddb ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/bsddb/test ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/compiler ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/config ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/ctypes ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/ctypes/macholib ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/ctypes/test ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/distutils ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/distutils/command ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/email ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/email/mime ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/encodings ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/hotshot ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/importlib ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/json ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/lib-dynload ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/logging ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/multiprocessing ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/multiprocessing/dummy ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/plat-linux4 ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/pydoc_data ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/android ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/jnius ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/adapters ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/audio ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/camera ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/clipboard ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/gl ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/image ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/spelling ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/text ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/video ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/window ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/fonts ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/glsl ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/images ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/keyboards ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/logo ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/deps ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/effects ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/ext ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/extras ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/garden ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/input ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/input/postproc ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/input/providers ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/lib ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/lib/gstplayer ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/lib/osc ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/lib/vidcore_lite ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/modules ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/network ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/storage ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/behaviors ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/facades ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/android ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/ios ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/linux ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/macosx ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/macosx/libs ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/win ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/win/libs ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/threads ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/sqlite3 ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/unittest ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/wsgiref ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/xml ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/xml/dom ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/xml/etree ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/xml/parsers ...
+Listing /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/xml/sax ...
+Listing /home/nithish/Calendar/.buildozer/android/app ...
+Listing /home/nithish/Calendar/.buildozer/android/app/_applibs ...
+Compiling /home/nithish/Calendar/.buildozer/android/app/main.py ...
+Listing /home/nithish/Calendar/.buildozer/android/app/random ...
+Compiling /home/nithish/Calendar/.buildozer/android/app/random/newuser.py ...
+Compiling /home/nithish/Calendar/.buildozer/android/app/random/pong.py ...
+Compiling /home/nithish/Calendar/.buildozer/android/app/random/stuffwoo.py ...
+Compiling /home/nithish/Calendar/.buildozer/android/app/sitecustomize.py ...
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/libpymodules.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/include/python2.7/pyconfig.h
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python27.zip
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/lib-dynload/syslog.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/lib-dynload/future_builtins.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/lib-dynload/_ctypes.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/lib-dynload/unicodedata.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/lib-dynload/_io.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/lib-dynload/_sqlite3.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/config/Setup.config
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/config/config.c
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/config/install-sh
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/config/Makefile
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/config/Setup
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/config/Setup.local
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/config/config.c.in
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/jnius_config.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/README
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/six.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/pkgdata.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/key.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/mask.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/pygame.ico
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/joystick.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/rwobject.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/constants.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/rect.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/sprite.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/gfxdraw.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/mouse.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/draw.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/base.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/display.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/overlay.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/midi.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/pixelarray.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/sysfont.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/surflock.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/bufferproxy.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/imageext.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/compat.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/pygame_icon.tiff
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/font.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/image.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/fastevent.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/locals.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/cursors.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/colordict.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/event.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/color.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/time.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/_arraysurfarray.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/transform.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/surface.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/version.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/pygame/threads/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/utils.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/factory.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/vector.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/logger.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/weakproxy.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/animation.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/setupconfig.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/gesture.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/event.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/app.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/weakmethod.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/multistroke.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/cache.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/lang.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/compat.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/interactive.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/config.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/resources.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/parser.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/properties.pxd
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/context.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/_event.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/metrics.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/geometry.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/factory_registers.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/properties.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/_event.pxd
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/atlas.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/loader.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/base.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/clock.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/support.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/ext/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/lib/ddsfile.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/lib/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/lib/mtdev.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/lib/vidcore_lite/bcm.pxd
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/lib/vidcore_lite/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/lib/gstplayer/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/lib/osc/oscAPI.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/lib/osc/OSC.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/lib/osc/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/visual_test_label.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_properties.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_adapters.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_uix_anchorlayout.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_filechooser_unicode.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_lang.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_video.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/perf_test_textinput.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_audio.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_issue_1084.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_app.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_issue_1091.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_urlrequest.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_utils.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_uix_listview.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/unicode_font.zip
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_uix_relativelayout.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_clipboard.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_uix_layout.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_uix_widget.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_image.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_graphics.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_issue_883.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_doc_gallery.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_uix_boxlayout.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_knspace.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_fonts.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/testkv.kv
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_clock.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_issue_599.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_multistroke.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_filechooser.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_selection.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_animations.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_widget.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/sample1.ogg
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_widget_walk.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_button.png
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_vector.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_issue_609.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_invalid_lang.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_lang_complex.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/unicode_files.zip
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_uix_gridlayout.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/common.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_uix_stacklayout.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/tests/test_storage.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/deps/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/adapters/listadapter.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/adapters/adapter.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/adapters/models.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/adapters/args_converters.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/adapters/dictadapter.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/adapters/simplelistadapter.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/adapters/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/garden/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/storage/jsonstore.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/storage/dictstore.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/storage/redisstore.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/storage/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/style.kv
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/settings_kivy.json
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/keyboards/qwerty.json
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/keyboards/en_US.json
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/keyboards/qwertz.json
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/keyboards/fr_CH.json
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/keyboards/de_CH.json
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/keyboards/azerty.json
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/images/defaulttheme-0.png
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/images/background.jpg
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/images/image-loading.gif
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/images/testpattern.png
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/images/defaulttheme.atlas
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/glsl/default.vs
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/glsl/header.fs
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/glsl/default.png
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/glsl/default.fs
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/glsl/header.vs
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/fonts/RobotoMono-Regular.ttf
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/fonts/Roboto-Bold.ttf
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/fonts/DejaVuSans.ttf
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/fonts/Roboto-BoldItalic.ttf
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/fonts/Roboto-Italic.ttf
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/fonts/Roboto-Regular.ttf
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/logo/kivy-icon-48.png
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/logo/kivy-icon-128.png
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/logo/kivy-icon-16.png
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/logo/kivy-icon-256.png
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/logo/kivy-icon-64.png
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/logo/kivy-icon-512.png
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/logo/kivy-icon-32.png
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/data/logo/kivy-icon-24.png
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/effects/kinetic.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/effects/opacityscroll.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/effects/dampedscroll.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/effects/scroll.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/effects/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/modules/recorder.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/modules/_webdebugger.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/modules/console.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/modules/webdebugger.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/modules/monitor.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/modules/keybinding.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/modules/screen.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/modules/touchring.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/modules/inspector.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/modules/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/extras/highlight.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/extras/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/camera/camera_gi.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/camera/camera_android.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/camera/camera_pygst.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/camera/camera_opencv.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/camera/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/spelling/spelling_enchant.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/spelling/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/video/video_gi.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/video/video_ffmpeg.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/video/video_ffpyplayer.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/video/video_gstplayer.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/video/video_pygst.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/video/video_null.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/video/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/window/window_sdl2.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/window/window_egl_rpi.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/window/window_pygame.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/window/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/image/img_dds.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/image/img_sdl2.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/image/img_ffpyplayer.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/image/img_tex.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/image/img_gif.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/image/img_pygame.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/image/img_pil.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/image/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/audio/audio_gi.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/audio/audio_pygst.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/audio/audio_avplayer.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/audio/audio_gstplayer.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/audio/audio_pygame.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/audio/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/audio/audio_ffpyplayer.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/gl/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/clipboard/clipboard_dummy.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/clipboard/clipboard_winctypes.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/clipboard/_clipboard_ext.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/clipboard/clipboard_gtk3.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/clipboard/clipboard_nspaste.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/clipboard/clipboard_xclip.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/clipboard/clipboard_sdl2.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/clipboard/clipboard_android.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/clipboard/clipboard_xsel.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/clipboard/clipboard_pygame.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/clipboard/clipboard_dbusklipper.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/clipboard/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/text/text_pil.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/text/text_layout.pxd
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/text/text_sdl2.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/text/markup.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/text/text_pygame.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/text/text_layout.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/core/text/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/opengl_utils.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/shader.pxd
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/config.pxi
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/tesselator.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/texture.pxd
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/vertex_instructions.pxd
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/context_instructions.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/transformation.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/buffer.pxd
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/common.pxi
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/context_instructions.pxd
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/opcodes.pxi
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/svg.pxd
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/img_tools.pxi
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/compiler.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/context.pxd
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/gl2platform.h
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/scissor_instructions.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/opengl.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/config.h
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/gl_instructions.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/context.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/compiler.pxd
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/transformation.pxd
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/tesselator.pxd
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/instructions.pxd
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/stencil_instructions.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/shader.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/vertex.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/vertex.pxd
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/gl_debug_logger.pxi
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/khrplatform.h
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/vbo.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/stencil_instructions.pxd
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/c_opengl_debug.pxd
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/opengl_utils_def.pxi
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/opengl_utils.pxd
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/vertex_instructions.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/gl_redirect.h
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/c_opengl.pxd
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/instructions.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/fbo.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/vertex_instructions_line.pxi
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/common_subset.h
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/buffer.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/fbo.pxd
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/texture.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/svg.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/c_opengl_debug.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/vbo.pxd
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/graphics/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/bubble.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/gridlayout.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/checkbox.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/scatter.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/camera.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/colorpicker.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/selectableview.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/floatlayout.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/spinner.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/vkeyboard.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/togglebutton.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/pagelayout.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/treeview.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/codeinput.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/modalview.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/videoplayer.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/popup.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/image.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/progressbar.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/abstractview.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/relativelayout.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/actionbar.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/carousel.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/layout.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/stacklayout.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/splitter.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/effectwidget.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/gesturesurface.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/widget.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/scatterlayout.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/listview.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/label.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/accordion.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/slider.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/button.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/sandbox.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/scrollview.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/boxlayout.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/video.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/switch.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/rst.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/dropdown.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/filechooser.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/tabbedpanel.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/anchorlayout.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/screenmanager.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/textinput.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/settings.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/stencilview.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/behaviors/focus.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/behaviors/togglebutton.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/behaviors/drag.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/behaviors/emacs.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/behaviors/codenavigation.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/behaviors/compoundselection.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/behaviors/knspace.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/behaviors/button.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/uix/behaviors/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/network/urlrequest.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/network/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/input/recorder.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/input/factory.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/input/motionevent.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/input/provider.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/input/shape.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/input/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/input/providers/linuxwacom.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/input/providers/mouse.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/input/providers/tuio.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/input/providers/leapfinger.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/input/providers/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/input/providers/androidjoystick.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/input/postproc/retaintouch.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/input/postproc/doubletap.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/input/postproc/ignorelist.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/input/postproc/calibration.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/input/postproc/tripletap.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/input/postproc/dejitter.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/kivy/input/postproc/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/android/_android_sound.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/android/broadcast.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/android/mixer.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/android/activity.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/android/runnable.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/android/_android.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/android/billing.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/android/_android_billing.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/android/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/jnius/jnius.so
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/jnius/reflect.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/jnius/signatures.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/jnius/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/utils.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/compat.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/win/battery.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/win/wifi.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/win/email.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/win/tts.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/win/uniqueid.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/win/notification.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/win/filechooser.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/win/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/win/libs/win_api_defs.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/win/libs/balloontip.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/win/libs/batterystatus.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/win/libs/wifi_defs.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/win/libs/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/android/camera.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/android/irblaster.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/android/gyroscope.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/android/compass.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/android/battery.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/android/orientation.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/android/accelerometer.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/android/vibrator.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/android/call.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/android/email.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/android/flash.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/android/tts.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/android/uniqueid.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/android/notification.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/android/sms.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/android/gps.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/android/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/android/audio.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/ios/camera.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/ios/gyroscope.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/ios/compass.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/ios/battery.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/ios/accelerometer.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/ios/vibrator.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/ios/call.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/ios/email.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/ios/flash.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/ios/tts.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/ios/uniqueid.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/ios/sms.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/ios/gps.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/ios/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/linux/battery.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/linux/accelerometer.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/linux/wifi.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/linux/email.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/linux/tts.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/linux/uniqueid.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/linux/notification.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/linux/filechooser.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/linux/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/macosx/battery.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/macosx/accelerometer.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/macosx/wifi.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/macosx/email.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/macosx/tts.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/macosx/uniqueid.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/macosx/notification.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/macosx/filechooser.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/macosx/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/macosx/libs/osx_motion_sensor.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/platforms/macosx/libs/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/facades/camera.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/facades/irblaster.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/facades/gyroscope.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/facades/compass.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/facades/battery.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/facades/orientation.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/facades/accelerometer.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/facades/wifi.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/facades/vibrator.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/facades/call.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/Buildfile: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/build.xml
+
+-set-mode-check:
+
+-set-debug-files:
+
+-check-env:
+ [checkenv] Android SDK Tools Revision 25.2.5
+ [checkenv] Installed at /home/nithish/.buildozer/android/platform/android-sdk-20
+
+-setup:
+     [echo] Project Name: SVETATemple-0.1
+  [gettype] Project Type: Application
+
+-set-debug-mode:
+
+-debug-obfuscation-check:
+
+-pre-build:
+
+-build-setup:
+[getbuildtools] Using latest Build Tools: 25.0.2
+     [echo] Resolving Build Target for SVETATemple-0.1...
+[gettarget] Project Target:   Android 4.4.2
+[gettarget] API level:        19
+     [echo] ----------
+     [echo] Creating output directories if needed...
+     [echo] ----------
+     [echo] Resolving Dependencies for SVETATemple-0.1...
+[dependency] Library dependencies:
+[dependency] No Libraries
+[dependency] 
+[dependency] ------------------
+     [echo] ----------
+     [echo] Building Libraries with 'debug'...
+   [subant] No sub-builds to iterate on
+
+-code-gen:
+[mergemanifest] Found modified input file
+[mergemanifest] Merging AndroidManifest files into one.
+[mergemanifest] Manifest merger disabled. Using project manifest only.
+     [echo] Handling aidl files...
+     [aidl] Found 1 AIDL files.
+     [aidl] Compiling 1 AIDL files.
+     [echo] ----------
+     [echo] Handling RenderScript files...
+     [echo] ----------
+     [echo] Handling Resources...
+     [aapt] Found modified input file
+     [aapt] Generating resource IDs...
+     [echo] ----------
+     [echo] Handling BuildConfig class...
+[buildconfig] No need to generate new BuildConfig.
+
+-pre-compile:
+
+-compile:
+    [javac] Compiling 4 source files to /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/bin/classes
+    [javac] warning: [options] source value 1.5 is obsolete and will be removed in a future release
+    [javac] warning: [options] target value 1.5 is obsolete and will be removed in a future release
+    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+    [javac] Note: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/src/org/renpy/android/Audio.java uses or overrides a deprecated API.
+    [javac] Note: Recompile with -Xlint:deprecation for details.
+    [javac] 3 warnings
+
+-post-compile:
+
+-obfuscate:
+
+-dex:
+      [dex] input: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/bin/classes
+      [dex] Found modified input file
+      [dex] Converting compiled files and external libraries into /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/bin/classes.dex...
+
+-crunch:
+   [crunch] Crunching PNG Files in source dir: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/res
+   [crunch] To destination dir: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/bin/res
+   [crunch] Processing image to cache: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/res/drawable/icon.png => /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/bin/res/drawable/icon.png
+   [crunch] Crunched 1 PNG files to update cache
+   [crunch] libpng error: Not a PNG file
+
+-package-resources:
+     [aapt] Found modified input file
+     [aapt] Creating full resource package...
+
+-package:
+[apkbuilder] Found modified input file
+[apkbuilder] Creating SVETATemple-0.1-debug-unaligned.apk and signing it with a debug key...
+
+-post-package:
+
+-do-debug:
+ [zipalign] Running zip align on final apk...
+     [echo] Debug Package: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/bin/SVETATemple-0.1-debug.apk
+[propertyfile] Updating property file: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/bin/build.prop
+[propertyfile] Updating property file: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/bin/build.prop
+[propertyfile] Updating property file: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/bin/build.prop
+[propertyfile] Updating property file: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/bin/build.prop
+
+-post-build:
+
+debug:
+
+BUILD SUCCESSFUL
+Total time: 2 seconds
+site-packages/plyer/facades/email.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/facades/flash.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/facades/tts.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/facades/uniqueid.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/facades/notification.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/facades/sms.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/facades/filechooser.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/facades/gps.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/facades/__init__.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/platform/python-for-android/dist/templeapp/private/lib/python2.7/site-packages/plyer/facades/audio.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/app/presplash1.jpg
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/app/main.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/app/interface.kv
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/app/icon.png
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/app/presplash.jpg
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/app/sitecustomize.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/app/calendar.sqlite
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/app/random/example.kv
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/app/random/My.kv
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/app/random/newuser.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/app/random/stuffwoo.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/app/random/pong.pyo
+assets/private.mp3: /home/nithish/Calendar/.buildozer/android/app/random/pong.kv
+[0m[1;34m# Android packaging done![0m
+[0m[1;34m# APK SVETATemple-0.1-debug.apk available in the bin directory[0m
+[0m[1;30m# Run '/home/nithish/.buildozer/android/platform/android-sdk-20/platform-tools/adb devices'[0m
+[0m[1;30m# Cwd None[0m
+List of devices attached
+ZY223J93ND	device
+
+[0m[1;34m# Deploy on ZY223J93ND[0m
+[0m[1;30m# Run '/home/nithish/.buildozer/android/platform/android-sdk-20/platform-tools/adb install -r /home/nithish/Calendar/bin/SVETATemple-0.1-debug.apk'[0m
+[0m[1;30m# Cwd /home/nithish/.buildozer/android/platform[0m
+[  0%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[  1%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[  1%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[  2%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[  2%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[  3%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[  3%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[  4%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[  4%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[  5%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[  5%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[  6%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[  6%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[  7%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[  7%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[  8%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[  8%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[  9%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[  9%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 10%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 10%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 11%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 11%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 12%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 12%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 13%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 13%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 14%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 14%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 15%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 15%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 16%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 16%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 17%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 17%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 18%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 18%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 19%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 19%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 20%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 20%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 21%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 21%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 22%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 22%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 23%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 23%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 24%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 24%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 25%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 25%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 26%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 26%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 27%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 27%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 28%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 28%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 29%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 30%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 30%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 31%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 31%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 32%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 32%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 33%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 33%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 34%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 34%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 35%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 35%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 36%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 36%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 37%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 37%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 38%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 38%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 39%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 39%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 40%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 40%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 41%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 41%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 42%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 42%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 43%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 43%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 44%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 44%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 45%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 45%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 46%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 46%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 47%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 47%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 48%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 48%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 49%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 49%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 50%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 50%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 51%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 51%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 52%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 52%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 53%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 53%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 54%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 54%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 55%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 55%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 56%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 56%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 57%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 57%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 58%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 59%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 59%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 60%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 60%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 61%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 61%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 62%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 62%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 63%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 63%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 64%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 64%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 65%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 65%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 66%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 66%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 67%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 67%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 68%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 68%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 69%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 69%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 70%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 70%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 71%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 71%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 72%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 72%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 73%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 73%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 74%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 74%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 75%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 75%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 76%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 76%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 77%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 77%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 78%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 78%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 79%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 79%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 80%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 80%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 81%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 81%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 82%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 82%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 83%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 83%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 84%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 84%] /data/local/tmp/SVETATemple-0.1-debug.apk
+[ 85%] /d[0m[1;31m# Command failed: /home/nithish/.buildozer/android/platform/android-sdk-20/platform-tools/adb install -r /home/nithish/Calendar/bin/SVETATemple-0.1-debug.apk[0m
+[0m[1;31m# [0m
+[0m[1;31m# Buildozer failed to execute the last command[0m
+[0m[1;31m# The error might be hidden in the log above this error[0m
+[0m[1;31m# Please read the full log, and search for it before[0m
+[0m[1;31m# raising an issue with buildozer itself.[0m
+[0m[1;31m# In case of a bug report, please add a full log with log_level = 2[0m
