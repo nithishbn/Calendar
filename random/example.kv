@@ -1,5 +1,18 @@
-<Widget1>:
-    rows: 1
-    cols: 2
-    Button:
-        text: "hi"
+<ExampleRoot>:
+    screen_manager: screen_manager
+    ScreenManager:
+        id: screen_manager
+        Screen:
+            name: "screen_hello"
+            Button:
+                text: "Hello Mate"
+                on_release: root.onNextScreen(self, "screen_scream")
+        Screen:
+            name: "screen_scream"
+            Button:
+                text: "SCREAM"
+                on_release: root.onNextScreen(self, "screen_spider_pig")
+        Screen:
+            name: "screen_spider_pig"
+            Button:
+                text: "Spider Pig!"
