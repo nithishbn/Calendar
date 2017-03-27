@@ -1,54 +1,100 @@
+from kivy.animation import Animation
 from kivy.app import App
-from kivy.core.window import Window
-from kivy.uix.boxlayout import BoxLayout
-from kivy.properties import ObjectProperty
+from kivy.clock import Clock
+from kivy.lang import Builder
+from kivy.properties import (BooleanProperty, ListProperty, NumericProperty,
+                             OptionProperty, ObjectProperty, StringProperty)
+from kivy.uix.label import Label
+from kivy.uix.scrollview import ScrollView
+
+Builder.load_string("""
+<AutoScrollableVLabel>:
+    label: __label
+    Label:
+        size_hint_y: None
+        height: self.texture_size[1]
+        text_size: (self.width, None)
+
+        id: __label
+        text: root.text
+        font_name: root.font_name
+        font_size: root.font_size
+        line_height: root.line_height
+        bold: root.bold
+        italic: root.italic
+        halign: root.halign
+        valign: root.valign
+        color: root.color
+        max_lines: root.max_lines
+
+<AutoScrollableHLabel>:
+    label: __label
+    Label:
+        size_hint_x: None
+        height: root.height
+        width: self.texture_size[0]
+
+        id: __label
+        text: root.text
+        font_name: root.font_name
+        font_size: root.font_size
+        line_height: root.line_height
+        bold: root.bold
+        italic: root.italic
+        halign: root.halign
+        valign: root.valign
+        color: root.color
+        max_lines: root.max_lines
+""")
 
 
-################################################################################
-class ExampleRoot(BoxLayout):
-    """ Root widget for app """
-    screen_manager = ObjectProperty(None)
+class AutoScrollableLabel(object):
+    label = ObjectProperty(None)
+    autoscroll = BooleanProperty(True)
+    duration = NumericProperty(10)
+    duration = BooleanProperty(False)
+    delay = NumericProperty(1)
+    text = StringProperty('')
+    font_name = StringProperty('Roboto')
+    font_size = NumericProperty('15sp')
+    line_height = NumericProperty(1.0)
+    bold = BooleanProperty(False)
+    italic = BooleanProperty(False)
+    color = ListProperty([1, 1, 1, 1])
+    max_lines = NumericProperty(0)
+    orientation = OptionProperty('vertical', options=['horizontal', 'vertical', 'oneline'])
+    valign = OptionProperty('bottom', options=['bottom', 'middle', 'top'])
+    halign = OptionProperty('left', options=['left', 'center',
+                                             'right', 'justify'])
 
-    def __init__(self, *args, **kwargs):
-        super(ExampleRoot, self).__init__(*args, **kwargs)
-        # list to keep track of screens we were in
-        self.list_of_prev_screens = []
+    l_size_hint_x = NumericProperty(1, allownone=True)
+    l_size_hint_y = NumericProperty(1, allownone=True)
 
-    # --------------------------------------------------------------------------
-    def onNextScreen(self, btn, next_screen):
-        # add screen we were just in
-        self.list_of_prev_screens.append(btn.parent.name)
-        # Go to next screen
-        self.screen_manager.current = next_screen
+    def on_autoscroll(self, instance, scroll):
+        if scroll:
+            Clock.schedule_once(self.do_scroll, self.delay)
 
-    def onBackBtn(self):
-        # Check if there are any screens to go back to
-        if self.list_of_prev_screens:
-            # If there are then just go back to it
-            self.screen_manager.current = self.list_of_prev_screens.pop()
-            # We don't want to close app
-            return True
-        # No more screens so user must want to exit app
-        return False
+    def do_scroll(self, *args):
+        if self.orientation == 'vertical':
+            anim = Animation(scroll_y=0, duration=self.duration)
+        else:
+            anim = Animation(scroll_x=1, duration=self.duration)
+        anim.start(self)
 
-################################################################################
-class ExampleApp(App):
-    """ App to show how to use back button """
+    def on_text(self, instance, text):
+        if self.autoscroll:
+            Clock.schedule_once(self.do_scroll, self.delay)
 
-    def __init__(self, *args, **kwargs):
-        super(ExampleApp, self).__init__(*args, **kwargs)
 
-    # --------------------------------------------------------------------------
-    def build(self):
-        return ExampleRoot()
+class AutoScrollableVLabel(AutoScrollableLabel, ScrollView):
 
-    def onBackBtn(self, window, key, *args):
-        """ To be called whenever user presses Back/Esc key """
-        # 27 is back press number code
-        if key == 27:
-            # Call the "OnBackBtn" method from the "ExampleRoot" instance
-            return self.root.onBackBtn()
-        return False
+    def __init__(self, **kwargs):
+        super(AutoScrollableVLabel, self).__init__(**kwargs)
+        self.orientation = 'vertical'
 
-if __name__ == "__main__":
-    ExampleApp().run()
+
+class AutoScrollableHLabel(AutoScrollableLabel, ScrollView):
+
+    def __init__(self, **kwargs):
+        self.orientation = 'horizontal'
+        super(AutoScrollableHLabel, self).__init__(**kwargs)

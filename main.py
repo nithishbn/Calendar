@@ -3,6 +3,7 @@ from kivy.app import App
 from kivy.core.window import Window
 from kivy.properties import StringProperty, ObjectProperty
 from kivy.uix.screenmanager import Screen
+from kivy.uix.scrollview import ScrollView
 from plyer import vibrator
 import webbrowser
 
@@ -29,6 +30,8 @@ class DateScreen(Screen):
         self.manager.current = "TodayScreen"
 
 class ConstructionScreen(Screen):
+    pass
+class ScrollableLabel(ScrollView):
     pass
 class TodayScreen(Screen):
     samva = StringProperty('')

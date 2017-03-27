@@ -58,7 +58,6 @@ ScreenManager:
                 font_size: 45
                 size_hint: 0.5, 1
                 on_press: root.manager.current = "ConstructionScreen"
-
         BoxLayout:
             padding: (100, 50)
             orientation: 'vertical'
@@ -68,11 +67,18 @@ ScreenManager:
                 font_size: 45
                 pos_hint: {'top': 1, 'center_x': 0.5}
                 on_press: root.manager.current = "ConstructionScreen"
-            Label:
-                font_size: 25
-                size_hint: None, None
-                pos_hint: {'bottom': 1, 'center_x': 0.5}
-                text: "scrolling text wooo"
+        ScrollableLabel:
+            pos_hint: {'bottom': 1, 'center_x': 0.5}
+<ScrollableLabel>:
+    bar_color: [1, 1, 0.5, 1]
+    Label:
+        text: "some really really long string " *1000
+        font_size: 10
+        text_size: self.width , None
+        size_hint_y: None
+        height: self.texture_size[1]
+
+
 
 
 <DateScreen>:
@@ -83,11 +89,22 @@ ScreenManager:
         font_size: 35
         size_hint: 0.65, 0.25
         pos_hint: {'center_x': 0.5, 'top': 1}
-    TextInput:
-        id: datething
-        font_size: 35
-        size_hint: 0.65, 0.15
-        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+    BoxLayout:
+        spacing: 30
+        Button:
+            text: "Today"
+            font_size: 35
+            size_hint: 0.65, 0.25
+            pos_hint: {'x': 0, 'center_y': 0.5}
+        TextInput:
+            write_tab: False
+            multiline: False
+            id: datething
+            font_size: 35
+            size_hint: 0.65, 0.15
+            pos_hint: {'x': 1, 'center_y': 0.5}
+            on_text_validate: root.selectdate()
+
     Button:
         font_size: 35
         size_hint: 0.65, 0.25
@@ -102,55 +119,48 @@ ScreenManager:
         orientation: 'vertical'
         # padding: 0, -30
 
-        FloatLayout:
-            Label:
-                canvas.before:
-                    Color:
-                        rgba: 1, 0.25, 0, 1
-                    Rectangle:
-                        size: self.size
-                        pos: self.pos
-                text: 'Details'
-                font_size: 45
-                size_hint: None, None
-                size: 0.5, 0.5
-                pos_hint: {'x':0.5, 'y':0.85}
-
-                # size_hint_y: None
-
         BoxLayout:
             orientation: 'vertical'
-            padding: 0, 20
+            size_hint: 1, 0.25
+            Label:
+                text: 'Details'
+                font_size: 45
+                size_hint: None, 0.05
+                pos_hint: {'center_x':0.5, 'top': 1}
+                markup: True
+                underline: True
+        BoxLayout:
+            orientation: 'vertical'
             Label:
                 text: root.samva
                 size_hint: 0.5, 0.25
                 pos_hint:{'x':0.25,'top':0.15}
-                font_size: 40
+                font_size: 25
             Label:
                 text: root.avanam
                 size_hint: 0.5, 0.25
                 pos_hint:{'x':0.25,'top':0.15}
-                font_size: 40
+                font_size: 25
             Label:
                 text: root.rithu
                 size_hint: 0.5, 0.25
                 pos_hint:{'x':0.25,'top':0.15}
-                font_size: 40
+                font_size: 25
             Label:
                 text: root.maasae
                 size_hint: 0.5, 0.25
                 pos_hint:{'x':0.25,'top':0.15}
-                font_size: 40
+                font_size: 25
             Label:
                 text: root.pakshae
                 size_hint: 0.5, 0.25
                 pos_hint:{'x':0.25,'top':0.15}
-                font_size: 40
+                font_size: 25
             Label:
                 text: root.thithi
                 size_hint: 0.5, 0.25
                 pos_hint:{'x':0.25,'top':0.15}
-                font_size: 40
+                font_size: 25
         Button:
             size_hint: 0.5, .25
             pos_hint: {'x':.25, 'y': 0.05}
