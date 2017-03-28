@@ -1,4 +1,6 @@
 import sqlite3
+import datetime
+from kivy.animation import Animation
 from kivy.app import App
 from kivy.core.window import Window
 from kivy.properties import StringProperty, ObjectProperty
@@ -13,6 +15,7 @@ class MenuScreen(Screen):
 
 class DateScreen(Screen):
     date = StringProperty('')
+    otherdate = StringProperty('')
     def __init__(self, **kwargs):
         super(DateScreen, self).__init__(**kwargs)
         # Setting it up to listen for keyboard events
@@ -28,6 +31,18 @@ class DateScreen(Screen):
     def selectdate(self):
         self.date = self.ids.datething.text
         self.manager.current = "TodayScreen"
+    def figuretime(self):
+        dt = datetime.datetime.strptime(str(datetime.date.today()), '%Y-%m-%d')
+        actualdate = '{0}/{1}/{2:02}'.format(dt.month, dt.day, dt.year % 100)
+        return actualdate
+class ScrollLabel(ScrollView):
+    pass
+
+scroll = ScrollLabel(scroll_y=-1)
+marquee = Animation(scroll_x=1, duration=5)
+
+marquee.repeat = True
+marquee.start(scroll)
 
 class ConstructionScreen(Screen):
     pass

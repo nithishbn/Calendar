@@ -80,7 +80,6 @@ ScreenManager:
 
 
 
-
 <DateScreen>:
     on_pre_enter:
         root.ids.datething.text = ""
@@ -89,21 +88,16 @@ ScreenManager:
         font_size: 35
         size_hint: 0.65, 0.25
         pos_hint: {'center_x': 0.5, 'top': 1}
-    BoxLayout:
-        spacing: 30
-        Button:
-            text: "Today"
-            font_size: 35
-            size_hint: 0.65, 0.25
-            pos_hint: {'x': 0, 'center_y': 0.5}
-        TextInput:
-            write_tab: False
-            multiline: False
-            id: datething
-            font_size: 35
-            size_hint: 0.65, 0.15
-            pos_hint: {'x': 1, 'center_y': 0.5}
-            on_text_validate: root.selectdate()
+    TextInput:
+        text: "asdfasdfasdfasdf"
+        write_tab: False
+        multiline: False
+        id: datething
+        font_size: 35
+        size_hint: 0.55, 0.15
+
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        on_text_validate: root.selectdate()
 
     Button:
         font_size: 35
@@ -191,3 +185,14 @@ ScreenManager:
                 text: "Go back!"
                 on_press: root.manager.current = "MenuScreen"
                 font_size: 35
+<Spacer@Widget>:
+    size_hint_x: None
+    width: 800
+
+<ScrollLabel>:
+    Spacer:
+    Label:
+        size_hint_x: None
+        text: 'Nithish is the best'
+        width: self.texture_size[0]
+    Spacer:
