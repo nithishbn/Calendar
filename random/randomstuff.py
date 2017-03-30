@@ -1,3 +1,7 @@
-import datetime
-dt = datetime.datetime.strptime("2013-1-25", '%Y-%m-%d')
-print('{0}/{1}/{2:02}'.format(dt.month, dt.day, dt.year % 100))
+from bottle import route, run, template
+
+@route('/hello/<name>')
+def index(name):
+    return template('<b>Hello {{name}}</b>!', name=name)
+
+run(host='0.0.0.0', port=8080)

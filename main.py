@@ -3,7 +3,7 @@ import datetime
 from kivy.animation import Animation
 from kivy.app import App
 from kivy.core.window import Window
-from kivy.properties import StringProperty, ObjectProperty
+from kivy.properties import StringProperty, ObjectProperty, Clock, ListProperty
 from kivy.uix.screenmanager import Screen
 from kivy.uix.scrollview import ScrollView
 from plyer import vibrator
@@ -13,9 +13,11 @@ import webbrowser
 class MenuScreen(Screen):
     pass
 
+
 class DateScreen(Screen):
     date = StringProperty('')
     otherdate = StringProperty('')
+
     def __init__(self, **kwargs):
         super(DateScreen, self).__init__(**kwargs)
         # Setting it up to listen for keyboard events
@@ -28,26 +30,39 @@ class DateScreen(Screen):
             self.manager.current = "MenuScreen"
             return True
         return False
+
     def selectdate(self):
         self.date = self.ids.datething.text
         self.manager.current = "TodayScreen"
+
     def figuretime(self):
         dt = datetime.datetime.strptime(str(datetime.date.today()), '%Y-%m-%d')
         actualdate = '{0}/{1}/{2:02}'.format(dt.month, dt.day, dt.year % 100)
         return actualdate
+
+
 class ScrollLabel(ScrollView):
-    pass
 
-scroll = ScrollLabel(scroll_y=-1)
-marquee = Animation(scroll_x=1, duration=5)
+    def __init__(self, **kwargs):
 
-marquee.repeat = True
-marquee.start(scroll)
+        super(ScrollLabel, self).__init__(**kwargs)
+        Clock.schedule_interval(self.update_self, 10.0)
+    def update_self(self, *args):
+        print("I am a bug")
+        print(self.scroll_x)
+        if self.scroll_x == 0:
+            marquee = Animation(scroll_x=0.99, duration=10.0)
+            marquee.start(self)
+        elif self.scroll_x >= 0.99:
+            self.scroll_x = 0
+    def on_touch_down(self, touch):
+        if self.collide_point(*touch.pos):
+            return 0
 
 class ConstructionScreen(Screen):
     pass
-class ScrollableLabel(ScrollView):
-    pass
+
+
 class TodayScreen(Screen):
     samva = StringProperty('')
     avanam = StringProperty('')
@@ -56,6 +71,7 @@ class TodayScreen(Screen):
     pakshae = StringProperty('')
     thithi = StringProperty('')
     date = StringProperty('')
+
     def __init__(self, **kwargs):
         super(TodayScreen, self).__init__(**kwargs)
         # Setting it up to listen for keyboard events
@@ -68,6 +84,7 @@ class TodayScreen(Screen):
             self.manager.current = "DateScreen"
             return True
         return False
+
     def search(self):
         date = self.date
         print(date)

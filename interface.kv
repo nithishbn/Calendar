@@ -1,5 +1,6 @@
 #: import NoTransition kivy.uix.screenmanager.NoTransition
 #: import webbrowser webbrowser
+#: import Animation kivy.animation.Animation
 ScreenManager:
     id: sm
     MenuScreen:
@@ -24,6 +25,8 @@ ScreenManager:
         manager: sm
         transition: "NoTransition"
 <MenuScreen>:
+    on_enter:
+        root.ids.scrolllabelthing.update_self()
     BoxLayout:
         orientation: 'vertical'
         spacing: 0
@@ -67,16 +70,16 @@ ScreenManager:
                 font_size: 45
                 pos_hint: {'top': 1, 'center_x': 0.5}
                 on_press: root.manager.current = "ConstructionScreen"
-        ScrollableLabel:
-            pos_hint: {'bottom': 1, 'center_x': 0.5}
-<ScrollableLabel>:
-    bar_color: [1, 1, 0.5, 1]
-    Label:
-        text: "some really really long string " *1000
-        font_size: 10
-        text_size: self.width , None
-        size_hint_y: None
-        height: self.texture_size[1]
+        ScrollLabel:
+            id: scrolllabelthing
+            size_hint_y: None
+            # scroll_y: -1
+
+
+
+
+
+
 
 
 
@@ -190,9 +193,14 @@ ScreenManager:
     width: 800
 
 <ScrollLabel>:
-    Spacer:
-    Label:
+    GridLayout:
+        rows:1
         size_hint_x: None
-        text: 'Nithish is the best'
-        width: self.texture_size[0]
-    Spacer:
+
+        width: self.minimum_width
+        Spacer:
+        Label:
+            size_hint_x: None
+            text: "Hello there! Today is Ramanavami apparently so that's rad."
+            width: self.texture_size[0]
+        Spacer:
