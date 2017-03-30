@@ -42,23 +42,23 @@ class DateScreen(Screen):
 
 
 class ScrollLabel(ScrollView):
-
     def __init__(self, **kwargs):
 
         super(ScrollLabel, self).__init__(**kwargs)
         Clock.schedule_once(self.update_self)
         Clock.schedule_interval(self.update_self, 2.5)
+
     def update_self(self, *args):
-        print("I am a bug")
-        print(self.scroll_x)
         if self.scroll_x == 0:
             marquee = Animation(scroll_x=1.0, duration=10.0)
             marquee.start(self)
         elif self.scroll_x >= 0.99:
             self.scroll_x = 0
+
     def on_touch_down(self, touch):
         if self.collide_point(*touch.pos):
             return 0
+
 
 class ConstructionScreen(Screen):
     pass

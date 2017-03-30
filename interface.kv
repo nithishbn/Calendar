@@ -73,18 +73,8 @@ ScreenManager:
         ScrollLabel:
             id: scrolllabelthing
             size_hint_y: None
-            # scroll_y: -1
-
-
-
-
-
-
-
-
-
 <DateScreen>:
-    on_pre_enter:
+    on_leave:
         root.ids.datething.text = ""
     Label:
         text: "Enter Date for details"
@@ -92,7 +82,7 @@ ScreenManager:
         size_hint: 0.65, 0.25
         pos_hint: {'center_x': 0.5, 'top': 1}
     TextInput:
-        text: "asdfasdfasdfasdf"
+        text: root.figuretime()
         write_tab: False
         multiline: False
         id: datething
@@ -127,37 +117,70 @@ ScreenManager:
                 markup: True
                 underline: True
         BoxLayout:
-            orientation: 'vertical'
-            Label:
-                text: root.samva
-                size_hint: 0.5, 0.25
-                pos_hint:{'x':0.25,'top':0.15}
-                font_size: 25
-            Label:
-                text: root.avanam
-                size_hint: 0.5, 0.25
-                pos_hint:{'x':0.25,'top':0.15}
-                font_size: 25
-            Label:
-                text: root.rithu
-                size_hint: 0.5, 0.25
-                pos_hint:{'x':0.25,'top':0.15}
-                font_size: 25
-            Label:
-                text: root.maasae
-                size_hint: 0.5, 0.25
-                pos_hint:{'x':0.25,'top':0.15}
-                font_size: 25
-            Label:
-                text: root.pakshae
-                size_hint: 0.5, 0.25
-                pos_hint:{'x':0.25,'top':0.15}
-                font_size: 25
-            Label:
-                text: root.thithi
-                size_hint: 0.5, 0.25
-                pos_hint:{'x':0.25,'top':0.15}
-                font_size: 25
+            BoxLayout:
+                orientation: 'vertical'
+                Label:
+                    text: "Samvatsram"
+                    size_hint: 0.5, 0.25
+                    pos_hint:{'x':0.25,'top':0.15}
+                    font_size: 25
+                Label:
+                    text: "Avanam"
+                    size_hint: 0.5, 0.25
+                    pos_hint:{'x':0.25,'top':0.15}
+                    font_size: 25
+                Label:
+                    text: "Rithu"
+                    size_hint: 0.5, 0.25
+                    pos_hint:{'x':0.25,'top':0.15}
+                    font_size: 25
+                Label:
+                    text: "Maasae"
+                    size_hint: 0.5, 0.25
+                    pos_hint:{'x':0.25,'top':0.15}
+                    font_size: 25
+                Label:
+                    text: "Pakshae"
+                    size_hint: 0.5, 0.25
+                    pos_hint:{'x':0.25,'top':0.15}
+                    font_size: 25
+                Label:
+                    text: "Thithi"
+                    size_hint: 0.5, 0.25
+                    pos_hint:{'x':0.25,'top':0.15}
+                    font_size: 25
+            BoxLayout:
+                orientation: 'vertical'
+                Label:
+                    text: root.samva
+                    size_hint: 0.5, 0.25
+                    pos_hint:{'x':0.25,'top':0.15}
+                    font_size: 25
+                Label:
+                    text: root.avanam
+                    size_hint: 0.5, 0.25
+                    pos_hint:{'x':0.25,'top':0.15}
+                    font_size: 25
+                Label:
+                    text: root.rithu
+                    size_hint: 0.5, 0.25
+                    pos_hint:{'x':0.25,'top':0.15}
+                    font_size: 25
+                Label:
+                    text: root.maasae
+                    size_hint: 0.5, 0.25
+                    pos_hint:{'x':0.25,'top':0.15}
+                    font_size: 25
+                Label:
+                    text: root.pakshae
+                    size_hint: 0.5, 0.25
+                    pos_hint:{'x':0.25,'top':0.15}
+                    font_size: 25
+                Label:
+                    text: root.thithi
+                    size_hint: 0.5, 0.25
+                    pos_hint:{'x':0.25,'top':0.15}
+                    font_size: 25
         Button:
             size_hint: 0.5, .25
             pos_hint: {'x':.25, 'y': 0.05}
@@ -201,7 +224,7 @@ ScreenManager:
         Spacer:
         Label:
             size_hint_x: None
-            text: "Hello there! Yesterday was Ugadi! Happy New Year!"
+            text: "Hello there! Today is Ramanavami apparently so that's rad."
             width: self.texture_size[0]
             font_size: 25
         Spacer:
