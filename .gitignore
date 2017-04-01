@@ -8,3 +8,7 @@
 /.gitattributes
 /random/Database Structure.xlsx
 /~$Database Structure.xlsx
+
+\.buildozer/android/app/
+
+\.buildozer/
