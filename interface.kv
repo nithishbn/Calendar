@@ -100,9 +100,13 @@ ScreenManager:
         on_press: root.selectdate()
 
 <TodayScreen>:
+
+
+
     on_pre_enter:
         root.search()
     BoxLayout:
+
         orientation: 'vertical'
         # padding: 0, -30
 
@@ -117,10 +121,24 @@ ScreenManager:
                 markup: True
                 underline: True
         BoxLayout:
+
             BoxLayout:
                 orientation: 'vertical'
                 Label:
+                    # canvas.before:
+                    #     Color:
+                    #         rgba: 1, 1, 1, 1
+                    #     BorderImage:
+                    #         pos: self.pos
+                    #         size: self.width, self.height
+                    # canvas:
+                    #     Color:
+                    #         rgba: 0, 0, 0, 1
+                    #     Rectangle:
+                    #         pos: self.pos
+                    #         size: self.width - 50, self.height - 20
                     text: "Samvatsram"
+                    # color: 0, 0, 0, 1
                     size_hint: 0.5, 0.25
                     pos_hint:{'x':0.25,'top':0.15}
                     font_size: 25
@@ -224,7 +242,7 @@ ScreenManager:
         Spacer:
         Label:
             size_hint_x: None
-            text: "Hello there! Today is Ramanavami apparently so that's rad."
+            text: "This is some quick announcement that will be able to be pushed from another application."
             width: self.texture_size[0]
             font_size: 25
         Spacer:
