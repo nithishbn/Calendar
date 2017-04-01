@@ -87,6 +87,7 @@ class TodayScreen(Screen):
         return False
 
     def search(self):
+        
         date = self.date
         print(date)
         conn = sqlite3.connect('calendar.sqlite')
