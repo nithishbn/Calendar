@@ -126,7 +126,8 @@ class TodayScreen(Screen):
 
 
 class InterfaceApp(App):
-    pass
+    def on_pause(self):
+	return True
 
 
 InterfaceApp().run()
