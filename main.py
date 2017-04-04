@@ -160,7 +160,8 @@ class ScreenManager(ScreenManager):
 
 
 class InterfaceApp(App):
-    pass
+    def on_pause(self):
+	return True
 
 
 InterfaceApp().run()

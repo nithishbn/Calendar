@@ -1,0 +1,14 @@
+
+/.idea/Calendar.iml
+/.idea/misc.xml
+/.idea/vcs.xml
+/.idea/modules.xml
+/.idea/workspace.xml
+/.gitignore
+/.gitattributes
+/random/Database Structure.xlsx
+/~$Database Structure.xlsx
+
+\.buildozer/android/app/
+
+\.buildozer/
