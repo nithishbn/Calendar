@@ -3,36 +3,74 @@ import datetime
 from kivy.animation import Animation
 from kivy.app import App
 from kivy.core.window import Window
-from kivy.properties import StringProperty, ObjectProperty, Clock, ListProperty
-from kivy.uix.screenmanager import Screen
+from kivy.properties import StringProperty, Clock, ListProperty
+from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.uix.scrollview import ScrollView
-from plyer import vibrator
-import webbrowser
+
+
+class LoginScreen(Screen):
+    screenlist = ListProperty([])
+
+    def __init__(self, **kwargs):
+        super(LoginScreen, self).__init__(**kwargs)
+        self.screenlist.append("LoginScreen")
+
+    def register(self):
+        self.manager.current = "RegisterScreen"
+
+    def on_enter(self, *args):
+        print("Login")
+
+
+class RegisterScreen(Screen):
+    pass
 
 
 class MenuScreen(Screen):
-    pass
+    screenlist = ListProperty([])
+
+    def __init__(self, **kwargs):
+        super(MenuScreen, self).__init__(**kwargs)
+        self.screenlist.append("MenuScreen")
+        print(self.screenlist)
+
+    def on_enter(self):
+        super(MenuScreen, self).on_enter()
+        # if self.manager.current not in self.screenlist:
+        #     self.screenlist.append(self.manager.current)
+        # print("Menu", self.screenlist)
+        self.ids.scrolllabelthing.update_self()
 
 
 class DateScreen(Screen):
     date = StringProperty('')
     otherdate = StringProperty('')
+    screenlist = ListProperty([])
 
     def __init__(self, **kwargs):
         super(DateScreen, self).__init__(**kwargs)
-        # Setting it up to listen for keyboard events
         Window.bind(on_keyboard=self.onBackBtn)
 
+    # def on_enter(self, *args):
+    #     super(DateScreen, self).on_enter()
+    #     screenlist = self.screenlist
+    #     if self.manager.current not in self.screenlist:
+    #         self.screenlist.append(self.manager.current)
+    #     print("DateScreen", self.screenlist)
+    #     # print(self.screenlist)
     def onBackBtn(self, window, key, *args):
-        """ To be called whenever user presses Back/Esc Key """
-        # If user presses Back/Esc Key
         if key == 27:
-            self.manager.current = "MenuScreen"
-            return True
-        return False
+            print(self.screenlist)
+            if len(self.screenlist) != 0:
+                self.manager.current = self.screenlist[len(self.screenlist) - 1]
+                self.screenlist.pop(len(self.screenlist) - 1 )
+                return True
+            else:
+                return False
 
     def selectdate(self):
         self.date = self.ids.datething.text
+        self.screenlist.append(self.manager.current)
         self.manager.current = "TodayScreen"
 
     def figuretime(self):
@@ -41,30 +79,12 @@ class DateScreen(Screen):
         return actualdate
 
 
-class ScrollLabel(ScrollView):
-    def __init__(self, **kwargs):
-
-        super(ScrollLabel, self).__init__(**kwargs)
-        Clock.schedule_once(self.update_self)
-        Clock.schedule_interval(self.update_self, 2.5)
-
-    def update_self(self, *args):
-        if self.scroll_x == 0:
-            marquee = Animation(scroll_x=1.0, duration=10.0)
-            marquee.start(self)
-        elif self.scroll_x >= 0.99:
-            self.scroll_x = 0
-
-    def on_touch_down(self, touch):
-        if self.collide_point(*touch.pos):
-            return 0
-
-
 class ConstructionScreen(Screen):
-    pass
+    screenlist = ListProperty([])
 
 
 class TodayScreen(Screen):
+    screenlist = ListProperty([])
     samva = StringProperty('')
     avanam = StringProperty('')
     rithu = StringProperty('')
@@ -72,22 +92,13 @@ class TodayScreen(Screen):
     pakshae = StringProperty('')
     thithi = StringProperty('')
     date = StringProperty('')
+    screenlist = ListProperty([])
 
-    def __init__(self, **kwargs):
-        super(TodayScreen, self).__init__(**kwargs)
-        # Setting it up to listen for keyboard events
-        Window.bind(on_keyboard=self.onBackBtn)
-
-    def onBackBtn(self, window, key, *args):
-        """ To be called whenever user presses Back/Esc Key """
-        # If user presses Back/Esc Key
-        if key == 27:
-            self.manager.current = "DateScreen"
-            return True
-        return False
+    # def __init__(self, **kwargs):
+    #     super(TodayScreen, self).__init__(**kwargs)
+    #     Window.bind(on_keyboard=self.onBackBtn)
 
     def search(self):
-        
         date = self.date
         print(date)
         conn = sqlite3.connect('calendar.sqlite')
@@ -123,6 +134,29 @@ class TodayScreen(Screen):
         except:
             self.manager.current = "DateScreen"
             # self.ids.datething.text = " "
+
+
+class ScrollLabel(ScrollView):
+    def __init__(self, **kwargs):
+
+        super(ScrollLabel, self).__init__(**kwargs)
+        Clock.schedule_once(self.update_self)
+        Clock.schedule_interval(self.update_self, 2.5)
+
+    def update_self(self, *args):
+        if self.scroll_x == 0:
+            marquee = Animation(scroll_x=1.0, duration=10.0)
+            marquee.start(self)
+        elif self.scroll_x >= 0.99:
+            self.scroll_x = 0
+
+    def on_touch_down(self, touch):
+        if self.collide_point(*touch.pos):
+            return 0
+
+
+class ScreenManager(ScreenManager):
+    pass
 
 
 class InterfaceApp(App):

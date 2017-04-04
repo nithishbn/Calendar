@@ -3,30 +3,81 @@
 #: import Animation kivy.animation.Animation
 ScreenManager:
     id: sm
+    LoginScreen:
+        name: 'LoginScreen'
+        id: login
+        manager: sm
+        transition: NoTransition()
+    RegisterScreen:
+        name: 'RegisterScreen'
+        id: register
+        manager: sm
+        transition: NoTransition()
     MenuScreen:
         name: 'MenuScreen'
         id: menu
         manager: sm
-        transition: "NoTransition"
+        transition: NoTransition()
     TodayScreen:
         name: 'TodayScreen'
         id: today
         manager: sm
         date: date.date
-        transition: "NoTransition"
+        transition: NoTransition
+        screenlist: date.screenlist
     DateScreen:
         name: 'DateScreen'
         id: date
         manager: sm
         transition: "NoTransition"
+        screenlist: menu.screenlist
     ConstructionScreen:
         name: 'ConstructionScreen'
         id: construction
         manager: sm
         transition: "NoTransition"
+        screenlist: menu.screenlist
+<LoginScreen>:
+    BoxLayout:
+        pos_hint: {'top': 1, 'center_x': 0.5}
+        BoxLayout:
+            size_hint_y: 0.5
+            pos_hint: {'top': 1, 'center_x':0.5}
+            orientation: 'vertical'
+            Label:
+                text: "Username"
+                font_size: 50
+            Label:
+                text: "Password"
+                font_size: 50
+        BoxLayout:
+            size_hint_y: 0.5
+            pos_hint: {'top': 1, 'center_x':0.5}
+            orientation: 'vertical'
+            TextInput:
+                size_hint: 1, 0.25
+                multiline: False
+            TextInput:
+                size_hint: 1, 0.25
+                multiline: False
+                font_size: '50sp'
+                valign: True
+                password: True
+    Label:
+        size_hint: 1, 0.85
+        pos_hint: {'bottom': 0.5}
+        text: "Don't have an account? [ref=account][color=0000ff]Make one![/color][/ref]"
+        markup: True
+        on_ref_press: root.register()
+    Button:
+        size_hint: 0.65, 0.25
+        text: "Submit"
+        pos_hint: {'bottom':1, 'center_x': 0.5}
+        on_press: root.manager.current = "MenuScreen"
+<RegisterScreen>:
+    Label:
+        text: "asdf"
 <MenuScreen>:
-    on_enter:
-        root.ids.scrolllabelthing.update_self()
     BoxLayout:
         orientation: 'vertical'
         spacing: 0
@@ -100,9 +151,6 @@ ScreenManager:
         on_press: root.selectdate()
 
 <TodayScreen>:
-
-
-
     on_pre_enter:
         root.search()
     BoxLayout:
