@@ -24,7 +24,7 @@ ScreenManager:
         manager: sm
         date: date.date
         transition: NoTransition
-        screenlist: date.screenlist
+        screenlist: menu.screenlist
     DateScreen:
         name: 'DateScreen'
         id: date
@@ -50,6 +50,7 @@ ScreenManager:
             Label:
                 text: "Password"
                 font_size: 50
+
         BoxLayout:
             size_hint_y: 0.5
             pos_hint: {'top': 1, 'center_x':0.5}
@@ -57,12 +58,17 @@ ScreenManager:
             TextInput:
                 size_hint: 1, 0.25
                 multiline: False
+                font_size: '50sp'
+                write_tab: False
+                id: username
             TextInput:
                 size_hint: 1, 0.25
                 multiline: False
                 font_size: '50sp'
                 valign: True
                 password: True
+                write_tab: False
+                id: password
     Label:
         size_hint: 1, 0.85
         pos_hint: {'bottom': 0.5}
@@ -73,7 +79,7 @@ ScreenManager:
         size_hint: 0.65, 0.25
         text: "Submit"
         pos_hint: {'bottom':1, 'center_x': 0.5}
-        on_press: root.manager.current = "MenuScreen"
+        on_press: root.login()
 <RegisterScreen>:
     Label:
         text: "asdf"
@@ -125,8 +131,6 @@ ScreenManager:
             id: scrolllabelthing
             size_hint_y: None
 <DateScreen>:
-    on_leave:
-        root.ids.datething.text = ""
     Label:
         text: "Enter Date for details"
         font_size: 35
@@ -139,7 +143,6 @@ ScreenManager:
         id: datething
         font_size: 35
         size_hint: 0.55, 0.15
-
         pos_hint: {'center_x': 0.5, 'center_y': 0.5}
         on_text_validate: root.selectdate()
 
@@ -154,7 +157,6 @@ ScreenManager:
     on_pre_enter:
         root.search()
     BoxLayout:
-
         orientation: 'vertical'
         # padding: 0, -30
 

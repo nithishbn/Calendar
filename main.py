@@ -6,24 +6,48 @@ from kivy.core.window import Window
 from kivy.properties import StringProperty, Clock, ListProperty
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.uix.scrollview import ScrollView
-
+from argon2 import PasswordHasher
 
 class LoginScreen(Screen):
-    screenlist = ListProperty([])
-
-    def __init__(self, **kwargs):
-        super(LoginScreen, self).__init__(**kwargs)
-        self.screenlist.append("LoginScreen")
-
     def register(self):
         self.manager.current = "RegisterScreen"
 
     def on_enter(self, *args):
+        super().on_enter(*args)
         print("Login")
+    # def on_enter(self, *args):
+    #     print("Login")
+
+    def onBackBtn(self, **kwargs):
+        super(LoginScreen, self).onBackBtn(**kwargs)
+        return 0
+    def login(self):
+        username = self.ids.username.text
+        password = self.ids.password.text
+        if len(username) == 0:
+            pass
+            # TODO get this to tell them that either their username or password is incorrect or just vibrate the textbox. idk how to do that yet. figure it out noobbbbbbb. probably animation.
+        else: #username exists in textbox
+            conn = sqlite3.connect("data.sqlite")
+            cur = conn.cursor()
+
+            try:
+                cur.execute('''SELECT Hash from Main WHERE Username = ?''', (username,))
+                returnedhash = cur.fetchone()[0]
+                p = PasswordHasher()
+                isitquestion = p.verify(returnedhash, password)
+                if isitquestion:
+                    self.manager.current = "MenuScreen"
+            except:
+                print("Username or password is incorrect")
+                # TODO get this except clause to flash a 'username or password is incorrect' message in kivy. probably a label update or something. idk figure it out nerd.
+
 
 
 class RegisterScreen(Screen):
-    pass
+    def register(self):
+        pass
+        # TODO finish this lol
 
 
 class MenuScreen(Screen):
@@ -33,12 +57,23 @@ class MenuScreen(Screen):
         super(MenuScreen, self).__init__(**kwargs)
         self.screenlist.append("MenuScreen")
         print(self.screenlist)
+        Window.bind(on_keyboard=self.onBackBtn)
+
+    def onBackBtn(self, window, key, *args):
+        if key == 27:
+            print(self.screenlist)
+            if self.manager.current == "LoginScreen" or self.manager.current == "RegisterScreen":
+                return True
+            else:
+                if len(self.screenlist) != 0:
+                    self.manager.current = self.screenlist[len(self.screenlist) - 1]
+                    self.screenlist.pop(len(self.screenlist) - 1)
+                    return True
+                else:
+                    return False
 
     def on_enter(self):
         super(MenuScreen, self).on_enter()
-        # if self.manager.current not in self.screenlist:
-        #     self.screenlist.append(self.manager.current)
-        # print("Menu", self.screenlist)
         self.ids.scrolllabelthing.update_self()
 
 
@@ -47,10 +82,6 @@ class DateScreen(Screen):
     otherdate = StringProperty('')
     screenlist = ListProperty([])
 
-    def __init__(self, **kwargs):
-        super(DateScreen, self).__init__(**kwargs)
-        Window.bind(on_keyboard=self.onBackBtn)
-
     # def on_enter(self, *args):
     #     super(DateScreen, self).on_enter()
     #     screenlist = self.screenlist
@@ -58,15 +89,7 @@ class DateScreen(Screen):
     #         self.screenlist.append(self.manager.current)
     #     print("DateScreen", self.screenlist)
     #     # print(self.screenlist)
-    def onBackBtn(self, window, key, *args):
-        if key == 27:
-            print(self.screenlist)
-            if len(self.screenlist) != 0:
-                self.manager.current = self.screenlist[len(self.screenlist) - 1]
-                self.screenlist.pop(len(self.screenlist) - 1 )
-                return True
-            else:
-                return False
+
 
     def selectdate(self):
         self.date = self.ids.datething.text
@@ -161,7 +184,7 @@ class ScreenManager(ScreenManager):
 
 class InterfaceApp(App):
     def on_pause(self):
-	return True
+        return True
 
 
 InterfaceApp().run()
