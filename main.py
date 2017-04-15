@@ -7,7 +7,7 @@ from kivy.properties import StringProperty, Clock, ListProperty
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.uix.scrollview import ScrollView
 from argon2 import PasswordHasher
-
+from kivymd.date_picker import MDDatePicker
 class LoginScreen(Screen):
     def register(self):
         self.manager.current = "RegisterScreen"
@@ -54,18 +54,20 @@ class MenuScreen(Screen):
     screenlist = ListProperty([])
 
     def __init__(self, **kwargs):
+
         super(MenuScreen, self).__init__(**kwargs)
-        self.screenlist.append("MenuScreen")
+        # self.screenlist.append("MenuScreen")
         print(self.screenlist)
         Window.bind(on_keyboard=self.onBackBtn)
 
     def onBackBtn(self, window, key, *args):
         if key == 27:
-            print(self.screenlist)
+            print("onBackBtn function call", self.screenlist)
             if self.manager.current == "LoginScreen" or self.manager.current == "RegisterScreen":
                 return True
             else:
                 if len(self.screenlist) != 0:
+                    print("escaping")
                     self.manager.current = self.screenlist[len(self.screenlist) - 1]
                     self.screenlist.pop(len(self.screenlist) - 1)
                     return True
@@ -75,13 +77,17 @@ class MenuScreen(Screen):
     def on_enter(self):
         super(MenuScreen, self).on_enter()
         self.ids.scrolllabelthing.update_self()
-
+    def on_leave(self, *args):
+        self.screenlist.append("MenuScreen")
+        print("MenuScreen's list: ",self.screenlist)
 
 class DateScreen(Screen):
     date = StringProperty('')
     otherdate = StringProperty('')
-    screenlist = ListProperty([])
-
+    screenlist = ListProperty
+    def __init__(self, **kwargs):
+        screenlist = self.screenlist
+        super(DateScreen, self).__init__(**kwargs)
     # def on_enter(self, *args):
     #     super(DateScreen, self).on_enter()
     #     screenlist = self.screenlist
@@ -93,7 +99,9 @@ class DateScreen(Screen):
 
     def selectdate(self):
         self.date = self.ids.datething.text
-        self.screenlist.append(self.manager.current)
+        if self.manager.current not in self.screenlist:
+            self.screenlist.append(self.manager.current)
+        # print("date selection", self.screenlist)
         self.manager.current = "TodayScreen"
 
     def figuretime(self):
@@ -107,7 +115,7 @@ class ConstructionScreen(Screen):
 
 
 class TodayScreen(Screen):
-    screenlist = ListProperty([])
+    # screenlist = ListProperty([])
     samva = StringProperty('')
     avanam = StringProperty('')
     rithu = StringProperty('')
@@ -123,7 +131,7 @@ class TodayScreen(Screen):
 
     def search(self):
         date = self.date
-        print(date)
+        # print(date)
         conn = sqlite3.connect('calendar.sqlite')
         cur = conn.cursor()
         try:
@@ -133,26 +141,28 @@ class TodayScreen(Screen):
             thing = cur.fetchone()
             for query in thing:
                 if query == thing[0]:
-                    print("Date:", query)
+                    # print("Date:", query)
+                    pass
                 elif query == thing[1]:
-                    print("Samvatsaramam:", query)
+                    # print("Samvatsaramam:", query)
                     self.samva = query
                 elif query == thing[2]:
-                    print("Ayanam:", query)
+                    # print("Ayanam:", query)
                     self.avanam = query
                 elif query == thing[3]:
-                    print("Rithu:", query)
+                    # print("Rithu:", query)
                     self.rithu = query
                 elif query == thing[4]:
-                    print("Maasae:", query)
+                    # print("Maasae:", query)
                     self.maasae = query
                 elif query == thing[5]:
-                    print("Pakshae:", query)
+                    # print("Pakshae:", query)
                     self.pakshae = query
                 elif query == thing[6]:
-                    print("Day:", query)
+                    # print("Day:", query)
+                    pass
                 elif query == thing[7]:
-                    print("Thithi:", query)
+                    # print("Thithi:", query)
                     self.thithi = query
         except:
             self.manager.current = "DateScreen"
@@ -176,10 +186,6 @@ class ScrollLabel(ScrollView):
     def on_touch_down(self, touch):
         if self.collide_point(*touch.pos):
             return 0
-
-
-class ScreenManager(ScreenManager):
-    pass
 
 
 class InterfaceApp(App):

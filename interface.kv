@@ -18,6 +18,12 @@ ScreenManager:
         id: menu
         manager: sm
         transition: NoTransition()
+    DateScreen:
+        name: 'DateScreen'
+        id: date
+        manager: sm
+        transition: "NoTransition"
+        screenlist: menu.screenlist
     TodayScreen:
         name: 'TodayScreen'
         id: today
@@ -25,12 +31,7 @@ ScreenManager:
         date: date.date
         transition: NoTransition
         screenlist: menu.screenlist
-    DateScreen:
-        name: 'DateScreen'
-        id: date
-        manager: sm
-        transition: "NoTransition"
-        screenlist: menu.screenlist
+
     ConstructionScreen:
         name: 'ConstructionScreen'
         id: construction
@@ -69,6 +70,8 @@ ScreenManager:
                 password: True
                 write_tab: False
                 id: password
+                on_text_validate: root.login()
+
     Label:
         size_hint: 1, 0.85
         pos_hint: {'bottom': 0.5}
@@ -81,8 +84,30 @@ ScreenManager:
         pos_hint: {'bottom':1, 'center_x': 0.5}
         on_press: root.login()
 <RegisterScreen>:
-    Label:
-        text: "asdf"
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: "Register"
+            font_size: 45
+            pos_hint: {'top': 1, 'center_x': 0.5}
+            size_hint: 1, 0.2
+        BoxLayout:
+            pos_hint: {'center_y': 0.5}
+
+            BoxLayout:
+                orientation: 'vertical'
+                Label:
+                    text: "Email Address"
+                Label:
+                    text: "Phone Number"
+                Label:
+                    text: "Password"
+            BoxLayout:
+                orientation: 'vertical:)'
+                TextInput
+                TextInput
+                TextInput
+
 <MenuScreen>:
     BoxLayout:
         orientation: 'vertical'
