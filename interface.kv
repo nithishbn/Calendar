@@ -128,18 +128,26 @@ ScreenManager:
 <MenuScreen>:
     BoxLayout:
         orientation: 'vertical'
-        spacing: 0
-        Label:
+        # spacing: 0
+        MDLabel:
+            font_style: 'Title'
+            theme_text_color: 'Secondary'
+            font_size: 35
+            # text: "Email"
+            halign: 'center'
             size_hint: 1, None
             pos_hint:{'center_x': 0.5, 'center_y': 0.5}
             text: "Welcome Devotee"
             font_size: 50
+        # MDLabel:
+
         GridLayout:
             cols: 2
             rows: 3
             minimum_width: 0.2
-            spacing: [0.5, 5.0]
-            padding: 20
+            spacing: [5, 5.0]
+            padding_right: 20
+            padding_left: 20
             MDRaisedButton:
                 text:"Today's View"
                 font_size: 45
@@ -163,12 +171,12 @@ ScreenManager:
         BoxLayout:
             padding: (100, 50)
             orientation: 'vertical'
-            Button:
+            MDRaisedButton:
                 text:"Contact SVETA"
                 size_hint: 0.75, None
                 font_size: 45
                 pos_hint: {'top': 1, 'center_x': 0.5}
-                on_press: root.manager.current = "ConstructionScreen"
+                on_release: root.manager.current = "ConstructionScreen"
         ScrollLabel:
             id: scrolllabelthing
             size_hint_y: None
@@ -321,7 +329,7 @@ ScreenManager:
                 font_size: 35
         BoxLayout:
             padding: (100, 0)
-            Button:
+            MDRaisedButton:
                 size_hint: 1, 0.25
                 pos_hint: {'bottom': 1, 'center_x': 0.5}
                 text: "Go back!"
