@@ -1,6 +1,10 @@
 #: import NoTransition kivy.uix.screenmanager.NoTransition
 #: import webbrowser webbrowser
 #: import Animation kivy.animation.Animation
+#:import MDTextField kivymd.textfields.MDTextField
+#:import MDLabel kivymd.label.MDLabel
+#:import MDRaisedButton kivymd.button.MDRaisedButton
+
 ScreenManager:
     id: sm
     LoginScreen:
@@ -45,12 +49,18 @@ ScreenManager:
             size_hint_y: 0.5
             pos_hint: {'top': 1, 'center_x':0.5}
             orientation: 'vertical'
-            Label:
-                text: "Username"
-                font_size: 50
-            Label:
+            MDLabel:
+                font_style: 'Title'
+                theme_text_color: 'Secondary'
+                font_size: 35
+                text: "Email"
+                halign: 'center'
+            MDLabel:
+                font_style: 'Title'
+                theme_text_color: 'Secondary'
                 text: "Password"
-                font_size: 50
+                font_size: 35
+                halign: 'center'
 
         BoxLayout:
             size_hint_y: 0.5
@@ -75,14 +85,14 @@ ScreenManager:
     Label:
         size_hint: 1, 0.85
         pos_hint: {'bottom': 0.5}
-        text: "Don't have an account? [ref=account][color=0000ff]Make one![/color][/ref]"
+        text: "Don't have an account? [ref=account][color=0033ff]Make one![/color][/ref]"
         markup: True
         on_ref_press: root.register()
-    Button:
+    MDRaisedButton:
         size_hint: 0.65, 0.25
         text: "Submit"
         pos_hint: {'bottom':1, 'center_x': 0.5}
-        on_press: root.login()
+        on_release: root.login()
 <RegisterScreen>:
     BoxLayout:
         orientation: 'vertical'
@@ -93,7 +103,7 @@ ScreenManager:
             size_hint: 1, 0.2
         BoxLayout:
             pos_hint: {'center_y': 0.5}
-
+            size_hint: 1, 0.7
             BoxLayout:
                 orientation: 'vertical'
                 Label:
@@ -103,10 +113,17 @@ ScreenManager:
                 Label:
                     text: "Password"
             BoxLayout:
-                orientation: 'vertical:)'
+                orientation: 'vertical'
+                TextInput:
+                    multiline: False
                 TextInput
-                TextInput
-                TextInput
+                    multiline: False
+                TextInput:
+                    multiline: False
+        Button:
+            text: "Submit"
+            size_hint: 0.65, 0.25
+            pos_hint: {'center_x': 0.5, 'bottom': 1}
 
 <MenuScreen>:
     BoxLayout:
@@ -123,26 +140,26 @@ ScreenManager:
             minimum_width: 0.2
             spacing: [0.5, 5.0]
             padding: 20
-            Button:
+            MDRaisedButton:
                 text:"Today's View"
                 font_size: 45
                 size_hint: 0.5, 1
-                on_press: root.manager.current = "DateScreen"
-            Button:
+                on_release: root.manager.current = "DateScreen"
+            MDRaisedButton:
                 text:"Donate"
                 font_size: 45
                 size_hint: 0.5, 1
-                on_press: webbrowser.open("https://lvtemple.org/new-donations/")
-            Button:
+                on_release: webbrowser.open("https://lvtemple.org/new-donations/")
+            MDRaisedButton:
                 text:"Gallery"
                 font_size: 45
                 size_hint: 0.5, 1
-                on_press: root.manager.current = "ConstructionScreen"
-            Button:
+                on_release: root.manager.current = "ConstructionScreen"
+            MDRaisedButton:
                 text:"Calendar"
                 font_size: 45
                 size_hint: 0.5, 1
-                on_press: root.manager.current = "ConstructionScreen"
+                on_release: root.manager.current = "ConstructionScreen"
         BoxLayout:
             padding: (100, 50)
             orientation: 'vertical'
@@ -156,27 +173,33 @@ ScreenManager:
             id: scrolllabelthing
             size_hint_y: None
 <DateScreen>:
-    Label:
-        text: "Enter Date for details"
-        font_size: 35
-        size_hint: 0.65, 0.25
-        pos_hint: {'center_x': 0.5, 'top': 1}
-    TextInput:
-        text: root.figuretime()
-        write_tab: False
-        multiline: False
-        id: datething
-        font_size: 35
-        size_hint: 0.55, 0.15
-        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-        on_text_validate: root.selectdate()
+    BoxLayout:
+        orientation: 'vertical'
+        MDLabel:
+            text: "Enter Date for details"
+            # font_size: 35
+            font_style: 'Title'
+            # size_hint: 0.65, 0.25
+            theme_text_color: 'Primary'
+            # pos_hint: {'center_x': 0.5, 'top': 1}
+            halign: 'center'
+            height: self.texture_size[1] + dp(4)
+        TextInput:
+            text: root.figuretime()
+            write_tab: False
+            multiline: False
+            id: datething
+            font_size: 35
+            size_hint: 0.55, 0.15
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            on_text_validate: root.selectdate()
 
-    Button:
-        font_size: 35
-        size_hint: 0.65, 0.25
-        pos_hint: {'center_x': 0.5, 'bottom': 1}
-        text: "Submit"
-        on_press: root.selectdate()
+        Button:
+            font_size: 35
+            size_hint: 0.65, 0.25
+            pos_hint: {'center_x': 0.5, 'bottom': 1}
+            text: "Submit"
+            on_press: root.selectdate()
 
 <TodayScreen>:
     on_pre_enter:

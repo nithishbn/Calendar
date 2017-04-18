@@ -8,6 +8,10 @@ from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.uix.scrollview import ScrollView
 from argon2 import PasswordHasher
 from kivymd.date_picker import MDDatePicker
+from kivymd.theming import ThemeManager
+from kivymd.label import MDLabel
+
+
 class LoginScreen(Screen):
     def register(self):
         self.manager.current = "RegisterScreen"
@@ -189,8 +193,12 @@ class ScrollLabel(ScrollView):
 
 
 class InterfaceApp(App):
+    theme_cls = ThemeManager()
+    def build(self):
+
+        self.theme_cls.theme_style = 'Dark'
     def on_pause(self):
         return True
 
-
-InterfaceApp().run()
+if __name__ == '__main__':
+    InterfaceApp().run()
