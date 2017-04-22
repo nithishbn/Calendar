@@ -44,7 +44,6 @@ ScreenManager:
         screenlist: menu.screenlist
 <LoginScreen>:
     BoxLayout:
-        pos_hint: {'top': 1, 'center_x': 0.5}
         BoxLayout:
             size_hint_y: 0.5
             pos_hint: {'top': 1, 'center_x':0.5}
@@ -61,23 +60,31 @@ ScreenManager:
                 text: "Password"
                 font_size: 35
                 halign: 'center'
-
         BoxLayout:
-            size_hint_y: 0.5
-            pos_hint: {'top': 1, 'center_x':0.5}
+            pos_hint: {'top': 0.93}
+            # canvas.before:
+            #     Rectangle:
+            #         size: self.size
+            #         pos: self.pos
+            #     Color:
+            #         rgba: 1, 1, 1, 0.2
             orientation: 'vertical'
+            height: self.minimum_height
+            size_hint_y: None
+            padding: dp(1)
+            spacing: 20
             MDTextField:
-                size_hint_y: 0.01
                 multiline: False
-                font_size: '50sp'
+                font_size: '50'
                 write_tab: False
                 id: username
                 required: True
+                # size_hint_y: None
+                pos_hint: {'top': 1}
             MDTextField:
-                size_hint_y: 0.01
                 multiline: False
-                font_size: '50sp'
-                valign: True
+                font_size: '50'
+                # valign: True
                 password: True
                 write_tab: False
                 id: password
@@ -85,26 +92,21 @@ ScreenManager:
                 required: True
 
     BoxLayout:
-        # MDLabel:
-        #     text: "Don't have an account yet?"
-        #     theme_text_color: 'Secondary'
-        #     # size_hint_y: 0.85
-        #     pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-        #     halign: 'center'
-        #     valign: 'center'
-        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        orientation: 'vertical'
+        size_hint: 1, None
+        pos_hint: {'bottom': 1, 'center_x': 0.5}
         MDFlatButton:
-            size_hint: None, None
+            size_hint: 1, None
             pos_hint: {'bottom': 0.5}
             text: "Don't have an account yet? Make one!"
             theme_text_color: 'Secondary'
             markup: True
             on_release: root.register()
-    MDRaisedButton:
-        size_hint: 0.65, 0.25
-        text: "Submit"
-        pos_hint: {'bottom':1, 'center_x': 0.5}
-        on_release: root.login()
+        MDRaisedButton:
+            size_hint: 0.45, 0.25
+            text: "Submit"
+            pos_hint: {'bottom':1, 'center_x': 0.5}
+            on_release: root.login()
 <RegisterScreen>:
     BoxLayout:
         orientation: 'vertical'
