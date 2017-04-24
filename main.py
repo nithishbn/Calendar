@@ -197,6 +197,7 @@ class InterfaceApp(App):
     def build(self):
 
         self.theme_cls.theme_style = 'Dark'
+
     def on_pause(self):
         return True
 
