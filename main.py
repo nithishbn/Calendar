@@ -54,8 +54,10 @@ class RegisterScreen(Screen):
         return True
         # TODO finish this lol
     def cancel(self):
-        print("Cancelled!")
-
+        self.ids.email.text = ""
+        self.ids.phone_number.text = ""
+        self.ids.register_password.text = ""
+        self.manager.current = "LoginScreen"
 
 class MenuScreen(Screen):
     screenlist = ListProperty([])
@@ -201,7 +203,7 @@ class InterfaceApp(App):
     def build(self):
 
         self.theme_cls.theme_style = 'Dark'
-
+        
     def on_pause(self):
         return True
 
