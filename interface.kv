@@ -44,20 +44,6 @@ ScreenManager:
         screenlist: menu.screenlist
 <LoginScreen>:
     BoxLayout:
-        # BoxLayout:
-        #     size_hint_y: 0.5
-        #     pos_hint: {'top': 1, 'center_x':0.5}
-        #     orientation: 'vertical'
-        #     MDLabel:
-        #         font_style: 'Display2'
-        #         theme_text_color: 'Secondary'
-        #         text: "Email"
-        #         halign: 'center'
-        #     MDLabel:
-        #         font_style: 'Display2'
-        #         theme_text_color: 'Secondary'
-        #         text: "Password"
-        #         halign: 'center'
         BoxLayout:
             pos_hint: {'top': 1}
             orientation: 'vertical'
@@ -111,68 +97,65 @@ ScreenManager:
         # padding: 15
 <RegisterScreen>:
     BoxLayout:
-        orientation: 'vertical'
+        pos_hint: {'top': 1, 'center_x': 0.5}
+        size_hint_y: None
         MDLabel:
-            theme_text_color: 'Primary'
-            text: 'Register'
-            pos_hint: {'top': 1, 'center_x': 0.5}
+            # size_hint_y: None
+            text: "Register"
+            font_style: 'Display2'
+            pos_hint: {'top': 0.95, 'center_x': 0.5}
             halign: 'center'
-            font_style: 'Display3'
-            size_hint: 1, 0.2
-
-
+            theme_text_color: 'Secondary'
+    BoxLayout:
         BoxLayout:
-            pos_hint: {'center_y': 0.5}
-            size_hint: 1, 0.7
-            BoxLayout:
-                # pos_hint: {'center_y': 0.5}
-                orientation: 'vertical'
-                # size_hint_y: None
-                MDLabel:
-                    text: "Email Address"
-                    font_style: 'Title'
-                    theme_text_color: 'Primary'
-                    halign: 'center'
-                MDLabel:
-                    text: "Phone Number"
-                    font_style: 'Title'
-                    theme_text_color: 'Primary'
-                    halign: 'center'
-                MDLabel:
-                    text: "Password"
-                    font_style: 'Title'
-                    theme_text_color: 'Primary'
-                    halign: 'center'
-            BoxLayout:
-                orientation: 'vertical'
-                pos_hint: {'bottom': 1}
-                # size_hint: 1, None
-                # spacing: 90
-                size_hint_y: 1.5
-                MDTextField:
-                    id: email
-                    multiline: False
-                    pos_hint: {'top': 1}
-                    helper_text: "Great username!"
-                    helper_text_mode: "on_focus"
-                    # color_mode: 'accent'
-                MDTextField:
-                    id: phone_number
-                    multiline: False
-                    pos_hint:{'center_y': 0.5}
-                    helper_text: "This phone number will be sent a text for authorization."
-                    helper_text_mode: "on_focus"
-                MDTextField:
-                    id: register_password
-                    multiline: False
-                    pos_hint: {'bottom': 1}
-                    helper_text: "Please make sure you have a good password."
-                    helper_text_mode: "on_focus"
-                    password: True
+            pos_hint: {'top': 0.90}
+            orientation: 'vertical'
+            height: self.minimum_height
+            size_hint_y: None
+            padding: 50
+            spacing: 20
+            MDTextField:
+                multiline: False
+                font_size: '50'
+                write_tab: False
+                id: username
+                required: True
+                pos_hint: {'top': 1}
+                hint_text: "Email Address"
+            MDTextField:
+                multiline: False
+                font_size: '50'
+                password: True
+                write_tab: False
+                id: phone_number
+                required: True
+                hint_text: "Phone Number"
+            MDTextField:
+                multiline: False
+                font_size: '50'
+                password: True
+                write_tab: False
+                id: password
+                required: True
+                hint_text: "Password"
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: 0.88, 0.15
+        pos_hint: {'center_x': 0.5, 'center_y': 0.20}
+        # canvas.before:
+        #     Rectangle:
+        #         size: self.size
+        #         pos: self.pos
+        #     Color:
+        #         rgba: 1, 1, 0, 1
         MDRaisedButton:
+            # size_hint: 0.1, 0.65
+            # size_hint: 0.10, None
+            size_hint: None, None
             text: "Submit"
-            size_hint: 0.20, 0.10
-            pos_hint: {'right': 0.98}
+            # size: 3 * dp(48), dp(48)
+            opposite_colors: True
+            pos_hint: {'center_y': 1,'right': 1}
             on_release: root.register()
 
 
