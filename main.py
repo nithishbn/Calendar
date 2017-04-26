@@ -50,7 +50,8 @@ class LoginScreen(Screen):
 
 class RegisterScreen(Screen):
     def register(self):
-        pass
+        print("Wow well played!")
+        return True
         # TODO finish this lol
 
 
@@ -174,6 +175,7 @@ class TodayScreen(Screen):
 
 
 class ScrollLabel(ScrollView):
+    # DONT TOUCH THIS
     def __init__(self, **kwargs):
 
         super(ScrollLabel, self).__init__(**kwargs)
