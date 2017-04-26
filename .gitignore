@@ -12,3 +12,7 @@
 \.buildozer/android/app/
 
 \.buildozer/
+
+\.idea/inspectionProfiles/
+
+\.idea/
