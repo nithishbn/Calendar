@@ -44,26 +44,26 @@ ScreenManager:
         screenlist: menu.screenlist
 <LoginScreen>:
     BoxLayout:
+        # BoxLayout:
+        #     size_hint_y: 0.5
+        #     pos_hint: {'top': 1, 'center_x':0.5}
+        #     orientation: 'vertical'
+        #     MDLabel:
+        #         font_style: 'Display2'
+        #         theme_text_color: 'Secondary'
+        #         text: "Email"
+        #         halign: 'center'
+        #     MDLabel:
+        #         font_style: 'Display2'
+        #         theme_text_color: 'Secondary'
+        #         text: "Password"
+        #         halign: 'center'
         BoxLayout:
-            size_hint_y: 0.5
-            pos_hint: {'top': 1, 'center_x':0.5}
-            orientation: 'vertical'
-            MDLabel:
-                font_style: 'Display2'
-                theme_text_color: 'Secondary'
-                text: "Email"
-                halign: 'center'
-            MDLabel:
-                font_style: 'Display2'
-                theme_text_color: 'Secondary'
-                text: "Password"
-                halign: 'center'
-        BoxLayout:
-            pos_hint: {'top': 0.93}
+            pos_hint: {'top': 1}
             orientation: 'vertical'
             height: self.minimum_height
             size_hint_y: None
-            padding: dp(5)
+            padding: 50
             spacing: 20
             MDTextField:
                 multiline: False
