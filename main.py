@@ -201,9 +201,9 @@ class ScrollLabel(ScrollView):
 class InterfaceApp(App):
     theme_cls = ThemeManager()
     def build(self):
-
+        # print(self.theme_cls.
         self.theme_cls.theme_style = 'Dark'
-        
+
     def on_pause(self):
         return True
 

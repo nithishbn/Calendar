@@ -185,45 +185,47 @@ ScreenManager:
         orientation: 'vertical'
         # spacing: 0
         MDLabel:
-            font_style: 'Title'
+            font_style: 'Display3'
             theme_text_color: 'Secondary'
-            font_size: 35
+            # font_size: 35
             # text: "Email"
             halign: 'center'
             size_hint: 1, None
             pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            text: "Welcome Devotee"
+            text: "Welcome!"
             font_size: 50
         # MDLabel:
-
-        GridLayout:
-            cols: 2
-            rows: 3
-            minimum_width: 0.2
-            spacing: [5, 5.0]
-            padding_right: 20
-            padding_left: 20
-            MDRaisedButton:
-                text:"Today's View"
-                elevation_normal: 10
-                font_size: '45'
-                size_hint: 0.5, 1
-                on_release: root.manager.current = "DateScreen"
-            MDRaisedButton:
-                text:"Donate"
-                font_size: '45'
-                size_hint: 0.5, 1
-                on_release: webbrowser.open("https://lvtemple.org/new-donations/")
-            MDRaisedButton:
-                text:"Gallery"
-                font_size: '45'
-                size_hint: 0.5, 1
-                on_release: root.manager.current = "ConstructionScreen"
-            MDRaisedButton:
-                text:"Calendar"
-                font_size: '45'
-                size_hint: 0.5, 1
-                on_release: root.manager.current = "ConstructionScreen"
+        MDFloatingActionButton:
+            icon: 'compass'
+            elevation_normal:200
+        # GridLayout:
+        #     cols: 2
+        #     rows: 3
+        #     minimum_width: 0.2
+        #     spacing: [5, 5.0]
+        #     padding_right: 20
+        #     padding_left: 20
+        #     MDRaisedButton:
+        #         text:"Today's View"
+        #         elevation_normal: 10
+        #         font_size: '45'
+        #         size_hint: 0.5, 1
+        #         on_release: root.manager.current = "DateScreen"
+        #     MDRaisedButton:
+        #         text:"Donate"
+        #         font_size: '45'
+        #         size_hint: 0.5, 1
+        #         on_release: webbrowser.open("https://lvtemple.org/new-donations/")
+        #     MDRaisedButton:
+        #         text:"Gallery"
+        #         font_size: '45'
+        #         size_hint: 0.5, 1
+        #         on_release: root.manager.current = "ConstructionScreen"
+        #     MDRaisedButton:
+        #         text:"Calendar"
+        #         font_size: '45'
+        #         size_hint: 0.5, 1
+        #         on_release: root.manager.current = "ConstructionScreen"
         BoxLayout:
             padding: (100, 50)
             orientation: 'vertical'
