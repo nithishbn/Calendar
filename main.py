@@ -208,9 +208,9 @@ class InterfaceApp(App):
     title = "SVETA Temple"
 
     def build(self):
-
+        # print(self.theme_cls.
         self.theme_cls.theme_style = 'Dark'
-        
+
     def on_pause(self):
         return True
 
