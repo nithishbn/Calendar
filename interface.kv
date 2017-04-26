@@ -146,8 +146,9 @@ ScreenManager:
             BoxLayout:
                 orientation: 'vertical'
                 pos_hint: {'bottom': 1}
-                size_hint: 1, None
-                spacing: 90
+                # size_hint: 1, None
+                # spacing: 90
+                size_hint_y: 1.5
                 MDTextField:
                     id: email
                     multiline: False
@@ -170,9 +171,9 @@ ScreenManager:
                     password: True
         MDRaisedButton:
             text: "Submit"
-            font_size: '45'
-            size_hint: 0.55, 0.15
-            pos_hint: {'center_x': 0.5, 'bottom': 1}
+            size_hint: 0.20, 0.10
+            pos_hint: {'right': 0.98}
+            on_release: root.register()
 
 
 <MenuScreen>:
