@@ -4,7 +4,7 @@
 #:import MDTextField kivymd.textfields.MDTextField
 #:import MDLabel kivymd.label.MDLabel
 #:import MDRaisedButton kivymd.button.MDRaisedButton
-
+#:import colors kivymd.color_definitions.colors
 ScreenManager:
     id: sm
     LoginScreen:
@@ -125,11 +125,11 @@ ScreenManager:
             MDTextField:
                 multiline: False
                 font_size: '50'
-                password: True
                 write_tab: False
                 id: phone_number
                 required: True
                 hint_text: "Phone Number"
+                input_filter: 'int'
             MDTextField:
                 multiline: False
                 font_size: '50'
@@ -157,6 +157,27 @@ ScreenManager:
             opposite_colors: True
             pos_hint: {'center_y': 1,'right': 1}
             on_release: root.register()
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: 0.88, 0.15
+        pos_hint: {'center_x': 0.36, 'center_y': 0.20}
+        # canvas.before:
+        #     Rectangle:
+        #         size: self.size
+        #         pos: self.pos
+        #     Color:
+        #         rgba: 1, 1, 0, 1
+        MDRaisedButton:
+            # size_hint: 0.1, 0.65
+            # size_hint: 0.10, None
+            size_hint: None, None
+            text: "Cancel"
+            # size: 3 * dp(48), dp(48)
+            opposite_colors: True
+            pos_hint: {'center_y': 1,'right': 1}
+            on_release: root.cancel()
+
+
 
 
 <MenuScreen>:

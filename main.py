@@ -53,6 +53,8 @@ class RegisterScreen(Screen):
         print("Wow well played!")
         return True
         # TODO finish this lol
+    def cancel(self):
+        print("Cancelled!")
 
 
 class MenuScreen(Screen):
