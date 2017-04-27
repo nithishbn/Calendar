@@ -5,6 +5,14 @@
 #:import MDLabel kivymd.label.MDLabel
 #:import MDRaisedButton kivymd.button.MDRaisedButton
 #:import colors kivymd.color_definitions.colors
+#:import Toolbar kivymd.toolbar.Toolbar
+#:import NavigationLayout kivymd.navigationdrawer.NavigationLayout
+#:import MDNavigationDrawer kivymd.navigationdrawer.MDNavigationDrawer
+#:import NavigationLayout kivymd.navigationdrawer.NavigationLayout
+#:import NavigationDrawerDivider kivymd.navigationdrawer.NavigationDrawerDivider
+#:import NavigationDrawerToolbar kivymd.navigationdrawer.NavigationDrawerToolbar
+#:import NavigationDrawerSubheader kivymd.navigationdrawer.NavigationDrawerSubheader
+#:import MDSeparator kivymd.card.MDSeparator
 ScreenManager:
     id: sm
     LoginScreen:
@@ -188,51 +196,30 @@ ScreenManager:
 
 
 <MenuScreen>:
-    BoxLayout:
-        orientation: 'vertical'
-        # spacing: 0
-        MDLabel:
-            font_style: 'Display3'
-            theme_text_color: 'Secondary'
-            # font_size: 35
-            # text: "Email"
-            halign: 'center'
-            size_hint: 1, None
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            text: "Welcome!"
-            font_size: 50
-        # MDLabel:
-        MDFloatingActionButton:
-            icon: 'compass'
-            elevation_normal:200
-        # GridLayout:
-        #     cols: 2
-        #     rows: 3
-        #     minimum_width: 0.2
-        #     spacing: [5, 5.0]
-        #     padding_right: 20
-        #     padding_left: 20
-        #     MDRaisedButton:
-        #         text:"Today's View"
-        #         elevation_normal: 10
-        #         font_size: '45'
-        #         size_hint: 0.5, 1
-        #         on_release: root.manager.current = "DateScreen"
-        #     MDRaisedButton:
-        #         text:"Donate"
-        #         font_size: '45'
-        #         size_hint: 0.5, 1
-        #         on_release: webbrowser.open("https://lvtemple.org/new-donations/")
-        #     MDRaisedButton:
-        #         text:"Gallery"
-        #         font_size: '45'
-        #         size_hint: 0.5, 1
-        #         on_release: root.manager.current = "ConstructionScreen"
-        #     MDRaisedButton:
-        #         text:"Calendar"
-        #         font_size: '45'
-        #         size_hint: 0.5, 1
-        #         on_release: root.manager.current = "ConstructionScreen"
+    NavigationLayout:
+        pos_hint: {'top': 1}
+        id: nav_layout
+        # canvas:
+        #     Rectangle:
+        #         size: self.size
+        #         pos: self.pos
+        #     Color:
+        #         rgba: 1, 1, 1, 0.2
+        MDNavigationDrawer:
+
+            pos_hint: {'top': 1}
+            id: nav_drawer
+            NavigationDrawerToolbar:
+                title: "Navigation"
+            NavigationDrawerIconButton:
+                icon: 'checkbox-blank-circle'
+                text: "Calendar"
+            MDSeparator:
+                height: dp(1)
+            NavigationDrawerIconButton:
+                icon: 'checkbox-blank-circle'
+                text: "Gallery"
+                on_release: root.manager.current = 'ConstructionScreen'
         BoxLayout:
             padding: (100, 50)
             orientation: 'vertical'
