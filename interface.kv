@@ -13,6 +13,7 @@
 #:import NavigationDrawerToolbar kivymd.navigationdrawer.NavigationDrawerToolbar
 #:import NavigationDrawerSubheader kivymd.navigationdrawer.NavigationDrawerSubheader
 #:import MDSeparator kivymd.card.MDSeparator
+#:import MDCard kivymd.card.MDCard
 ScreenManager:
     id: sm
     LoginScreen:
@@ -199,7 +200,6 @@ ScreenManager:
         #     Color:
         #         rgba: 1, 1, 1, 0.2
         MDNavigationDrawer:
-
             pos_hint: {'top': 1}
             id: nav_drawer
             NavigationDrawerToolbar:
@@ -214,21 +214,44 @@ ScreenManager:
                 text: "Gallery"
                 on_release: root.manager.current = 'ConstructionScreen'
         BoxLayout:
-            # orientation: 'vertical'
-            Toolbar:
-                pos_hint: {'top': 1}
-                # canvas:
-                #     Rectangle:
-                #         size: self.size
-                #         pos: self.pos
-                #     Color:
-                #         rgba: 1, 1, 1, 0.2
-                id: toolbar
-                title: 'SVETA Temple'
-                md_bg_color: app.theme_cls.primary_color
-                background_palette: 'Primary'
-                background_hue: '500'
-                left_action_items: [['menu', lambda x: root.ids.nav_layout.toggle_nav_drawer()]]
+            orientation: 'vertical'
+            BoxLayout:
+                size_hint_y: 0.5
+                Toolbar:
+                    pos_hint: {'top': 1}
+                    # canvas:
+                    #     Rectangle:
+                    #         size: self.size
+                    #         pos: self.pos
+                    #     Color:
+                    #         rgba: 1, 1, 1, 0.2
+                    id: toolbar
+                    title: 'SVETA Temple'
+                    md_bg_color: app.theme_cls.primary_color
+                    background_palette: 'Primary'
+                    background_hue: '500'
+                    left_action_items: [['menu', lambda x: root.ids.nav_layout.toggle_nav_drawer()]]
+            RelativeLayout:
+                orientation: 'vertical'
+                MDCard:
+                    size_hint: None, None
+                    size: dp(320), dp(180)
+                    pos_hint: {'top' :1, 'center_x': 0.5}
+                    BoxLayout:
+                        orientation:'vertical'
+                        padding: dp(8)
+                        pos_hint: {'center_x': 0.5}
+                        MDLabel:
+                            text: "Today's View"
+                            theme_text_color: 'Secondary'
+                            font_style:"Title"
+                            size_hint_y: None
+                            height: dp(36)
+                        MDSeparator:
+                            height: dp(1)
+                        MDLabel:
+                            text: "Sup"
+                            theme_text_color: 'Primary'
             # ScreenManager:
             #     id: scr_mngr
             #     Screen:
