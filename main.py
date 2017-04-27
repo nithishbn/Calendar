@@ -89,6 +89,9 @@ class MenuScreen(Screen):
     def on_leave(self, *args):
         self.screenlist.append("MenuScreen")
         print("MenuScreen's list: ",self.screenlist)
+    def toggle_nav_drawer(self):
+        # super(MenuScreen, self).toggle_nav_drawer()
+        self.toggle_state()
 
 class DateScreen(Screen):
     date = StringProperty('')
@@ -197,9 +200,12 @@ class ScrollLabel(ScrollView):
         if self.collide_point(*touch.pos):
             return 0
 
-
+class ScreenManager(ScreenManager):
+    def toggle_nav_drawer(self):
+        self.toggle_state()
 class InterfaceApp(App):
     theme_cls = ThemeManager()
+    title = "SVETA Temple"
     def build(self):
         # print(self.theme_cls.
         self.theme_cls.theme_style = 'Dark'
