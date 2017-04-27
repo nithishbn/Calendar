@@ -4,7 +4,7 @@ from kivy.animation import Animation
 from kivy.app import App
 from kivy.core.window import Window
 from kivy.properties import StringProperty, Clock, ListProperty
-from kivy.uix.screenmanager import Screen, ScreenManager
+from kivy.uix.screenmanager import Screen, ScreenManager, NoTransition
 from kivy.uix.scrollview import ScrollView
 from argon2 import PasswordHasher
 from kivymd.date_picker import MDDatePicker
@@ -19,19 +19,18 @@ class LoginScreen(Screen):
     def on_enter(self, *args):
         super().on_enter(*args)
         print("Login")
-    # def on_enter(self, *args):
-    #     print("Login")
 
     def onBackBtn(self, **kwargs):
         super(LoginScreen, self).onBackBtn(**kwargs)
         return 0
+
     def login(self):
         username = self.ids.username.text
         password = self.ids.password.text
         if len(username) == 0:
-            pass
-            # TODO get this to tell them that either their username or password is incorrect or just vibrate the textbox. idk how to do that yet. figure it out noobbbbbbb. probably animation.
-        else: #username exists in textbox
+            # self.ids.password.error = True
+            self.ids.username.error = True
+        else:  # username exists in textbox
             conn = sqlite3.connect("data.sqlite")
             cur = conn.cursor()
 
@@ -43,22 +42,25 @@ class LoginScreen(Screen):
                 if isitquestion:
                     self.manager.current = "MenuScreen"
             except:
-                print("Username or password is incorrect")
-                # TODO get this except clause to flash a 'username or password is incorrect' message in kivy. probably a label update or something. idk figure it out nerd.
-
-
+                self.ids.password.error = True
 
 class RegisterScreen(Screen):
     def register(self):
         pass
         # TODO finish this lol
 
+    def cancel(self):
+        self.ids.email.text = ""
+        self.ids.phone_number.text = ""
+        self.ids.register_password.text = ""
+        self.transition = NoTransition()
+        self.manager.current = "LoginScreen"
+
 
 class MenuScreen(Screen):
     screenlist = ListProperty([])
 
     def __init__(self, **kwargs):
-
         super(MenuScreen, self).__init__(**kwargs)
         # self.screenlist.append("MenuScreen")
         print(self.screenlist)
@@ -81,17 +83,24 @@ class MenuScreen(Screen):
     def on_enter(self):
         super(MenuScreen, self).on_enter()
         self.ids.scrolllabelthing.update_self()
+
     def on_leave(self, *args):
         self.screenlist.append("MenuScreen")
-        print("MenuScreen's list: ",self.screenlist)
+        print("MenuScreen's list: ", self.screenlist)
+        # def toggle_nav_drawer(self):
+        #     # super(MenuScreen, self).toggle_nav_drawer()
+        #     self.toggle_state()
+
 
 class DateScreen(Screen):
     date = StringProperty('')
     otherdate = StringProperty('')
     screenlist = ListProperty
+
     def __init__(self, **kwargs):
         screenlist = self.screenlist
         super(DateScreen, self).__init__(**kwargs)
+
     # def on_enter(self, *args):
     #     super(DateScreen, self).on_enter()
     #     screenlist = self.screenlist
@@ -192,14 +201,20 @@ class ScrollLabel(ScrollView):
             return 0
 
 
+# class ScreenManager(ScreenManager):
+#     def toggle_nav_drawer(self):
+#         self.toggle_state()
 class InterfaceApp(App):
     theme_cls = ThemeManager()
+    title = "SVETA Temple"
+
     def build(self):
 
         self.theme_cls.theme_style = 'Dark'
 
     def on_pause(self):
         return True
+
 
 if __name__ == '__main__':
     InterfaceApp().run()
