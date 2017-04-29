@@ -214,11 +214,13 @@ ScreenManager:
             NavigationDrawerIconButton:
                 icon: 'checkbox-blank-circle'
                 text: "Calendar"
-            MDSeparator:
-                height: dp(1)
             NavigationDrawerIconButton:
                 icon: 'checkbox-blank-circle'
                 text: "Gallery"
+                on_release: root.manager.current = 'ConstructionScreen'
+            NavigationDrawerIconButton:
+                icon: 'checkbox-blank-circle'
+                text: "Contact"
                 on_release: root.manager.current = 'ConstructionScreen'
         BoxLayout:
             orientation: 'vertical'
@@ -333,9 +335,9 @@ ScreenManager:
     #             font_size: '45'
     #             pos_hint: {'top': 1, 'center_x': 0.5}
     #             on_release: root.manager.current = "ConstructionScreen"
-    ScrollLabel:
-        id: scrolllabelthing
-        size_hint_y: None
+            ScrollLabel:
+                id: scrolllabelthing
+                size_hint_y: None
 <DateScreen>:
     BoxLayout:
         orientation: 'vertical'
