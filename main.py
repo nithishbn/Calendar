@@ -98,9 +98,11 @@ class DateScreen(Screen):
 
     def set_previous_date(self, date_obj):
         self.previous_date = date_obj
+        # print(date_obj)
         dt = datetime.datetime.strptime(str(date_obj), '%Y-%m-%d')
+        # print("dt", dt)
         actualdate = '{0}/{1}/{2:02}'.format(dt.month, dt.day, dt.year % 100)
-        print(actualdate)
+        # print(actualdate)
         # print(self.previous_date)
         self.ids.datething.text = actualdate
         self.date = str(actualdate)
