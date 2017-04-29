@@ -85,9 +85,6 @@ class MenuScreen(Screen):
     def on_leave(self, *args):
         self.screenlist.append("MenuScreen")
         print("MenuScreen's list: ", self.screenlist)
-        # def toggle_nav_drawer(self):
-        #     # super(MenuScreen, self).toggle_nav_drawer()
-        #     self.toggle_state()
 
 
 class DateScreen(Screen):
@@ -99,17 +96,20 @@ class DateScreen(Screen):
         screenlist = self.screenlist
         super(DateScreen, self).__init__(**kwargs)
 
-    # def on_enter(self, *args):
-    #     super(DateScreen, self).on_enter()
-    #     screenlist = self.screenlist
-    #     if self.manager.current not in self.screenlist:
-    #         self.screenlist.append(self.manager.current)
-    #     print("DateScreen", self.screenlist)
-    #     # print(self.screenlist)
+    def set_previous_date(self, date_obj):
+        self.previous_date = date_obj
+        dt = datetime.datetime.strptime(str(date_obj), '%Y-%m-%d')
+        actualdate = '{0}/{1}/{2:02}'.format(dt.month, dt.day, dt.year % 100)
+        print(actualdate)
+        # print(self.previous_date)
+        self.ids.datething.text = actualdate
+        self.date = str(actualdate)
+        # self.root.ids.date_picker_label.text = str(date_obj)
 
-
+    def show_date_picker(self):
+        MDDatePicker(self.set_previous_date).open()
     def selectdate(self):
-        self.date = self.ids.datething.text
+        # self.date = self.ids.datething.text
         if self.manager.current not in self.screenlist:
             self.screenlist.append(self.manager.current)
         # print("date selection", self.screenlist)
@@ -150,6 +150,7 @@ class TodayScreen(Screen):
                 '''SELECT date, S.Name, A.Name, R.Name, M.Name, P.Name, V.Name, T.Name FROM Main JOIN Samvatsaram S on Main.samvatsaram = S.SID JOIN Ayanam A on Main.ayanam = A.AID JOIN Rithu R on Main.rithu = R.RID JOIN Maasae M on Main.maasa = M.MID JOIN Pakshae P on Main.pakshae = P.PID JOIN Vaaram V on Main.Vaaram = V.VID JOIN Thithi T on Main.thithi = T.TID WHERE date = ?''',
                 (date,))
             thing = cur.fetchone()
+            print(thing)
             for query in thing:
                 if query == thing[0]:
                     # print("Date:", query)

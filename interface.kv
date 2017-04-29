@@ -65,6 +65,7 @@ ScreenManager:
                 font_size: '50'
                 write_tab: False
                 id: username
+                text: "Nithish"
                 required: True
                 pos_hint: {'top': 1}
                 hint_text: "Email Address"
@@ -78,6 +79,7 @@ ScreenManager:
                 id: password
                 on_text_validate: root.login()
                 required: True
+                text: "password"
                 hint_text: "Password"
                 helper_text: "Email Address or Password is incorrect"
                 helper_text_mode: "on_error"
@@ -213,7 +215,12 @@ ScreenManager:
                 title: "Navigation"
             NavigationDrawerIconButton:
                 icon: 'checkbox-blank-circle'
+                text: "Home"
+                on_release: root.manager.current = 'MenuScreen'
+            NavigationDrawerIconButton:
+                icon: 'checkbox-blank-circle'
                 text: "Calendar"
+                on_release: root.manager.current = 'DateScreen'
             NavigationDrawerIconButton:
                 icon: 'checkbox-blank-circle'
                 text: "Gallery"
@@ -344,28 +351,33 @@ ScreenManager:
         MDLabel:
             text: "Enter Date for details"
             # font_size: 35
+            pos_hint: {'top': 1}
             font_style: 'Title'
             # size_hint: 0.65, 0.25
             theme_text_color: 'Primary'
             # pos_hint: {'center_x': 0.5, 'top': 1}
             halign: 'center'
-            height: self.texture_size[1] + dp(4)
-        TextInput:
+            # height: self.minimum_height
+            size_hint_y: None
+        MDTextField:
             text: root.figuretime()
             write_tab: False
             multiline: False
             id: datething
             font_size: 35
-            size_hint: 0.55, 0.15
+            size_hint: 0.55, None
             pos_hint: {'center_x': 0.5, 'center_y': 0.5}
             on_text_validate: root.selectdate()
+        MDRaisedButton:
+            text: "Dates"
+            on_release: root.show_date_picker()
 
-        Button:
-            font_size: 35
-            size_hint: 0.65, 0.25
-            pos_hint: {'center_x': 0.5, 'bottom': 1}
-            text: "Submit"
-            on_press: root.selectdate()
+    MDRaisedButton:
+        font_size: 35
+        size_hint: None, None
+        pos_hint: {'center_x': 0.5, 'bottom': 1}
+        text: "Submit"
+        on_press: root.selectdate()
 
 <TodayScreen>:
     on_pre_enter:
