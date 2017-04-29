@@ -213,6 +213,7 @@ ScreenManager:
             id: nav_drawer
             NavigationDrawerToolbar:
                 title: "Navigation"
+                icon: 'compass'
             NavigationDrawerIconButton:
                 icon: 'checkbox-blank-circle'
                 text: "Home"
@@ -347,30 +348,39 @@ ScreenManager:
                 size_hint_y: None
 <DateScreen>:
     BoxLayout:
-        orientation: 'vertical'
+        # orientation: 'vertical'
+        pos_hint: {'top': 1}
         MDLabel:
             text: "Enter Date for details"
             # font_size: 35
             pos_hint: {'top': 1}
-            font_style: 'Title'
+            font_style: 'Display2'
             # size_hint: 0.65, 0.25
-            theme_text_color: 'Primary'
+
+            theme_text_color: 'Secondary'
             # pos_hint: {'center_x': 0.5, 'top': 1}
             halign: 'center'
             # height: self.minimum_height
             size_hint_y: None
-        MDTextField:
-            text: root.figuretime()
-            write_tab: False
-            multiline: False
-            id: datething
-            font_size: 35
-            size_hint: 0.55, None
-            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-            on_text_validate: root.selectdate()
-        MDRaisedButton:
-            text: "Dates"
-            on_release: root.show_date_picker()
+    BoxLayout:
+        orientation: 'vertical'
+        pos_hint: {'center_y': 0.5}
+        BoxLayout:
+            orientation: 'vertical'
+            pos_hint: {'center_y': 0.5}
+            size: root.size
+            MDTextField:
+                text: root.figuretime()
+                write_tab: False
+                multiline: False
+                id: datething
+                font_size: 35
+                size_hint: 0.55, None
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                on_text_validate: root.selectdate()
+            MDRaisedButton:
+                text: "Dates"
+                on_release: root.show_date_picker()
 
     MDRaisedButton:
         font_size: 35
@@ -397,7 +407,6 @@ ScreenManager:
                 markup: True
                 underline: True
         BoxLayout:
-
             BoxLayout:
                 orientation: 'vertical'
                 Label:
