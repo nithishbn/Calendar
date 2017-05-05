@@ -7,8 +7,11 @@ from kivy.properties import StringProperty, Clock, ListProperty
 from kivy.uix.screenmanager import Screen, ScreenManager, NoTransition
 from kivy.uix.scrollview import ScrollView
 from argon2 import PasswordHasher
+from kivymd.button import MDIconButton
 from kivymd.date_picker import MDDatePicker
+from kivymd.list import ILeftBodyTouch
 from kivymd.theming import ThemeManager
+# from kivymd.icon_definitions import
 
 class LoginScreen(Screen):
     def register(self):
@@ -84,7 +87,8 @@ class MenuScreen(Screen):
         self.screenlist.append("MenuScreen")
         print("MenuScreen's list: ", self.screenlist)
 
-
+class IconLeftSampleWidget(ILeftBodyTouch, MDIconButton):
+    pass
 class DateScreen(Screen):
     date = StringProperty('')
     otherdate = StringProperty('')

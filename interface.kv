@@ -15,6 +15,7 @@
 #:import MDSeparator kivymd.card.MDSeparator
 #:import MDCard kivymd.card.MDCard
 # :import NDIconLabel kivymd.navigationdrawer.NDIconLabel
+#:import OneLineIconListItem kivymd.list.OneLineIconListItem
 ScreenManager:
     id: sm
     LoginScreen:
@@ -219,6 +220,7 @@ ScreenManager:
             pos_hint: {'top': 1}
             id: nav_drawer
             NavigationDrawerToolbar:
+                #
                 title: "Navigation"
             NavigationDrawerIconButton:
                 # icon: 'home-outline'
@@ -248,6 +250,17 @@ ScreenManager:
                 on_release:
                     root.manager.transition = NoTransition()
                     root.manager.current = 'ConstructionScreen'
+            # NavigationDrawerSubheader:
+            #     text: "More"
+            NavigationDrawerDivider
+            # Spacer:
+            NavigationDrawerIconButton:
+                icon: 'credit-card'
+                text: 'Donate'
+                on_release:
+                    root.manager.transition = NoTransition()
+                    webbrowser.open("https://lvtemple.org/new-donations/")
+
         BoxLayout:
             orientation: 'vertical'
             BoxLayout:
