@@ -9,8 +9,6 @@ from kivy.uix.scrollview import ScrollView
 from argon2 import PasswordHasher
 from kivymd.date_picker import MDDatePicker
 from kivymd.theming import ThemeManager
-from kivymd.label import MDLabel
-
 
 class LoginScreen(Screen):
     def register(self):

@@ -14,6 +14,7 @@
 #:import NavigationDrawerSubheader kivymd.navigationdrawer.NavigationDrawerSubheader
 #:import MDSeparator kivymd.card.MDSeparator
 #:import MDCard kivymd.card.MDCard
+# :import NDIconLabel kivymd.navigationdrawer.NDIconLabel
 ScreenManager:
     id: sm
     LoginScreen:
@@ -111,6 +112,8 @@ ScreenManager:
             opposite_colors: True
             pos_hint: {'center_y': 1,'right': 1}
             on_release:
+                # self.transition = NoTransition()
+                root.manager.transition = NoTransition()
                 root.login()
         # padding: 15
 <RegisterScreen>:
@@ -174,7 +177,9 @@ ScreenManager:
             # size: 3 * dp(48), dp(48)
             opposite_colors: True
             pos_hint: {'center_y': 1,'right': 1}
-            on_release: root.register()
+            on_release:
+                root.manager.transition = NoTransition()
+                root.register()
     BoxLayout:
         orientation: 'vertical'
         size_hint: 0.88, 0.15
@@ -193,7 +198,9 @@ ScreenManager:
             # size: 3 * dp(48), dp(48)
             opposite_colors: True
             pos_hint: {'center_y': 1,'right': 1}
-            on_release: root.cancel()
+            on_release:
+                root.manager.transition = NoTransition()
+                root.cancel()
 
 
 
@@ -213,23 +220,34 @@ ScreenManager:
             id: nav_drawer
             NavigationDrawerToolbar:
                 title: "Navigation"
-                icon: 'compass'
             NavigationDrawerIconButton:
-                icon: 'checkbox-blank-circle'
+                # icon: 'home-outline'
+                icon: 'home'
                 text: "Home"
-                on_release: root.manager.current = 'MenuScreen'
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'MenuScreen'
+
             NavigationDrawerIconButton:
-                icon: 'checkbox-blank-circle'
+                icon: 'calendar-today'
                 text: "Calendar"
-                on_release: root.manager.current = 'DateScreen'
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'DateScreen'
             NavigationDrawerIconButton:
-                icon: 'checkbox-blank-circle'
+                # icon: 'checkbox-blank-circle'
+                icon: 'image'
                 text: "Gallery"
-                on_release: root.manager.current = 'ConstructionScreen'
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'ConstructionScreen'
             NavigationDrawerIconButton:
-                icon: 'checkbox-blank-circle'
+                # icon: 'checkbox-blank-circle'
+                icon: 'contact-mail'
                 text: "Contact"
-                on_release: root.manager.current = 'ConstructionScreen'
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'ConstructionScreen'
         BoxLayout:
             orientation: 'vertical'
             BoxLayout:
