@@ -277,25 +277,28 @@ ScreenManager:
             RelativeLayout:
                 orientation: 'vertical'
                 MDCard:
-                    size_hint: 0.35, 0.3
+                    size_hint: 0.35, 0.40
                     pos_hint: {'top' :1,'x': 0.25}
                     elevation: 5
 
                     BoxLayout:
                         orientation:'vertical'
                         padding: dp(8)
-
                         MDLabel:
+
                             text: "Today's View"
                             theme_text_color: 'Secondary'
-                            font_style:"Title"
+                            font_style:"Display1"
                             size_hint_y: None
                             height: dp(36)
                         MDSeparator:
                             height: dp(1)
                         MDLabel:
+                            # pos_hint: {'top': 0.85}
+                            # size_hint_y: None
                             text: "There are quite a few cool things that are available today at the Temple"
                             theme_text_color: 'Primary'
+                            font_style: 'Title'
             # ScreenManager:
             #     id: scr_mngr
             #     Screen:
