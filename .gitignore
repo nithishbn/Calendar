@@ -6,9 +6,17 @@
 /.idea/workspace.xml
 /.gitignore
 /.gitattributes
-/Database Structure.xlsx
+/randomfolderthing/Database Structure.xlsx
 /~$Database Structure.xlsx
 
 \.buildozer/android/app/_applibs/\.libs_cffi_backend/
 
 \.buildozer/android/app/_applibs/
+
+\.buildozer/android/app/
+
+\.buildozer/
+
+\.idea/inspectionProfiles/
+
+\.idea/
