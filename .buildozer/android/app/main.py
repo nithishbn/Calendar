@@ -4,13 +4,14 @@ from kivy.animation import Animation
 from kivy.app import App
 from kivy.core.window import Window
 from kivy.properties import StringProperty, Clock, ListProperty
-from kivy.uix.screenmanager import Screen, ScreenManager
+from kivy.uix.screenmanager import Screen, ScreenManager, NoTransition
 from kivy.uix.scrollview import ScrollView
 from argon2 import PasswordHasher
+from kivymd.button import MDIconButton
 from kivymd.date_picker import MDDatePicker
+from kivymd.list import ILeftBodyTouch
 from kivymd.theming import ThemeManager
-from kivymd.label import MDLabel
-
+# from kivymd.icon_definitions import
 
 class LoginScreen(Screen):
     def register(self):
@@ -19,19 +20,18 @@ class LoginScreen(Screen):
     def on_enter(self, *args):
         super().on_enter(*args)
         print("Login")
-    # def on_enter(self, *args):
-    #     print("Login")
 
     def onBackBtn(self, **kwargs):
         super(LoginScreen, self).onBackBtn(**kwargs)
         return 0
+
     def login(self):
         username = self.ids.username.text
         password = self.ids.password.text
         if len(username) == 0:
-            pass
-            # TODO get this to tell them that either their username or password is incorrect or just vibrate the textbox. idk how to do that yet. figure it out noobbbbbbb. probably animation.
-        else: #username exists in textbox
+            # self.ids.password.error = True
+            self.ids.username.error = True
+        else:  # username exists in textbox
             conn = sqlite3.connect("data.sqlite")
             cur = conn.cursor()
 
@@ -43,10 +43,7 @@ class LoginScreen(Screen):
                 if isitquestion:
                     self.manager.current = "MenuScreen"
             except:
-                print("Username or password is incorrect")
-                # TODO get this except clause to flash a 'username or password is incorrect' message in kivy. probably a label update or something. idk figure it out nerd.
-
-
+                self.ids.password.error = True
 
 class RegisterScreen(Screen):
     def register(self):
@@ -54,14 +51,15 @@ class RegisterScreen(Screen):
         return True
         # TODO finish this lol
     def cancel(self):
-        print("Cancelled!")
-
+        self.ids.email.text = ""
+        self.ids.phone_number.text = ""
+        self.ids.register_password.text = ""
+        self.manager.current = "LoginScreen"
 
 class MenuScreen(Screen):
     screenlist = ListProperty([])
 
     def __init__(self, **kwargs):
-
         super(MenuScreen, self).__init__(**kwargs)
         # self.screenlist.append("MenuScreen")
         print(self.screenlist)
@@ -84,28 +82,38 @@ class MenuScreen(Screen):
     def on_enter(self):
         super(MenuScreen, self).on_enter()
         self.ids.scrolllabelthing.update_self()
+
     def on_leave(self, *args):
         self.screenlist.append("MenuScreen")
-        print("MenuScreen's list: ",self.screenlist)
+        print("MenuScreen's list: ", self.screenlist)
 
+class IconLeftSampleWidget(ILeftBodyTouch, MDIconButton):
+    pass
 class DateScreen(Screen):
     date = StringProperty('')
     otherdate = StringProperty('')
     screenlist = ListProperty
+
     def __init__(self, **kwargs):
         screenlist = self.screenlist
         super(DateScreen, self).__init__(**kwargs)
-    # def on_enter(self, *args):
-    #     super(DateScreen, self).on_enter()
-    #     screenlist = self.screenlist
-    #     if self.manager.current not in self.screenlist:
-    #         self.screenlist.append(self.manager.current)
-    #     print("DateScreen", self.screenlist)
-    #     # print(self.screenlist)
 
+    def set_previous_date(self, date_obj):
+        self.previous_date = date_obj
+        # print(date_obj)
+        dt = datetime.datetime.strptime(str(date_obj), '%Y-%m-%d')
+        # print("dt", dt)
+        actualdate = '{0}/{1}/{2:02}'.format(dt.month, dt.day, dt.year % 100)
+        # print(actualdate)
+        # print(self.previous_date)
+        self.ids.datething.text = actualdate
+        self.date = str(actualdate)
+        # self.root.ids.date_picker_label.text = str(date_obj)
 
+    def show_date_picker(self):
+        MDDatePicker(self.set_previous_date).open()
     def selectdate(self):
-        self.date = self.ids.datething.text
+        # self.date = self.ids.datething.text
         if self.manager.current not in self.screenlist:
             self.screenlist.append(self.manager.current)
         # print("date selection", self.screenlist)
@@ -146,6 +154,7 @@ class TodayScreen(Screen):
                 '''SELECT date, S.Name, A.Name, R.Name, M.Name, P.Name, V.Name, T.Name FROM Main JOIN Samvatsaram S on Main.samvatsaram = S.SID JOIN Ayanam A on Main.ayanam = A.AID JOIN Rithu R on Main.rithu = R.RID JOIN Maasae M on Main.maasa = M.MID JOIN Pakshae P on Main.pakshae = P.PID JOIN Vaaram V on Main.Vaaram = V.VID JOIN Thithi T on Main.thithi = T.TID WHERE date = ?''',
                 (date,))
             thing = cur.fetchone()
+            print(thing)
             for query in thing:
                 if query == thing[0]:
                     # print("Date:", query)
@@ -196,14 +205,20 @@ class ScrollLabel(ScrollView):
             return 0
 
 
+# class ScreenManager(ScreenManager):
+#     def toggle_nav_drawer(self):
+#         self.toggle_state()
 class InterfaceApp(App):
     theme_cls = ThemeManager()
-    def build(self):
+    title = "SVETA Temple"
 
+    def build(self):
+        # print(self.theme_cls.
         self.theme_cls.theme_style = 'Dark'
 
     def on_pause(self):
         return True
+
 
 if __name__ == '__main__':
     InterfaceApp().run()

@@ -22,13 +22,13 @@ source.include_exts = py, jpg, png, sqlite, kv
 #source.exclude_exts = spec
 
 # (list) List of directory to exclude (let empty to not exclude anything)
-source.exclude_dirs = random, data, bin
+source.exclude_dirs = randomfolderthing, data, bin
 
 # (list) List of exclusions using pattern matching
 #source.exclude_patterns = license,images/*/*.jpg
 
 # (str) Application versioning (method 1)
-version = 0.1
+version = 0.5
 
 # (str) Application versioning (method 2)
 # version.regex = __version__ = ['"](.*)['"]
@@ -36,7 +36,7 @@ version = 0.1
 
 # (list) Application requirements
 # comma seperated e.g. requirements = sqlite3,kivy
-requirements = kivy, sqlite3, plyer
+requirements = kivy, sqlite3, plyer, kivy==master,git+https://gitlab.com/kivymd/KivyMD.git, argon2_cffi
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes

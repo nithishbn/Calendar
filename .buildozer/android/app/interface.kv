@@ -5,23 +5,34 @@
 #:import MDLabel kivymd.label.MDLabel
 #:import MDRaisedButton kivymd.button.MDRaisedButton
 #:import colors kivymd.color_definitions.colors
+#:import Toolbar kivymd.toolbar.Toolbar
+#:import NavigationLayout kivymd.navigationdrawer.NavigationLayout
+#:import MDNavigationDrawer kivymd.navigationdrawer.MDNavigationDrawer
+#:import NavigationLayout kivymd.navigationdrawer.NavigationLayout
+#:import NavigationDrawerDivider kivymd.navigationdrawer.NavigationDrawerDivider
+#:import NavigationDrawerToolbar kivymd.navigationdrawer.NavigationDrawerToolbar
+#:import NavigationDrawerSubheader kivymd.navigationdrawer.NavigationDrawerSubheader
+#:import MDSeparator kivymd.card.MDSeparator
+#:import MDCard kivymd.card.MDCard
+# :import NDIconLabel kivymd.navigationdrawer.NDIconLabel
+#:import OneLineIconListItem kivymd.list.OneLineIconListItem
 ScreenManager:
     id: sm
     LoginScreen:
         name: 'LoginScreen'
         id: login
         manager: sm
-        transition: NoTransition()
+        # transition: NoTransition
     RegisterScreen:
         name: 'RegisterScreen'
         id: register
         manager: sm
-        transition: NoTransition()
+        transition: NoTransition
     MenuScreen:
         name: 'MenuScreen'
         id: menu
         manager: sm
-        transition: NoTransition()
+        transition: NoTransition
     DateScreen:
         name: 'DateScreen'
         id: date
@@ -56,9 +67,12 @@ ScreenManager:
                 font_size: '50'
                 write_tab: False
                 id: username
+                text: "Nithish"
                 required: True
                 pos_hint: {'top': 1}
                 hint_text: "Email Address"
+                helper_text: "Email Address or Password is incorrect"
+                helper_text_mode: "on_error"
             MDTextField:
                 multiline: False
                 font_size: '50'
@@ -67,14 +81,20 @@ ScreenManager:
                 id: password
                 on_text_validate: root.login()
                 required: True
+                text: "password"
                 hint_text: "Password"
+                helper_text: "Email Address or Password is incorrect"
+                helper_text_mode: "on_error"
     MDFlatButton:
         size_hint: None, None
         pos_hint: {'center_y': 0.45, 'center_x': 0.5}
         text: "Don't have an account yet? Make one!"
         theme_text_color: 'Secondary'
         # size: 3* dp(48), dp(48)
-        on_release: root.register()
+        on_release:
+            root.manager.transition = NoTransition()
+            root.register()
+            # root.manager.transition = NoTransition()
     BoxLayout:
         orientation: 'vertical'
         size_hint: 0.88, 0.15
@@ -93,7 +113,10 @@ ScreenManager:
             # size: 3 * dp(48), dp(48)
             opposite_colors: True
             pos_hint: {'center_y': 1,'right': 1}
-            on_release: root.login()
+            on_release:
+                # self.transition = NoTransition()
+                root.manager.transition = NoTransition()
+                root.login()
         # padding: 15
 <RegisterScreen>:
     BoxLayout:
@@ -118,7 +141,7 @@ ScreenManager:
                 multiline: False
                 font_size: '50'
                 write_tab: False
-                id: username
+                id: email
                 required: True
                 pos_hint: {'top': 1}
                 hint_text: "Email Address"
@@ -135,7 +158,7 @@ ScreenManager:
                 font_size: '50'
                 password: True
                 write_tab: False
-                id: password
+                id: register_password
                 required: True
                 hint_text: "Password"
     BoxLayout:
@@ -156,7 +179,9 @@ ScreenManager:
             # size: 3 * dp(48), dp(48)
             opposite_colors: True
             pos_hint: {'center_y': 1,'right': 1}
-            on_release: root.register()
+            on_release:
+                root.manager.transition = NoTransition()
+                root.register()
     BoxLayout:
         orientation: 'vertical'
         size_hint: 0.88, 0.15
@@ -175,97 +200,229 @@ ScreenManager:
             # size: 3 * dp(48), dp(48)
             opposite_colors: True
             pos_hint: {'center_y': 1,'right': 1}
-            on_release: root.cancel()
+            on_release:
+                root.manager.transition = NoTransition()
+                root.cancel()
 
 
 
 
 <MenuScreen>:
-    BoxLayout:
-        orientation: 'vertical'
-        # spacing: 0
-        MDLabel:
-            font_style: 'Title'
-            theme_text_color: 'Secondary'
-            font_size: 35
-            # text: "Email"
-            halign: 'center'
-            size_hint: 1, None
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            text: "Welcome Devotee"
-            font_size: 50
-        # MDLabel:
+    NavigationLayout:
+        pos_hint: {'top': 1}
+        id: nav_layout
+        # canvas:
+        #     Rectangle:
+        #         size: self.size
+        #         pos: self.pos
+        #     Color:
+        #         rgba: 1, 1, 1, 0.2
+        MDNavigationDrawer:
+            pos_hint: {'top': 1}
+            id: nav_drawer
+            NavigationDrawerToolbar:
+                #
+                title: "Navigation"
+            NavigationDrawerIconButton:
+                # icon: 'home-outline'
+                icon: 'home'
+                text: "Home"
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'MenuScreen'
 
-        GridLayout:
-            cols: 2
-            rows: 3
-            minimum_width: 0.2
-            spacing: [5, 5.0]
-            padding_right: 20
-            padding_left: 20
-            MDRaisedButton:
-                text:"Today's View"
-                elevation_normal: 10
-                font_size: '45'
-                size_hint: 0.5, 1
-                on_release: root.manager.current = "DateScreen"
-            MDRaisedButton:
-                text:"Donate"
-                font_size: '45'
-                size_hint: 0.5, 1
-                on_release: webbrowser.open("https://lvtemple.org/new-donations/")
-            MDRaisedButton:
-                text:"Gallery"
-                font_size: '45'
-                size_hint: 0.5, 1
-                on_release: root.manager.current = "ConstructionScreen"
-            MDRaisedButton:
-                text:"Calendar"
-                font_size: '45'
-                size_hint: 0.5, 1
-                on_release: root.manager.current = "ConstructionScreen"
-        BoxLayout:
-            padding: (100, 50)
-            orientation: 'vertical'
-            MDFlatButton:
-                # size_hint: 0.75, None
-                opposite_colors:    True
-                text: "asdfasdfasdf"
+            NavigationDrawerIconButton:
+                icon: 'calendar-today'
+                text: "Calendar"
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'DateScreen'
+            NavigationDrawerIconButton:
+                # icon: 'checkbox-blank-circle'
                 icon: 'image'
-                font_size: '45'
-                pos_hint: {'top': 1, 'center_x': 0.5}
-                on_release: root.manager.current = "ConstructionScreen"
-        ScrollLabel:
-            id: scrolllabelthing
-            size_hint_y: None
+                text: "Gallery"
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'ConstructionScreen'
+            NavigationDrawerIconButton:
+                # icon: 'checkbox-blank-circle'
+                icon: 'contact-mail'
+                text: "Contact"
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'ConstructionScreen'
+            # NavigationDrawerSubheader:
+            #     text: "More"
+            NavigationDrawerDivider
+            # Spacer:
+            NavigationDrawerIconButton:
+                icon: 'credit-card'
+                text: 'Donate'
+                on_release:
+                    root.manager.transition = NoTransition()
+                    webbrowser.open("https://lvtemple.org/new-donations/")
+
+        BoxLayout:
+            orientation: 'vertical'
+            BoxLayout:
+                size_hint_y: 0.2
+                Toolbar:
+                    pos_hint: {'top': 1}
+
+                    id: toolbar
+                    title: 'SVETA Temple'
+                    md_bg_color: app.theme_cls.primary_color
+                    background_palette: 'Primary'
+                    background_hue: '500'
+                    left_action_items: [['menu', lambda x: root.ids.nav_layout.toggle_nav_drawer()]]
+            RelativeLayout:
+                orientation: 'vertical'
+                MDCard:
+                    size_hint: 0.35, 0.40
+                    pos_hint: {'top' :1,'x': 0.25}
+                    elevation: 5
+
+                    BoxLayout:
+                        orientation:'vertical'
+                        padding: dp(8)
+                        MDLabel:
+
+                            text: "Today's View"
+                            theme_text_color: 'Secondary'
+                            font_style:"Display1"
+                            size_hint_y: None
+                            height: dp(36)
+                        MDSeparator:
+                            height: dp(1)
+                        MDLabel:
+                            # pos_hint: {'top': 0.85}
+                            # size_hint_y: None
+                            text: "There are quite a few cool things that are available today at the Temple"
+                            theme_text_color: 'Primary'
+                            font_style: 'Title'
+            # ScreenManager:
+            #     id: scr_mngr
+            #     Screen:
+            #         name: 'bottomsheet'
+            #         MDRaisedButton:
+            #             text: "Open list bottom sheet"
+            #             opposite_colors: True
+            #             size_hint: None, None
+            #             size: 4 * dp(48), dp(48)
+            #             pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+            #             on_release: app.show_example_bottom_sheet()
+            #         MDRaisedButton:
+            #             text: "Open grid bottom sheet"
+            #             opposite_colors: True
+            #             size_hint: None, None
+            #             size: 4 * dp(48), dp(48)
+            #             pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+            #             on_release: app.show_example_grid_bottom_sheet()
+                # right_action_items: [['dots-vertical', lambda x: app.root.toggle_nav_drawer()]]
+
+
+
+    # BoxLayout:
+    #     orientation: 'vertical'
+    #     # spacing: 0
+    #     MDLabel:
+    #         font_style: 'Display3'
+    #         theme_text_color: 'Secondary'
+    #         # font_size: 35
+    #         # text: "Email"
+    #         halign: 'center'
+    #         size_hint: 1, None
+    #         pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+    #         text: "Welcome!"
+    #         font_size: 50
+    #     # MDLabel:
+    #     MDFloatingActionButton:
+    #         icon: 'compass'
+    #         elevation_normal:200
+    #     # GridLayout:
+    #     #     cols: 2
+    #     #     rows: 3
+    #     #     minimum_width: 0.2
+    #     #     spacing: [5, 5.0]
+    #     #     padding_right: 20
+    #     #     padding_left: 20
+    #     #     MDRaisedButton:
+    #     #         text:"Today's View"
+    #     #         elevation_normal: 10
+    #     #         font_size: '45'
+    #     #         size_hint: 0.5, 1
+    #     #         on_release: root.manager.current = "DateScreen"
+    #     #     MDRaisedButton:
+    #     #         text:"Donate"
+    #     #         font_size: '45'
+    #     #         size_hint: 0.5, 1
+    #     #         on_release: webbrowser.open("https://lvtemple.org/new-donations/")
+    #     #     MDRaisedButton:
+    #     #         text:"Gallery"
+    #     #         font_size: '45'
+    #     #         size_hint: 0.5, 1
+    #     #         on_release: root.manager.current = "ConstructionScreen"
+    #     #     MDRaisedButton:
+    #     #         text:"Calendar"
+    #     #         font_size: '45'
+    #     #         size_hint: 0.5, 1
+    #     #         on_release: root.manager.current = "ConstructionScreen"
+    #     BoxLayout:
+    #         padding: (100, 50)
+    #         orientation: 'vertical'
+    #         MDFlatButton:
+    #             # size_hint: 0.75, None
+    #             opposite_colors:    True
+    #             text: "asdfasdfasdf"
+    #             icon: 'image'
+    #             font_size: '45'
+    #             pos_hint: {'top': 1, 'center_x': 0.5}
+    #             on_release: root.manager.current = "ConstructionScreen"
+            ScrollLabel:
+                id: scrolllabelthing
+                size_hint_y: None
 <DateScreen>:
     BoxLayout:
-        orientation: 'vertical'
+        # orientation: 'vertical'
+        pos_hint: {'top': 1}
         MDLabel:
             text: "Enter Date for details"
             # font_size: 35
-            font_style: 'Title'
+            pos_hint: {'top': 1}
+            font_style: 'Display2'
             # size_hint: 0.65, 0.25
-            theme_text_color: 'Primary'
+
+            theme_text_color: 'Secondary'
             # pos_hint: {'center_x': 0.5, 'top': 1}
             halign: 'center'
-            height: self.texture_size[1] + dp(4)
-        TextInput:
-            text: root.figuretime()
-            write_tab: False
-            multiline: False
-            id: datething
-            font_size: 35
-            size_hint: 0.55, 0.15
-            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-            on_text_validate: root.selectdate()
+            # height: self.minimum_height
+            size_hint_y: None
+    BoxLayout:
+        orientation: 'vertical'
+        pos_hint: {'center_y': 0.5}
+        BoxLayout:
+            orientation: 'vertical'
+            pos_hint: {'center_y': 0.5}
+            size: root.size
+            MDTextField:
+                text: root.figuretime()
+                write_tab: False
+                multiline: False
+                id: datething
+                font_size: 35
+                size_hint: 0.55, None
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                on_text_validate: root.selectdate()
+            MDRaisedButton:
+                text: "Dates"
+                on_release: root.show_date_picker()
 
-        Button:
-            font_size: 35
-            size_hint: 0.65, 0.25
-            pos_hint: {'center_x': 0.5, 'bottom': 1}
-            text: "Submit"
-            on_press: root.selectdate()
+    MDRaisedButton:
+        font_size: 35
+        size_hint: None, None
+        pos_hint: {'center_x': 0.5, 'bottom': 1}
+        text: "Submit"
+        on_press: root.selectdate()
 
 <TodayScreen>:
     on_pre_enter:
@@ -285,7 +442,6 @@ ScreenManager:
                 markup: True
                 underline: True
         BoxLayout:
-
             BoxLayout:
                 orientation: 'vertical'
                 Label:
