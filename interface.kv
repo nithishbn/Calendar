@@ -92,6 +92,7 @@ ScreenManager:
         theme_text_color: 'Secondary'
         # size: 3* dp(48), dp(48)
         on_release:
+            root.manager.transition = NoTransition()
             root.register()
             # root.manager.transition = NoTransition()
     BoxLayout:
