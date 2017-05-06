@@ -8,3 +8,7 @@
 /.gitattributes
 /Database Structure.xlsx
 /~$Database Structure.xlsx
+
+\.buildozer/android/app/_applibs/\.libs_cffi_backend/
+
+\.buildozer/android/app/_applibs/
