@@ -16,6 +16,7 @@
 #:import MDCard kivymd.card.MDCard
 # :import NDIconLabel kivymd.navigationdrawer.NDIconLabel
 #:import OneLineIconListItem kivymd.list.OneLineIconListItem
+#:import SmartTile kivymd.grid.SmartTile
 ScreenManager:
     id: sm
     LoginScreen:
@@ -234,6 +235,7 @@ ScreenManager:
             NavigationDrawerIconButton:
                 icon: 'calendar-today'
                 text: "Calendar"
+                badge_text: '99+'
                 on_release:
                     root.manager.transition = NoTransition()
                     root.manager.current = 'DateScreen'
@@ -258,6 +260,7 @@ ScreenManager:
             NavigationDrawerIconButton:
                 icon: 'credit-card'
                 text: 'Donate'
+                active_color_type: 'accent'
                 on_release:
                     root.manager.transition = NoTransition()
                     webbrowser.open("https://lvtemple.org/new-donations/")
@@ -278,13 +281,15 @@ ScreenManager:
             RelativeLayout:
                 orientation: 'vertical'
                 MDCard:
-                    size_hint: 0.35, 0.40
-                    pos_hint: {'top' :1,'x': 0.25}
-                    elevation: 5
-
+                    size_hint: 0.35, 0.80
+                    pos_hint: {'top' :1,'x': 0.15}
+                    elevation: 10
+                    active_color_type: 'Custom'
+                    active_color : [1, 0, 1, 1]
                     BoxLayout:
                         orientation:'vertical'
                         padding: dp(8)
+                        spacing: 10
                         MDLabel:
 
                             text: "Today's View"
@@ -292,14 +297,25 @@ ScreenManager:
                             font_style:"Display1"
                             size_hint_y: None
                             height: dp(36)
+                            # halign: 'center'
+                            # padding: 50
+
                         MDSeparator:
                             height: dp(1)
+                            # padding: 50
+                            spacing: -10
+                        SmartTile:
+                            mipmap: True
+                            size_hint: 1, 0.7
+                            source: './presplash1.jpg'
+                            # md_bg_color: 'Secondary'
+                            # text: 'asdf'
                         MDLabel:
                             # pos_hint: {'top': 0.85}
-                            # size_hint_y: None
+                            size_hint_y: None
                             text: "There are quite a few cool things that are available today at the Temple"
                             theme_text_color: 'Primary'
-                            font_style: 'Title'
+                            font_style: 'Body2'
             # ScreenManager:
             #     id: scr_mngr
             #     Screen:
@@ -564,5 +580,7 @@ ScreenManager:
             size_hint_x: None
             text: "This is some quick announcement that will be able to be pushed from another application."
             width: self.texture_size[0]
-            font_size: 25
+            font_size: 20
+            # font_style: 'Title'
+            color: [0, 0, 0, 1]
         Spacer:
