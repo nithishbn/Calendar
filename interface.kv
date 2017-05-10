@@ -408,37 +408,48 @@ ScreenManager:
             font_style: 'Display2'
             # size_hint: 0.65, 0.25
 
-            theme_text_color: 'Secondary'
+            theme_text_color: 'Primary'
             # pos_hint: {'center_x': 0.5, 'top': 1}
             halign: 'center'
             # height: self.minimum_height
             size_hint_y: None
+    # BoxLayout:
+    #     orientation: 'vertical'
+    #     pos_hint: {'center_y': 0.65, 'center_x': 0.5}
+    #     size_hint_y: 0.35
+    #     canvas.before:
+    #         Rectangle:
+    #             size: self.size
+    #             pos: self.pos
+    #         Color:
+    #             rgba: 0.5, 1, 1, 0.5
     BoxLayout:
         orientation: 'vertical'
-        pos_hint: {'center_y': 0.5}
-        BoxLayout:
-            orientation: 'vertical'
-            pos_hint: {'center_y': 0.5}
-            size: root.size
-            MDTextField:
-                text: root.figuretime()
-                write_tab: False
-                multiline: False
-                id: datething
-                font_size: 35
-                size_hint: 0.55, None
-                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                on_text_validate: root.selectdate()
-            MDRaisedButton:
-                text: "Dates"
-                on_release: root.show_date_picker()
+        pos_hint: {'top': 0.65, 'center_x': 0.5}
+        size_hint_y: None
+        size_hint_x: 0.85
+        # size: root.size
+        MDTextField:
+            text: root.figuretime()
+            write_tab: False
+            multiline: False
+            id: datething
+            font_size: 35
+            size_hint: 0.55, None
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            # on_text_validate: root.selectdate()
+            on_focus: root.show_date_picker()
+        # MDRaisedButton:
+        #     text: "Dates"
+        #     # pos_hint: {'right': 0.775}
+        #     on_release: root.show_date_picker()
 
-    MDRaisedButton:
-        font_size: 35
-        size_hint: None, None
-        pos_hint: {'center_x': 0.5, 'bottom': 1}
-        text: "Submit"
-        on_press: root.selectdate()
+        MDRaisedButton:
+            font_size: 35
+            size_hint: None, None
+            pos_hint: {'right': 0.775}
+            text: "Submit"
+            on_press: root.selectdate()
 
 <TodayScreen>:
     on_pre_enter:
