@@ -11,7 +11,7 @@ from kivymd.button import MDIconButton
 from kivymd.date_picker import MDDatePicker
 from kivymd.list import ILeftBodyTouch
 from kivymd.theming import ThemeManager
-from kivymd.icon_definitions import
+# from kivymd.icon_definitions import
 
 class LoginScreen(Screen):
     def register(self):
