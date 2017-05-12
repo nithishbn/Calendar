@@ -120,7 +120,7 @@ class DateScreen(Screen):
             # self.count -= 1
         else:
             return True
-
+        # MDDatePicker(self.set_previous_date).open()
     def selectdate(self):
         # self.date = self.ids.datething.text
         if self.manager.current not in self.screenlist:
@@ -191,6 +191,7 @@ class TodayScreen(Screen):
                     self.thithi = query
         except:
             self.manager.current = "DateScreen"
+            # self.app.ids.datething.error = True
             # self.ids.datething.text = " "
 
 
