@@ -93,7 +93,7 @@ class DateScreen(Screen):
     date = StringProperty('')
     otherdate = StringProperty('')
     screenlist = ListProperty
-
+    count = 0
     def __init__(self, **kwargs):
         screenlist = self.screenlist
         super(DateScreen, self).__init__(**kwargs)
@@ -108,10 +108,19 @@ class DateScreen(Screen):
         # print(self.previous_date)
         self.ids.datething.text = actualdate
         self.date = str(actualdate)
+        self.count -=1
         # self.root.ids.date_picker_label.text = str(date_obj)
 
     def show_date_picker(self):
-        MDDatePicker(self.set_previous_date).open()
+
+        # self.focus = False
+        if self.count == 0:
+            self.count += 1
+            MDDatePicker(self.set_previous_date).open()
+            # self.count -= 1
+        else:
+            return True
+
     def selectdate(self):
         # self.date = self.ids.datething.text
         if self.manager.current not in self.screenlist:
