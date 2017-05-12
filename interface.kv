@@ -430,7 +430,7 @@ ScreenManager:
         size_hint_x: 0.85
         # size: root.size
         MDTextField:
-            text: root.figuretime()
+            # text: root.figuretime()
             write_tab: False
             multiline: False
             id: datething
@@ -439,6 +439,7 @@ ScreenManager:
             pos_hint: {'center_x': 0.5, 'center_y': 0.5}
             # on_text_validate: root.selectdate()
             on_focus: root.show_date_picker()
+            # on_double_tap: root.show_keyboard()
         # MDRaisedButton:
         #     text: "Dates"
         #     # pos_hint: {'right': 0.775}
@@ -553,29 +554,49 @@ ScreenManager:
             font_size: 35
             on_press: root.manager.current = 'DateScreen'
 <ConstructionScreen>:
-    BoxLayout:
-        orientation: 'vertical'
-        spacing: 10
+    NavigationLayout:
+        pos_hint: {'top': 1}
+        id: nav_layout
+        # canvas:
+        #     Rectangle:
+        #         size: self.size
+        #         pos: self.pos
+        #     Color:
+        #         rgba: 1, 1, 1, 0.2
+        MDNavigationDrawer:
+            pos_hint: {'top': 1}
+            id: nav_drawer
+            NavigationDrawerToolbar:
+                title: "Navigation"
+            NavigationDrawerIconButton:
+                icon: 'checkbox-blank-circle'
+                text: "Calendar"
+            MDSeparator:
+                height: dp(1)
+            NavigationDrawerIconButton:
+                icon: 'checkbox-blank-circle'
+                text: "Gallery"
+                on_release: root.manager.current = 'ConstructionScreen'
         BoxLayout:
             orientation: 'vertical'
-            Label:
-                size_hint: 1, 0.25
-                pos_hint: {'top': 1, 'center_x': 0.5}
-                text: "Oops! This page is under construction!"
-                font_size: 35
-            Label:
-                size_hint: 1, 0.25
-                pos_hint: {'center_y': 0.5, 'center_x': 0.5}
-                text: "Check back again later!"
-                font_size: 35
-        BoxLayout:
-            padding: (100, 0)
-            MDRaisedButton:
-                size_hint: 1, 0.25
-                pos_hint: {'bottom': 1, 'center_x': 0.5}
-                text: "Go back!"
-                on_press: root.manager.current = "MenuScreen"
-                font_size: '35'
+            BoxLayout:
+                size_hint_y: 0.2
+                Toolbar:
+                    pos_hint: {'top': 1}
+
+                    id: toolbar
+                    title: 'SVETA Temple'
+                    md_bg_color: app.theme_cls.primary_color
+                    background_palette: 'Primary'
+                    background_hue: '500'
+                    left_action_items: [['menu', lambda x: root.ids.nav_layout.toggle_nav_drawer()]]
+            MDLabel:
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                halign: 'center'
+                valign: 'center'
+                text: "This screen is under construction."
+                font_style: 'Display4'
+                color: [1, 0, 0, 1]
 <Spacer@Widget>:
     size_hint_x: None
     width: 800
