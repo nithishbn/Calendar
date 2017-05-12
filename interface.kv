@@ -54,6 +54,13 @@ ScreenManager:
         manager: sm
         transition: "NoTransition"
         screenlist: menu.screenlist
+    ContactScreen:
+        name: 'ContactScreen'
+        id: contact
+        manager: sm
+        transition: "NoTransition"
+        screenlist: menu.screenlist
+
 <LoginScreen>:
     BoxLayout:
         BoxLayout:
@@ -279,7 +286,7 @@ ScreenManager:
                 text: "Contact"
                 on_release:
                     root.manager.transition = NoTransition()
-                    root.manager.current = 'ConstructionScreen'
+                    root.manager.current = 'ContactScreen'
             # NavigationDrawerSubheader:
             #     text: "More"
             NavigationDrawerDivider
@@ -640,6 +647,81 @@ ScreenManager:
                 #         pos_hint:{'x':0.25,'top':0.15}
                 #         theme_text_color: 'Secondary'
                 #         font_size: 25
+<ContactScreen>:
+    NavigationLayout:
+        pos_hint: {'top': 1}
+        id: nav_layout
+        # canvas:
+        #     Rectangle:
+        #         size: self.size
+        #         pos: self.pos
+        #     Color:
+        #         rgba: 1, 1, 1, 0.2
+        MDNavigationDrawer:
+            pos_hint: {'top': 1}
+            id: nav_drawer
+            NavigationDrawerToolbar:
+                #
+                title: "Navigation"
+            NavigationDrawerIconButton:
+                # icon: 'home-outline'
+                icon: 'home'
+                text: "Home"
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'MenuScreen'
+
+            NavigationDrawerIconButton:
+                icon: 'calendar-today'
+                text: "Calendar"
+                badge_text: '99+'
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'DateScreen'
+            NavigationDrawerIconButton:
+                # icon: 'checkbox-blank-circle'
+                icon: 'image'
+                text: "Gallery"
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'ConstructionScreen'
+            NavigationDrawerIconButton:
+                # icon: 'checkbox-blank-circle'
+                icon: 'contact-mail'
+                text: "Contact"
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'ConstructionScreen'
+            # NavigationDrawerSubheader:
+            #     text: "More"
+            NavigationDrawerDivider
+            # Spacer:
+            NavigationDrawerIconButton:
+                icon: 'credit-card'
+                text: 'Donate'
+                active_color_type: 'accent'
+                on_release:
+                    root.manager.transition = NoTransition()
+                    webbrowser.open("https://lvtemple.org/new-donations/")
+
+        BoxLayout:
+            orientation: 'vertical'
+            BoxLayout:
+                size_hint_y: 0.2
+                Toolbar:
+                    pos_hint: {'top': 1}
+
+                    id: toolbar
+                    title: 'SVETA Temple'
+                    md_bg_color: app.theme_cls.primary_color
+                    background_palette: 'Primary'
+                    background_hue: '500'
+                    left_action_items: [['menu', lambda x: root.ids.nav_layout.toggle_nav_drawer()]]
+            BoxLayout:
+                MDLabel:
+                    text: 'asdf'
+                    font_style: 'Display4'
+                    halign: 'center'
 <ConstructionScreen>:
     NavigationLayout:
         pos_hint: {'top': 1}

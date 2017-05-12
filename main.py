@@ -146,7 +146,8 @@ class DateScreen(Screen):
 class ConstructionScreen(Screen):
     screenlist = ListProperty([])
 
-
+class ContactScreen(Screen):
+    screenlist = ListProperty([])
 class TodayScreen(Screen):
     # screenlist = ListProperty([])
     samva = StringProperty('')
