@@ -567,16 +567,48 @@ ScreenManager:
             pos_hint: {'top': 1}
             id: nav_drawer
             NavigationDrawerToolbar:
+                #
                 title: "Navigation"
             NavigationDrawerIconButton:
-                icon: 'checkbox-blank-circle'
-                text: "Calendar"
-            MDSeparator:
-                height: dp(1)
+                # icon: 'home-outline'
+                icon: 'home'
+                text: "Home"
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'MenuScreen'
+
             NavigationDrawerIconButton:
-                icon: 'checkbox-blank-circle'
+                icon: 'calendar-today'
+                text: "Calendar"
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'DateScreen'
+            NavigationDrawerIconButton:
+                # icon: 'checkbox-blank-circle'
+                icon: 'image'
                 text: "Gallery"
-                on_release: root.manager.current = 'ConstructionScreen'
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'ConstructionScreen'
+            NavigationDrawerIconButton:
+                # icon: 'checkbox-blank-circle'
+                icon: 'contact-mail'
+                text: "Contact"
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'ConstructionScreen'
+            # NavigationDrawerSubheader:
+            #     text: "More"
+            NavigationDrawerDivider
+            # Spacer:
+            NavigationDrawerIconButton:
+                icon: 'credit-card'
+                text: 'Donate'
+                active_color_type: 'accent'
+                on_release:
+                    root.manager.transition = NoTransition()
+                    webbrowser.open("https://lvtemple.org/new-donations/")
+
         BoxLayout:
             orientation: 'vertical'
             BoxLayout:
