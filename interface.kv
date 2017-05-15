@@ -921,59 +921,107 @@ ScreenManager:
                 id: scrolllabelthing
                 size_hint_y: None
 <DateScreen>:
-    BoxLayout:
-        # orientation: 'vertical'
+    NavigationLayout:
         pos_hint: {'top': 1}
-        MDLabel:
-            text: "Enter Date for details"
-            # font_size: 35
+        id: nav_layout
+        MDNavigationDrawer:
             pos_hint: {'top': 1}
-            font_style: 'Display2'
-            # size_hint: 0.65, 0.25
+            id: nav_drawer
+            NavigationDrawerToolbar:
+                #
+                title: "Navigation"
+            NavigationDrawerIconButton:
+                # icon: 'home-outline'
+                icon: 'home'
+                text: "Home"
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'MenuScreen'
 
-            theme_text_color: 'Primary'
-            # pos_hint: {'center_x': 0.5, 'top': 1}
-            halign: 'center'
-            # height: self.minimum_height
-            size_hint_y: None
-    # BoxLayout:
-    #     orientation: 'vertical'
-    #     pos_hint: {'center_y': 0.65, 'center_x': 0.5}
-    #     size_hint_y: 0.35
-    #     canvas.before:
-    #         Rectangle:
-    #             size: self.size
-    #             pos: self.pos
-    #         Color:
-    #             rgba: 0.5, 1, 1, 0.5
+            NavigationDrawerIconButton:
+                icon: 'calendar-today'
+                text: "Calendar"
+                # badge_text: '99+'
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'DateScreen'
+            NavigationDrawerIconButton:
+                # icon: 'checkbox-blank-circle'
+                icon: 'image'
+                text: "Gallery"
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'ConstructionScreen'
+            NavigationDrawerIconButton:
+                # icon: 'checkbox-blank-circle'
+                icon: 'contact-mail'
+                text: "Contact"
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'ConstructionScreen'
+            # NavigationDrawerSubheader:
+            #     text: "More"
+            NavigationDrawerDivider
+            # Spacer:
+            NavigationDrawerIconButton:
+                icon: 'credit-card'
+                text: 'Donate'
+                active_color_type: 'accent'
+                on_release:
+                    root.manager.transition = NoTransition()
+                    webbrowser.open("https://lvtemple.org/new-donations/")
     BoxLayout:
-        orientation: 'vertical'
-        pos_hint: {'top': 0.65, 'center_x': 0.5}
-        size_hint_y: None
-        size_hint_x: 0.85
-        # size: root.size
-        MDTextField:
-            # text: root.figuretime()
-            write_tab: False
-            multiline: False
-            id: datething
-            font_size: 35
-            size_hint: 0.55, None
-            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-            # on_text_validate: root.selectdate()
-            on_focus: root.show_date_picker()
-            # on_double_tap: root.show_keyboard()
-        # MDRaisedButton:
-        #     text: "Dates"
-        #     # pos_hint: {'right': 0.775}
-        #     on_release: root.show_date_picker()
+        size_hint_y: 0.2
+        pos_hint: {'top': 1}
+        Toolbar:
+            pos_hint: {'top': 1}
 
-        MDRaisedButton:
-            font_size: 35
-            size_hint: None, None
-            pos_hint: {'right': 0.775}
-            text: "Submit"
-            on_press: root.selectdate()
+            id: toolbar
+            title: 'SVETA Temple'
+            md_bg_color: app.theme_cls.primary_color
+            background_palette: 'Primary'
+            background_hue: '500'
+            left_action_items: [['menu', lambda x: root.ids.nav_layout.toggle_nav_drawer()]]
+    BoxLayout:
+        pos_hint: {'top': 0.70}
+        size_hint_y: None
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 20
+            BoxLayout:
+                # orientation: 'vertical'
+                pos_hint: {'top': 1}
+                size_hint_y: None
+                MDLabel:
+                    text: "Enter Date for details"
+                    pos_hint: {'top': 0.90}
+                    font_style: 'Display1'
+                    theme_text_color: 'Primary'
+                    halign: 'center'
+                    size_hint_y: None
+            BoxLayout:
+                orientation: 'vertical'
+                pos_hint: {'top': 1, 'center_x': 0.5}
+                size_hint_y: None
+                size_hint_x: 0.85
+                # size: root.size
+                MDTextField:
+                    # text: root.figuretime()
+                    write_tab: False
+                    multiline: False
+                    id: datething
+                    font_size: 25
+                    size_hint: 0.55, None
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                    # on_text_validate: root.selectdate()
+                    on_focus: root.show_date_picker()
+                MDRaisedButton:
+                    font_size: 35
+                    size_hint: None, None
+                    font_style: 'Icon'
+                    pos_hint: {'right': 0.775}
+                    text: "Submit"
+                    on_press: root.selectdate()
 
 <TodayScreen>:
     on_pre_enter:
