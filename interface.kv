@@ -372,9 +372,11 @@ ScreenManager:
         BoxLayout:
             orientation: 'vertical'
             # size_hint_y: None
+            spacing: 40
             pos_hint: {'top': 1}
             Toolbar:
                 pos_hint: {'top': 1}
+                size_hint_y: None
                 id: toolbar
                 title: 'SVETA Temple'
                 md_bg_color: app.theme_cls.primary_color
@@ -382,46 +384,48 @@ ScreenManager:
                 background_hue: '500'
                 left_action_items: [['menu', lambda x: root.ids.nav_layout.toggle_nav_drawer()]]
 
-            BoxLayout:
-                pos_hint: {'top': 1}
-                # size_hint_y: None
+            # BoxLayout:
+            #     pos_hint: {'top': 0.85}
+            #     size_hint_y: 0.5
+            RelativeLayout:
+                orientation: 'vertical'
+                spacing: 100
+                # size_hint_y: 0.95
+                # pos_hint: {'y': 0.6}
+                # BoxLayout:
+                #     # orientation: 'vertical'
+                #     pos_hint: {'top': 1}
+                #     size_hint_y: None
+                MDLabel:
+                    text: "Enter Date for details"
+                    pos_hint: {'top': 1}
+                    font_style: 'Display1'
+                    theme_text_color: 'Primary'
+                    halign: 'center'
+                    size_hint_y: None
                 BoxLayout:
                     orientation: 'vertical'
-                    spacing: 20
-                    BoxLayout:
-                        # orientation: 'vertical'
-                        pos_hint: {'top': 1}
-                        size_hint_y: None
-                        MDLabel:
-                            text: "Enter Date for details"
-                            pos_hint: {'top': 0.90}
-                            font_style: 'Display1'
-                            theme_text_color: 'Primary'
-                            halign: 'center'
-                            size_hint_y: None
-                    BoxLayout:
-                        orientation: 'vertical'
-                        pos_hint: {'top': 1, 'center_x': 0.5}
-                        size_hint_y: None
-                        size_hint_x: 0.85
-                        # size: root.size
-                        MDTextField:
-                            # text: root.figuretime()
-                            write_tab: False
-                            multiline: False
-                            id: datething
-                            font_size: 25
-                            size_hint: 0.55, None
-                            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                            # on_text_validate: root.selectdate()
-                            on_focus: root.show_date_picker()
-                        MDRaisedButton:
-                            font_size: 35
-                            size_hint: None, None
-                            font_style: 'Icon'
-                            pos_hint: {'right': 0.775}
-                            text: "Submit"
-                            on_press: root.selectdate()
+                    pos_hint: {'top': 0.80, 'center_x': 0.5}
+                    size_hint_y: None
+                    size_hint_x: 0.85
+                    # size: root.size
+                    MDTextField:
+                        # text: root.figuretime()
+                        write_tab: False
+                        multiline: False
+                        id: datething
+                        font_size: 25
+                        size_hint: 0.55, None
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        # on_text_validate: root.selectdate()
+                        on_focus: root.show_date_picker()
+                    MDRaisedButton:
+                        font_size: 35
+                        size_hint: None, None
+                        font_style: 'Icon'
+                        pos_hint: {'right': 0.775}
+                        text: "Submit"
+                        on_press: root.selectdate()
 
 <TodayScreen>:
     on_pre_enter:
