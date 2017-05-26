@@ -11,6 +11,8 @@ from kivymd.button import MDIconButton
 from kivymd.date_picker import MDDatePicker
 from kivymd.list import ILeftBodyTouch
 from kivymd.theming import ThemeManager
+
+
 # from kivymd.icon_definitions import
 
 class LoginScreen(Screen):
@@ -45,16 +47,19 @@ class LoginScreen(Screen):
             except:
                 self.ids.password.error = True
 
+
 class RegisterScreen(Screen):
     def register(self):
         print("Wow well played!")
         return True
         # TODO finish this lol
+
     def cancel(self):
         self.ids.email.text = ""
         self.ids.phone_number.text = ""
         self.ids.register_password.text = ""
         self.manager.current = "LoginScreen"
+
 
 class MenuScreen(Screen):
     screenlist = ListProperty([])
@@ -87,13 +92,17 @@ class MenuScreen(Screen):
         self.screenlist.append("MenuScreen")
         print("MenuScreen's list: ", self.screenlist)
 
+
 class IconLeftSampleWidget(ILeftBodyTouch, MDIconButton):
     pass
+
+
 class DateScreen(Screen):
     date = StringProperty('')
     otherdate = StringProperty('')
     screenlist = ListProperty
     count = 0
+
     def __init__(self, **kwargs):
         screenlist = self.screenlist
         super(DateScreen, self).__init__(**kwargs)
@@ -108,11 +117,10 @@ class DateScreen(Screen):
         # print(self.previous_date)
         self.ids.datething.text = actualdate
         self.date = str(actualdate)
-        self.count -=1
+        self.count -= 1
         # self.root.ids.date_picker_label.text = str(date_obj)
 
     def show_date_picker(self):
-
         # self.focus = False
         if self.count == 0:
             self.count += 1
@@ -123,6 +131,7 @@ class DateScreen(Screen):
         # MDDatePicker(self.set_previous_date).open()
     def selectdate(self):
         # self.date = self.ids.datething.text
+        print(self.ids.datething.text)
         if self.manager.current not in self.screenlist:
             self.screenlist.append(self.manager.current)
         # print("date selection", self.screenlist)
@@ -149,12 +158,11 @@ class TodayScreen(Screen):
     date = StringProperty('')
     screenlist = ListProperty([])
 
-    # def __init__(self, **kwargs):
-    #     super(TodayScreen, self).__init__(**kwargs)
-    #     Window.bind(on_keyboard=self.onBackBtn)
-
+    # DO NOT TOUCH THIS AT ALL
+    # if you do, you will be decimated by Nithish Narasimman idk though
     def search(self):
         date = self.date
+        print("search date function thing: ", date)
         # print(date)
         conn = sqlite3.connect('calendar.sqlite')
         cur = conn.cursor()
@@ -226,6 +234,7 @@ class InterfaceApp(App):
         # print(self.theme_cls.
         # self.theme_cls.theme_style = 'Dark'
         pass
+
     def on_pause(self):
         return True
 
