@@ -506,95 +506,113 @@ ScreenManager:
         pos_hint: {'top': 0.85}
         BoxLayout:
             orientation: 'vertical'
-            size_hint: 1, 0.15
+            size_hint: 1, None
+
             MDLabel:
                 text: 'Details'
                 # font_size: 45
+                size_hint_y: None
                 font_style: 'Display2'
                 theme_text_color: 'Primary'
                 # size_hint: None, 0.05
                 # pos_hint: {'center_x':0.5, 'top': 1}
                 halign: 'center'
         BoxLayout:
+            pos_hint: {'top': 1}
             BoxLayout:
                 orientation: 'horizontal'
                 padding: [100, 100]
                 BoxLayout:
                     orientation: 'vertical'
                     MDLabel:
-                        text: "Samvatsram"
-                        size_hint: 0.5, 0.25
-                        theme_text_color: 'Secondary'
-                        pos_hint:{'x':0.25,'top':0.15}
-                        font_size: 25
-                    MDLabel:
-                        text: "Avanam"
+                        text: root.samva + " nama samvatsarae"
+                        # texture_size: self.texture_size
                         size_hint: 0.5, 0.25
                         pos_hint:{'x':0.25,'top':0.15}
                         theme_text_color: 'Secondary'
                         font_size: 25
-                    MDLabel:
-                        text: "Rithu"
-                        size_hint: 0.5, 0.25
-                        pos_hint:{'x':0.25,'top':0.15}
-                        theme_text_color: 'Secondary'
-                        font_size: 25
-                    MDLabel:
-                        text: "Maasae"
-                        size_hint: 0.5, 0.25
-                        pos_hint:{'x':0.25,'top':0.15}
-                        theme_text_color: 'Secondary'
-                        font_size: 25
-                    MDLabel:
-                        text: "Pakshae"
-                        size_hint: 0.5, 0.25
-                        pos_hint:{'x':0.25,'top':0.15}
-                        theme_text_color: 'Secondary'
-                        font_size: 25
-                    MDLabel:
-                        text: "Thithi"
-                        size_hint: 0.5, 0.25
-                        pos_hint:{'x':0.25,'top':0.15}
-                        theme_text_color: 'Secondary'
-                        font_size: 25
-                BoxLayout:
-                    orientation: 'vertical'
-                    MDLabel:
-                        text: root.samva
-                        size_hint: 0.5, 0.25
-                        pos_hint:{'x':0.25,'top':0.15}
-                        theme_text_color: 'Secondary'
-                        font_size: 25
+                        halign: 'center'
                     MDLabel:
                         text: root.avanam
                         size_hint: 0.5, 0.25
                         pos_hint:{'x':0.25,'top':0.15}
                         theme_text_color: 'Secondary'
                         font_size: 25
+                        halign: 'center'
                     MDLabel:
-                        text: root.rithu
+                        text: root.rithu +"a rithu"
                         size_hint: 0.5, 0.25
                         pos_hint:{'x':0.25,'top':0.15}
                         theme_text_color: 'Secondary'
                         font_size: 25
+                        halign: 'center'
                     MDLabel:
-                        text: root.maasae
+                        text: root.maasae + " maasae"
                         size_hint: 0.5, 0.25
                         pos_hint:{'x':0.25,'top':0.15}
                         theme_text_color: 'Secondary'
                         font_size: 25
+                        halign: 'center'
                     MDLabel:
-                        text: root.pakshae
+                        text: root.pakshae + " pakshae"
                         size_hint: 0.5, 0.25
                         pos_hint:{'x':0.25,'top':0.15}
                         theme_text_color: 'Secondary'
                         font_size: 25
+                        halign: 'center'
+                    MDLabel:
+                        text: root.vara
+                        size_hint: 0.5, 0.25
+                        pos_hint:{'x':0.25,'top':0.15}
+                        theme_text_color: 'Secondary'
+                        font_size: 25
+                        halign: 'center'
                     MDLabel:
                         text: root.thithi
                         size_hint: 0.5, 0.25
                         pos_hint:{'x':0.25,'top':0.15}
                         theme_text_color: 'Secondary'
                         font_size: 25
+                        halign: 'center'
+                # BoxLayout:
+                #     orientation: 'vertical'
+                #     pos_hint: {'top': 1}
+                #     MDLabel:
+                #         text: "Samvatsram"
+                #         size_hint: 0.5, 0.25
+                #         theme_text_color: 'Secondary'
+                #         pos_hint:{'x':0.25,'top':0.15}
+                #         font_size: 25
+                #     MDLabel:
+                #         text: "Avanam"
+                #         size_hint: 0.5, 0.25
+                #         pos_hint:{'x':0.25,'top':0.15}
+                #         theme_text_color: 'Secondary'
+                #         font_size: 25
+                #     MDLabel:
+                #         text: "Rithu"
+                #         size_hint: 0.5, 0.25
+                #         pos_hint:{'x':0.25,'top':0.15}
+                #         theme_text_color: 'Secondary'
+                #         font_size: 25
+                #     MDLabel:
+                #         text: "Maasae"
+                #         size_hint: 0.5, 0.25
+                #         pos_hint:{'x':0.25,'top':0.15}
+                #         theme_text_color: 'Secondary'
+                #         font_size: 25
+                #     MDLabel:
+                #         text: "Pakshae"
+                #         size_hint: 0.5, 0.25
+                #         pos_hint:{'x':0.25,'top':0.15}
+                #         theme_text_color: 'Secondary'
+                #         font_size: 25
+                #     MDLabel:
+                #         text: "Thithi"
+                #         size_hint: 0.5, 0.25
+                #         pos_hint:{'x':0.25,'top':0.15}
+                #         theme_text_color: 'Secondary'
+                #         font_size: 25
 <ConstructionScreen>:
     NavigationLayout:
         pos_hint: {'top': 1}

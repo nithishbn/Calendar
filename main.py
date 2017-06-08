@@ -155,6 +155,7 @@ class TodayScreen(Screen):
     maasae = StringProperty('')
     pakshae = StringProperty('')
     thithi = StringProperty('')
+    vara = StringProperty('')
     date = StringProperty('')
     screenlist = ListProperty([])
 
@@ -193,7 +194,7 @@ class TodayScreen(Screen):
                     self.pakshae = query
                 elif query == thing[6]:
                     # print("Day:", query)
-                    pass
+                    self.vara = query
                 elif query == thing[7]:
                     # print("Thithi:", query)
                     self.thithi = query
