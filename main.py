@@ -11,7 +11,8 @@ from kivymd.button import MDIconButton
 from kivymd.date_picker import MDDatePicker
 from kivymd.list import ILeftBodyTouch
 from kivymd.theming import ThemeManager
-
+import shutil
+import requests
 
 # from kivymd.icon_definitions import
 
@@ -238,6 +239,21 @@ class InterfaceApp(App):
 
     def on_pause(self):
         return True
+
+def get_images():
+    url = 'https://www.wired.com/wp-content/uploads/2015/09/google-logo.jpg'
+    response = requests.get(url, stream=True)
+    number = 0
+    with open("D:/Nithish/PythonProjects/Calendar/Calendar/images/numbers.txt", 'r+') as filething:
+        for line in filething:
+            number = int(line)
+        print(number)
+        with open('D:/Nithish/PythonProjects/Calendar/Calendar/images/img{0}.png'.format(str(number)),
+                  'wb') as out_file:
+            shutil.copyfileobj(response.raw, out_file)
+        del response
+        with open("D:/Nithish/PythonProjects/Calendar/Calendar/images/numbers.txt", 'w') as filewrite:
+            filewrite.write(str(number + 1))
 
 
 if __name__ == '__main__':
