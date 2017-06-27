@@ -11,10 +11,9 @@ from kivymd.button import MDIconButton
 from kivymd.date_picker import MDDatePicker
 from kivymd.list import ILeftBodyTouch
 from kivymd.theming import ThemeManager
-import shutil
 import requests
-
-# from kivymd.icon_definitions import
+from bs4 import BeautifulSoup
+import os
 
 class LoginScreen(Screen):
     def register(self):
@@ -241,19 +240,23 @@ class InterfaceApp(App):
         return True
 
 def get_images():
-    url = 'https://www.wired.com/wp-content/uploads/2015/09/google-logo.jpg'
-    response = requests.get(url, stream=True)
-    number = 0
-    with open("D:/Nithish/PythonProjects/Calendar/Calendar/images/numbers.txt", 'r+') as filething:
-        for line in filething:
-            number = int(line)
-        print(number)
-        with open('D:/Nithish/PythonProjects/Calendar/Calendar/images/img{0}.png'.format(str(number)),
-                  'wb') as out_file:
-            shutil.copyfileobj(response.raw, out_file)
-        del response
-        with open("D:/Nithish/PythonProjects/Calendar/Calendar/images/numbers.txt", 'w') as filewrite:
-            filewrite.write(str(number + 1))
+    r = requests.get("http://pythonforengineers.com/pythonforengineersbook/")
+    data = r.text
+    soup = BeautifulSoup(data, "html.parser")
+    for link in soup.find_all('img'):
+        image = link.get("src")
+
+        print(image)
+        # image = "http:" + image
+        print(image)
+        question_mark = image.find("?")
+        image = image[:question_mark]
+        image_name = os.path.split(image)[1]
+        print(image_name)
+        r2 = requests.get(image)
+        with open("/images/{0}".format(image_name), "wb") as f:
+            f.write(r2.content)
+
 
 
 if __name__ == '__main__':
