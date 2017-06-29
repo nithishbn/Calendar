@@ -651,12 +651,7 @@ ScreenManager:
     NavigationLayout:
         pos_hint: {'top': 1}
         id: nav_layout
-        # canvas:
-        #     Rectangle:
-        #         size: self.size
-        #         pos: self.pos
-        #     Color:
-        #         rgba: 1, 1, 1, 0.2
+
         MDNavigationDrawer:
             pos_hint: {'top': 1}
             id: nav_drawer
@@ -717,11 +712,48 @@ ScreenManager:
                     background_palette: 'Primary'
                     background_hue: '500'
                     left_action_items: [['menu', lambda x: root.ids.nav_layout.toggle_nav_drawer()]]
-            BoxLayout:
+            RelativeLayout:
+                pos_hint: {'top': 1, 'center_x': 0.5}
+                # BoxLayout:
+                #     # pos_hint: {'top': 1, 'center_x': 0.5}
+                #     orientation: 'vertical'
                 MDLabel:
-                    text: 'asdf'
-                    font_style: 'Display4'
+                    size_hint_y: None
+                    pos_hint: {'top': 1}
+                    text: 'Contact Us'
+                    font_style: 'Display2'
                     halign: 'center'
+                    valign: 'top'
+                GridLayout:
+                    size_hint: None, None
+                    # orientation: 'vertical'
+                    rows: 3
+                    cols: 2
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+                    MDIconButton:
+                        icon: 'phone'
+                        on_release:
+                            root.callthing()
+                    MDIconButton:
+                        icon: 'facebook'
+                        on_release:
+                            webbrowser.open("https://www.facebook.com/Svetalvtemple/")
+                    MDIconButton:
+                        icon: 'email'
+                        on_release:
+                            webbrowser.open("mailto:info@lvtemple.org")
+                    MDIconButton:
+                        icon: 'google-maps'
+                    MDIconButton:
+                        icon: 'web'
+                        on_release:
+                            webbrowser.open("https://www.lvtemple.org")
+                    MDIconButton:
+                        icon: 'youtube-play'
+                        on_release:
+                            webbrowser.open("https://www.youtube.com/channel/UCm7YxQAkZFf80ODHxr9Yhdw")
+
+
 <ConstructionScreen>:
     NavigationLayout:
         pos_hint: {'top': 1}
