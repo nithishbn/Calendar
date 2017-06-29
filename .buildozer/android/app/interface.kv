@@ -16,6 +16,7 @@
 #:import MDCard kivymd.card.MDCard
 # :import NDIconLabel kivymd.navigationdrawer.NDIconLabel
 #:import OneLineIconListItem kivymd.list.OneLineIconListItem
+#:import SmartTile kivymd.grid.SmartTile
 ScreenManager:
     id: sm
     LoginScreen:
@@ -87,7 +88,7 @@ ScreenManager:
                 helper_text_mode: "on_error"
     MDFlatButton:
         size_hint: None, None
-        pos_hint: {'center_y': 0.45, 'center_x': 0.5}
+        pos_hint: {'center_y': 0.55, 'center_x': 0.5}
         text: "Don't have an account yet? Make one!"
         theme_text_color: 'Secondary'
         # size: 3* dp(48), dp(48)
@@ -161,16 +162,21 @@ ScreenManager:
                 id: register_password
                 required: True
                 hint_text: "Password"
-    BoxLayout:
-        orientation: 'vertical'
-        size_hint: 0.88, 0.15
-        pos_hint: {'center_x': 0.5, 'center_y': 0.20}
-        # canvas.before:
-        #     Rectangle:
-        #         size: self.size
-        #         pos: self.pos
-        #     Color:
-        #         rgba: 1, 1, 0, 1
+    RelativeLayout:
+        size_hint: 1, None
+        pos_hint: {'right': 0.86, 'bottom': 0.95}
+        orientation: 'horizontal'
+        MDRaisedButton:
+            # size_hint: 0.1, 0.65
+            # size_hint: 0.10, None
+            size_hint: None, None
+            text: "Cancel"
+            # size: 3 * dp(48), dp(48)
+            opposite_colors: True
+            pos_hint: {'center_y': 1, 'right': 0.70}
+            on_release:
+                root.manager.transition = NoTransition()
+                root.cancel()
         MDRaisedButton:
             # size_hint: 0.1, 0.65
             # size_hint: 0.10, None
@@ -182,27 +188,49 @@ ScreenManager:
             on_release:
                 root.manager.transition = NoTransition()
                 root.register()
-    BoxLayout:
-        orientation: 'vertical'
-        size_hint: 0.88, 0.15
-        pos_hint: {'center_x': 0.36, 'center_y': 0.20}
-        # canvas.before:
-        #     Rectangle:
-        #         size: self.size
-        #         pos: self.pos
-        #     Color:
-        #         rgba: 1, 1, 0, 1
-        MDRaisedButton:
-            # size_hint: 0.1, 0.65
-            # size_hint: 0.10, None
-            size_hint: None, None
-            text: "Cancel"
-            # size: 3 * dp(48), dp(48)
-            opposite_colors: True
-            pos_hint: {'center_y': 1,'right': 1}
-            on_release:
-                root.manager.transition = NoTransition()
-                root.cancel()
+
+    # BoxLayout:
+    #     orientation: 'vertical'
+    #     size_hint: 0.88, 0.15
+    #     pos_hint: {'center_x': 0.5, 'center_y': 0.20}
+    #     # canvas.before:
+    #     #     Rectangle:
+    #     #         size: self.size
+    #     #         pos: self.pos
+    #     #     Color:
+    #     #         rgba: 1, 1, 0, 1
+    #     MDRaisedButton:
+    #         # size_hint: 0.1, 0.65
+    #         # size_hint: 0.10, None
+    #         size_hint: None, None
+    #         text: "Submit"
+    #         # size: 3 * dp(48), dp(48)
+    #         opposite_colors: True
+    #         pos_hint: {'center_y': 1,'right': 1}
+    #         on_release:
+    #             root.manager.transition = NoTransition()
+    #             root.register()
+    # BoxLayout:
+    #     orientation: 'vertical'
+    #     size_hint: 0.88, 0.15
+    #     pos_hint: {'center_x': 0.36, 'center_y': 0.20}
+    #     # canvas.before:
+    #     #     Rectangle:
+    #     #         size: self.size
+    #     #         pos: self.pos
+    #     #     Color:
+    #     #         rgba: 1, 1, 0, 1
+    #     MDRaisedButton:
+    #         # size_hint: 0.1, 0.65
+    #         # size_hint: 0.10, None
+    #         size_hint: None, None
+    #         text: "Cancel"
+    #         # size: 3 * dp(48), dp(48)
+    #         opposite_colors: True
+    #         pos_hint: {'center_y': 1,'right': 1}
+    #         on_release:
+    #             root.manager.transition = NoTransition()
+    #             root.cancel()
 
 
 
@@ -234,6 +262,7 @@ ScreenManager:
             NavigationDrawerIconButton:
                 icon: 'calendar-today'
                 text: "Calendar"
+                # badge_text: '99+'
                 on_release:
                     root.manager.transition = NoTransition()
                     root.manager.current = 'DateScreen'
@@ -258,6 +287,7 @@ ScreenManager:
             NavigationDrawerIconButton:
                 icon: 'credit-card'
                 text: 'Donate'
+                active_color_type: 'accent'
                 on_release:
                     root.manager.transition = NoTransition()
                     webbrowser.open("https://lvtemple.org/new-donations/")
@@ -278,13 +308,15 @@ ScreenManager:
             RelativeLayout:
                 orientation: 'vertical'
                 MDCard:
-                    size_hint: 0.35, 0.40
-                    pos_hint: {'top' :1,'x': 0.25}
-                    elevation: 5
-
+                    size_hint: 0.40, 0.85
+                    pos_hint: {'top' :1,'x': 0.15}
+                    elevation: 10
+                    active_color_type: 'Custom'
+                    active_color : [1, 0, 1, 1]
                     BoxLayout:
                         orientation:'vertical'
                         padding: dp(8)
+                        spacing: 10
                         MDLabel:
 
                             text: "Today's View"
@@ -292,263 +324,399 @@ ScreenManager:
                             font_style:"Display1"
                             size_hint_y: None
                             height: dp(36)
+                            # halign: 'center'
+                            # padding: 50
+
                         MDSeparator:
                             height: dp(1)
+
+                            # padding: 50
+                            spacing: -10
+                        SmartTile:
+                            mipmap: True
+                            size_hint: 1, 0.7
+                            source: './Temple-Front-View-V1.jpg'
+                            # md_bg_color: 'Secondary'
+                            # text: 'asdf'
                         MDLabel:
                             # pos_hint: {'top': 0.85}
-                            # size_hint_y: None
+                            size_hint_y: None
                             text: "There are quite a few cool things that are available today at the Temple"
                             theme_text_color: 'Primary'
-                            font_style: 'Title'
-            # ScreenManager:
-            #     id: scr_mngr
-            #     Screen:
-            #         name: 'bottomsheet'
-            #         MDRaisedButton:
-            #             text: "Open list bottom sheet"
-            #             opposite_colors: True
-            #             size_hint: None, None
-            #             size: 4 * dp(48), dp(48)
-            #             pos_hint: {'center_x': 0.5, 'center_y': 0.6}
-            #             on_release: app.show_example_bottom_sheet()
-            #         MDRaisedButton:
-            #             text: "Open grid bottom sheet"
-            #             opposite_colors: True
-            #             size_hint: None, None
-            #             size: 4 * dp(48), dp(48)
-            #             pos_hint: {'center_x': 0.5, 'center_y': 0.3}
-            #             on_release: app.show_example_grid_bottom_sheet()
-                # right_action_items: [['dots-vertical', lambda x: app.root.toggle_nav_drawer()]]
-
-
-
-    # BoxLayout:
-    #     orientation: 'vertical'
-    #     # spacing: 0
-    #     MDLabel:
-    #         font_style: 'Display3'
-    #         theme_text_color: 'Secondary'
-    #         # font_size: 35
-    #         # text: "Email"
-    #         halign: 'center'
-    #         size_hint: 1, None
-    #         pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-    #         text: "Welcome!"
-    #         font_size: 50
-    #     # MDLabel:
-    #     MDFloatingActionButton:
-    #         icon: 'compass'
-    #         elevation_normal:200
-    #     # GridLayout:
-    #     #     cols: 2
-    #     #     rows: 3
-    #     #     minimum_width: 0.2
-    #     #     spacing: [5, 5.0]
-    #     #     padding_right: 20
-    #     #     padding_left: 20
-    #     #     MDRaisedButton:
-    #     #         text:"Today's View"
-    #     #         elevation_normal: 10
-    #     #         font_size: '45'
-    #     #         size_hint: 0.5, 1
-    #     #         on_release: root.manager.current = "DateScreen"
-    #     #     MDRaisedButton:
-    #     #         text:"Donate"
-    #     #         font_size: '45'
-    #     #         size_hint: 0.5, 1
-    #     #         on_release: webbrowser.open("https://lvtemple.org/new-donations/")
-    #     #     MDRaisedButton:
-    #     #         text:"Gallery"
-    #     #         font_size: '45'
-    #     #         size_hint: 0.5, 1
-    #     #         on_release: root.manager.current = "ConstructionScreen"
-    #     #     MDRaisedButton:
-    #     #         text:"Calendar"
-    #     #         font_size: '45'
-    #     #         size_hint: 0.5, 1
-    #     #         on_release: root.manager.current = "ConstructionScreen"
-    #     BoxLayout:
-    #         padding: (100, 50)
-    #         orientation: 'vertical'
-    #         MDFlatButton:
-    #             # size_hint: 0.75, None
-    #             opposite_colors:    True
-    #             text: "asdfasdfasdf"
-    #             icon: 'image'
-    #             font_size: '45'
-    #             pos_hint: {'top': 1, 'center_x': 0.5}
-    #             on_release: root.manager.current = "ConstructionScreen"
+                            font_style: 'Body2'
             ScrollLabel:
                 id: scrolllabelthing
                 size_hint_y: None
 <DateScreen>:
-    BoxLayout:
-        # orientation: 'vertical'
+    NavigationLayout:
         pos_hint: {'top': 1}
-        MDLabel:
-            text: "Enter Date for details"
-            # font_size: 35
+        id: nav_layout
+        MDNavigationDrawer:
             pos_hint: {'top': 1}
-            font_style: 'Display2'
-            # size_hint: 0.65, 0.25
+            id: nav_drawer
+            NavigationDrawerToolbar:
+                #
+                title: "Navigation"
+            NavigationDrawerIconButton:
+                # icon: 'home-outline'
+                icon: 'home'
+                text: "Home"
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'MenuScreen'
 
-            theme_text_color: 'Secondary'
-            # pos_hint: {'center_x': 0.5, 'top': 1}
-            halign: 'center'
-            # height: self.minimum_height
-            size_hint_y: None
-    BoxLayout:
-        orientation: 'vertical'
-        pos_hint: {'center_y': 0.5}
+            NavigationDrawerIconButton:
+                icon: 'calendar-today'
+                text: "Calendar"
+                # badge_text: '99+'
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'DateScreen'
+            NavigationDrawerIconButton:
+                # icon: 'checkbox-blank-circle'
+                icon: 'image'
+                text: "Gallery"
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'ConstructionScreen'
+            NavigationDrawerIconButton:
+                # icon: 'checkbox-blank-circle'
+                icon: 'contact-mail'
+                text: "Contact"
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'ConstructionScreen'
+            # NavigationDrawerSubheader:
+            #     text: "More"
+            NavigationDrawerDivider
+            # Spacer:
+            NavigationDrawerIconButton:
+                icon: 'credit-card'
+                text: 'Donate'
+                active_color_type: 'accent'
+                on_release:
+                    root.manager.transition = NoTransition()
+                    webbrowser.open("https://lvtemple.org/new-donations/")
         BoxLayout:
             orientation: 'vertical'
-            pos_hint: {'center_y': 0.5}
-            size: root.size
-            MDTextField:
-                text: root.figuretime()
-                write_tab: False
-                multiline: False
-                id: datething
-                font_size: 35
-                size_hint: 0.55, None
-                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                on_text_validate: root.selectdate()
-            MDRaisedButton:
-                text: "Dates"
-                on_release: root.show_date_picker()
+            # size_hint_y: None
+            spacing: 40
+            pos_hint: {'top': 1}
+            Toolbar:
+                pos_hint: {'top': 1}
+                size_hint_y: None
+                id: toolbar
+                title: 'SVETA Temple'
+                md_bg_color: app.theme_cls.primary_color
+                background_palette: 'Primary'
+                background_hue: '500'
+                left_action_items: [['menu', lambda x: root.ids.nav_layout.toggle_nav_drawer()]]
 
-    MDRaisedButton:
-        font_size: 35
-        size_hint: None, None
-        pos_hint: {'center_x': 0.5, 'bottom': 1}
-        text: "Submit"
-        on_press: root.selectdate()
+            # BoxLayout:
+            #     pos_hint: {'top': 0.85}
+            #     size_hint_y: 0.5
+            RelativeLayout:
+                orientation: 'vertical'
+                spacing: 100
+                # size_hint_y: 0.95
+                # pos_hint: {'y': 0.6}
+                # BoxLayout:
+                #     # orientation: 'vertical'
+                #     pos_hint: {'top': 1}
+                #     size_hint_y: None
+                MDLabel:
+                    text: "Enter Date for details"
+                    pos_hint: {'top': 1}
+                    font_style: 'Display1'
+                    theme_text_color: 'Primary'
+                    halign: 'center'
+                    size_hint_y: None
+                BoxLayout:
+                    orientation: 'vertical'
+                    pos_hint: {'top': 0.80, 'center_x': 0.5}
+                    size_hint_y: None
+                    size_hint_x: 0.85
+                    # size: root.size
+                    MDTextField:
+                        # text: root.figuretime()
+                        write_tab: False
+                        multiline: False
+                        id: datething
+                        font_size: 25
+                        size_hint: 0.55, None
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        # on_text_validate: root.selectdate()
+                        on_focus: root.show_date_picker()
+                    MDRaisedButton:
+                        font_size: 35
+                        size_hint: None, None
+                        font_style: 'Icon'
+                        pos_hint: {'right': 0.775}
+                        text: "Submit"
+                        on_press: root.selectdate()
 
 <TodayScreen>:
     on_pre_enter:
         root.search()
-    BoxLayout:
-        orientation: 'vertical'
-        # padding: 0, -30
+    NavigationLayout:
+        pos_hint: {'top': 1}
+        id: nav_layout
+        # canvas:
+        #     Rectangle:
+        #         size: self.size
+        #         pos: self.pos
+        #     Color:
+        #         rgba: 1, 1, 1, 0.2
+        MDNavigationDrawer:
+            pos_hint: {'top': 1}
+            id: nav_drawer
+            NavigationDrawerToolbar:
+                #
+                title: "Navigation"
+            NavigationDrawerIconButton:
+                # icon: 'home-outline'
+                icon: 'home'
+                text: "Home"
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'MenuScreen'
+
+            NavigationDrawerIconButton:
+                icon: 'calendar-today'
+                text: "Calendar"
+                # badge_text: '99+'
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'DateScreen'
+            NavigationDrawerIconButton:
+                # icon: 'checkbox-blank-circle'
+                icon: 'image'
+                text: "Gallery"
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'ConstructionScreen'
+            NavigationDrawerIconButton:
+                # icon: 'checkbox-blank-circle'
+                icon: 'contact-mail'
+                text: "Contact"
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'ConstructionScreen'
+            # NavigationDrawerSubheader:
+            #     text: "More"
+            NavigationDrawerDivider
+            # Spacer:
+            NavigationDrawerIconButton:
+                icon: 'credit-card'
+                text: 'Donate'
+                active_color_type: 'accent'
+                on_release:
+                    root.manager.transition = NoTransition()
+                    webbrowser.open("https://lvtemple.org/new-donations/")
 
         BoxLayout:
             orientation: 'vertical'
-            size_hint: 1, 0.25
-            Label:
-                text: 'Details'
-                font_size: 45
-                size_hint: None, 0.05
-                pos_hint: {'center_x':0.5, 'top': 1}
-                markup: True
-                underline: True
-        BoxLayout:
             BoxLayout:
-                orientation: 'vertical'
-                Label:
-                    # canvas.before:
-                    #     Color:
-                    #         rgba: 1, 1, 1, 1
-                    #     BorderImage:
-                    #         pos: self.pos
-                    #         size: self.width, self.height
-                    # canvas:
-                    #     Color:
-                    #         rgba: 0, 0, 0, 1
-                    #     Rectangle:
-                    #         pos: self.pos
-                    #         size: self.width - 50, self.height - 20
-                    text: "Samvatsram"
-                    # color: 0, 0, 0, 1
-                    size_hint: 0.5, 0.25
-                    pos_hint:{'x':0.25,'top':0.15}
-                    font_size: 25
-                Label:
-                    text: "Avanam"
-                    size_hint: 0.5, 0.25
-                    pos_hint:{'x':0.25,'top':0.15}
-                    font_size: 25
-                Label:
-                    text: "Rithu"
-                    size_hint: 0.5, 0.25
-                    pos_hint:{'x':0.25,'top':0.15}
-                    font_size: 25
-                Label:
-                    text: "Maasae"
-                    size_hint: 0.5, 0.25
-                    pos_hint:{'x':0.25,'top':0.15}
-                    font_size: 25
-                Label:
-                    text: "Pakshae"
-                    size_hint: 0.5, 0.25
-                    pos_hint:{'x':0.25,'top':0.15}
-                    font_size: 25
-                Label:
-                    text: "Thithi"
-                    size_hint: 0.5, 0.25
-                    pos_hint:{'x':0.25,'top':0.15}
-                    font_size: 25
-            BoxLayout:
-                orientation: 'vertical'
-                Label:
-                    text: root.samva
-                    size_hint: 0.5, 0.25
-                    pos_hint:{'x':0.25,'top':0.15}
-                    font_size: 25
-                Label:
-                    text: root.avanam
-                    size_hint: 0.5, 0.25
-                    pos_hint:{'x':0.25,'top':0.15}
-                    font_size: 25
-                Label:
-                    text: root.rithu
-                    size_hint: 0.5, 0.25
-                    pos_hint:{'x':0.25,'top':0.15}
-                    font_size: 25
-                Label:
-                    text: root.maasae
-                    size_hint: 0.5, 0.25
-                    pos_hint:{'x':0.25,'top':0.15}
-                    font_size: 25
-                Label:
-                    text: root.pakshae
-                    size_hint: 0.5, 0.25
-                    pos_hint:{'x':0.25,'top':0.15}
-                    font_size: 25
-                Label:
-                    text: root.thithi
-                    size_hint: 0.5, 0.25
-                    pos_hint:{'x':0.25,'top':0.15}
-                    font_size: 25
-        Button:
-            size_hint: 0.5, .25
-            pos_hint: {'x':.25, 'y': 0.05}
-            text: 'Go Back to Menu'
-            font_size: 35
-            on_press: root.manager.current = 'DateScreen'
-<ConstructionScreen>:
+                size_hint_y: 0.2
+                Toolbar:
+                    pos_hint: {'top': 1}
+
+                    id: toolbar
+                    title: 'SVETA Temple'
+                    md_bg_color: app.theme_cls.primary_color
+                    background_palette: 'Primary'
+                    background_hue: '500'
+                    left_action_items: [['menu', lambda x: root.ids.nav_layout.toggle_nav_drawer()]]
     BoxLayout:
         orientation: 'vertical'
-        spacing: 10
+        # padding: 0, -30
+        pos_hint: {'top': 0.85}
         BoxLayout:
             orientation: 'vertical'
-            Label:
-                size_hint: 1, 0.25
-                pos_hint: {'top': 1, 'center_x': 0.5}
-                text: "Oops! This page is under construction!"
-                font_size: 35
-            Label:
-                size_hint: 1, 0.25
-                pos_hint: {'center_y': 0.5, 'center_x': 0.5}
-                text: "Check back again later!"
-                font_size: 35
+            size_hint: 1, None
+
+            MDLabel:
+                text: 'Details'
+                # font_size: 45
+                size_hint_y: None
+                font_style: 'Display2'
+                theme_text_color: 'Primary'
+                # size_hint: None, 0.05
+                # pos_hint: {'center_x':0.5, 'top': 1}
+                halign: 'center'
         BoxLayout:
-            padding: (100, 0)
-            MDRaisedButton:
-                size_hint: 1, 0.25
-                pos_hint: {'bottom': 1, 'center_x': 0.5}
-                text: "Go back!"
-                on_press: root.manager.current = "MenuScreen"
-                font_size: '35'
+            pos_hint: {'top': 1}
+            BoxLayout:
+                orientation: 'horizontal'
+                padding: [100, 100]
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDLabel:
+                        text: root.samva + " nama samvatsarae"
+                        # texture_size: self.texture_size
+                        size_hint: 0.5, 0.25
+                        pos_hint:{'x':0.25,'top':0.15}
+                        theme_text_color: 'Secondary'
+                        font_size: 25
+                        halign: 'center'
+                    MDLabel:
+                        text: root.avanam
+                        size_hint: 0.5, 0.25
+                        pos_hint:{'x':0.25,'top':0.15}
+                        theme_text_color: 'Secondary'
+                        font_size: 25
+                        halign: 'center'
+                    MDLabel:
+                        text: root.rithu +"a rithu"
+                        size_hint: 0.5, 0.25
+                        pos_hint:{'x':0.25,'top':0.15}
+                        theme_text_color: 'Secondary'
+                        font_size: 25
+                        halign: 'center'
+                    MDLabel:
+                        text: root.maasae + " maasae"
+                        size_hint: 0.5, 0.25
+                        pos_hint:{'x':0.25,'top':0.15}
+                        theme_text_color: 'Secondary'
+                        font_size: 25
+                        halign: 'center'
+                    MDLabel:
+                        text: root.pakshae + " pakshae"
+                        size_hint: 0.5, 0.25
+                        pos_hint:{'x':0.25,'top':0.15}
+                        theme_text_color: 'Secondary'
+                        font_size: 25
+                        halign: 'center'
+                    MDLabel:
+                        text: root.vara
+                        size_hint: 0.5, 0.25
+                        pos_hint:{'x':0.25,'top':0.15}
+                        theme_text_color: 'Secondary'
+                        font_size: 25
+                        halign: 'center'
+                    MDLabel:
+                        text: root.thithi
+                        size_hint: 0.5, 0.25
+                        pos_hint:{'x':0.25,'top':0.15}
+                        theme_text_color: 'Secondary'
+                        font_size: 25
+                        halign: 'center'
+                # BoxLayout:
+                #     orientation: 'vertical'
+                #     pos_hint: {'top': 1}
+                #     MDLabel:
+                #         text: "Samvatsram"
+                #         size_hint: 0.5, 0.25
+                #         theme_text_color: 'Secondary'
+                #         pos_hint:{'x':0.25,'top':0.15}
+                #         font_size: 25
+                #     MDLabel:
+                #         text: "Avanam"
+                #         size_hint: 0.5, 0.25
+                #         pos_hint:{'x':0.25,'top':0.15}
+                #         theme_text_color: 'Secondary'
+                #         font_size: 25
+                #     MDLabel:
+                #         text: "Rithu"
+                #         size_hint: 0.5, 0.25
+                #         pos_hint:{'x':0.25,'top':0.15}
+                #         theme_text_color: 'Secondary'
+                #         font_size: 25
+                #     MDLabel:
+                #         text: "Maasae"
+                #         size_hint: 0.5, 0.25
+                #         pos_hint:{'x':0.25,'top':0.15}
+                #         theme_text_color: 'Secondary'
+                #         font_size: 25
+                #     MDLabel:
+                #         text: "Pakshae"
+                #         size_hint: 0.5, 0.25
+                #         pos_hint:{'x':0.25,'top':0.15}
+                #         theme_text_color: 'Secondary'
+                #         font_size: 25
+                #     MDLabel:
+                #         text: "Thithi"
+                #         size_hint: 0.5, 0.25
+                #         pos_hint:{'x':0.25,'top':0.15}
+                #         theme_text_color: 'Secondary'
+                #         font_size: 25
+<ConstructionScreen>:
+    NavigationLayout:
+        pos_hint: {'top': 1}
+        id: nav_layout
+        # canvas:
+        #     Rectangle:
+        #         size: self.size
+        #         pos: self.pos
+        #     Color:
+        #         rgba: 1, 1, 1, 0.2
+        MDNavigationDrawer:
+            pos_hint: {'top': 1}
+            id: nav_drawer
+            NavigationDrawerToolbar:
+                #
+                title: "Navigation"
+            NavigationDrawerIconButton:
+                # icon: 'home-outline'
+                icon: 'home'
+                text: "Home"
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'MenuScreen'
+
+            NavigationDrawerIconButton:
+                icon: 'calendar-today'
+                text: "Calendar"
+                # badge_text: '99+'
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'DateScreen'
+            NavigationDrawerIconButton:
+                # icon: 'checkbox-blank-circle'
+                icon: 'image'
+                text: "Gallery"
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'ConstructionScreen'
+            NavigationDrawerIconButton:
+                # icon: 'checkbox-blank-circle'
+                icon: 'contact-mail'
+                text: "Contact"
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'ConstructionScreen'
+            # NavigationDrawerSubheader:
+            #     text: "More"
+            NavigationDrawerDivider
+            # Spacer:
+            NavigationDrawerIconButton:
+                icon: 'credit-card'
+                text: 'Donate'
+                active_color_type: 'accent'
+                on_release:
+                    root.manager.transition = NoTransition()
+                    webbrowser.open("https://lvtemple.org/new-donations/")
+
+        BoxLayout:
+            orientation: 'vertical'
+            BoxLayout:
+                size_hint_y: 0.2
+                Toolbar:
+                    pos_hint: {'top': 1}
+
+                    id: toolbar
+                    title: 'SVETA Temple'
+                    md_bg_color: app.theme_cls.primary_color
+                    background_palette: 'Primary'
+                    background_hue: '500'
+                    left_action_items: [['menu', lambda x: root.ids.nav_layout.toggle_nav_drawer()]]
+            MDLabel:
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                halign: 'center'
+                valign: 'center'
+                text: "This screen is under construction."
+                font_style: 'Display4'
+                color: [1, 0, 0, 1]
 <Spacer@Widget>:
     size_hint_x: None
     width: 800
@@ -562,7 +730,9 @@ ScreenManager:
         Spacer:
         Label:
             size_hint_x: None
-            text: "This is some quick announcement that will be able to be pushed from another application."
+            text: "Today is a great day at the temple"
             width: self.texture_size[0]
-            font_size: 25
+            font_size: 20
+            # font_style: 'Title'
+            color: [0, 0, 0, 1]
         Spacer:

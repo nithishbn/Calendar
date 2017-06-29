@@ -6,13 +6,13 @@ from kivy.core.window import Window
 from kivy.properties import StringProperty, Clock, ListProperty
 from kivy.uix.screenmanager import Screen, ScreenManager, NoTransition
 from kivy.uix.scrollview import ScrollView
-from argon2 import PasswordHasher
+#from argon2 import PasswordHasher
 from kivymd.button import MDIconButton
 from kivymd.date_picker import MDDatePicker
 from kivymd.list import ILeftBodyTouch
 from kivymd.theming import ThemeManager
 import requests
-from bs4 import BeautifulSoup
+#from bs4 import BeautifulSoup
 import os
 
 class LoginScreen(Screen):
@@ -20,7 +20,7 @@ class LoginScreen(Screen):
         self.manager.current = "RegisterScreen"
 
     def on_enter(self, *args):
-        super().on_enter(*args)
+        super(LoginScreen, self).on_enter(*args)
         print("Login")
 
     def onBackBtn(self, **kwargs):
@@ -239,23 +239,7 @@ class InterfaceApp(App):
     def on_pause(self):
         return True
 
-def get_images():
-    r = requests.get("http://pythonforengineers.com/pythonforengineersbook/")
-    data = r.text
-    soup = BeautifulSoup(data, "html.parser")
-    for link in soup.find_all('img'):
-        image = link.get("src")
 
-        print(image)
-        # image = "http:" + image
-        print(image)
-        question_mark = image.find("?")
-        image = image[:question_mark]
-        image_name = os.path.split(image)[1]
-        print(image_name)
-        r2 = requests.get(image)
-        with open("/images/{0}".format(image_name), "wb") as f:
-            f.write(r2.content)
 
 
 

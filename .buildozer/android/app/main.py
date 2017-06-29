@@ -6,19 +6,21 @@ from kivy.core.window import Window
 from kivy.properties import StringProperty, Clock, ListProperty
 from kivy.uix.screenmanager import Screen, ScreenManager, NoTransition
 from kivy.uix.scrollview import ScrollView
-from argon2 import PasswordHasher
+#from argon2 import PasswordHasher
 from kivymd.button import MDIconButton
 from kivymd.date_picker import MDDatePicker
 from kivymd.list import ILeftBodyTouch
 from kivymd.theming import ThemeManager
-# from kivymd.icon_definitions import
+import requests
+#from bs4 import BeautifulSoup
+import os
 
 class LoginScreen(Screen):
     def register(self):
         self.manager.current = "RegisterScreen"
 
     def on_enter(self, *args):
-        super().on_enter(*args)
+        super(LoginScreen, self).on_enter(*args)
         print("Login")
 
     def onBackBtn(self, **kwargs):
@@ -45,16 +47,19 @@ class LoginScreen(Screen):
             except:
                 self.ids.password.error = True
 
+
 class RegisterScreen(Screen):
     def register(self):
         print("Wow well played!")
         return True
         # TODO finish this lol
+
     def cancel(self):
         self.ids.email.text = ""
         self.ids.phone_number.text = ""
         self.ids.register_password.text = ""
         self.manager.current = "LoginScreen"
+
 
 class MenuScreen(Screen):
     screenlist = ListProperty([])
@@ -87,12 +92,16 @@ class MenuScreen(Screen):
         self.screenlist.append("MenuScreen")
         print("MenuScreen's list: ", self.screenlist)
 
+
 class IconLeftSampleWidget(ILeftBodyTouch, MDIconButton):
     pass
+
+
 class DateScreen(Screen):
     date = StringProperty('')
     otherdate = StringProperty('')
     screenlist = ListProperty
+    count = 0
 
     def __init__(self, **kwargs):
         screenlist = self.screenlist
@@ -108,12 +117,21 @@ class DateScreen(Screen):
         # print(self.previous_date)
         self.ids.datething.text = actualdate
         self.date = str(actualdate)
+        self.count -= 1
         # self.root.ids.date_picker_label.text = str(date_obj)
 
     def show_date_picker(self):
-        MDDatePicker(self.set_previous_date).open()
+        # self.focus = False
+        if self.count == 0:
+            self.count += 1
+            MDDatePicker(self.set_previous_date).open()
+            # self.count -= 1
+        else:
+            return True
+        # MDDatePicker(self.set_previous_date).open()
     def selectdate(self):
         # self.date = self.ids.datething.text
+        print(self.ids.datething.text)
         if self.manager.current not in self.screenlist:
             self.screenlist.append(self.manager.current)
         # print("date selection", self.screenlist)
@@ -137,15 +155,15 @@ class TodayScreen(Screen):
     maasae = StringProperty('')
     pakshae = StringProperty('')
     thithi = StringProperty('')
+    vara = StringProperty('')
     date = StringProperty('')
     screenlist = ListProperty([])
 
-    # def __init__(self, **kwargs):
-    #     super(TodayScreen, self).__init__(**kwargs)
-    #     Window.bind(on_keyboard=self.onBackBtn)
-
+    # DO NOT TOUCH THIS AT ALL
+    # if you do, you will be decimated by Nithish Narasimman idk though
     def search(self):
         date = self.date
+        print("search date function thing: ", date)
         # print(date)
         conn = sqlite3.connect('calendar.sqlite')
         cur = conn.cursor()
@@ -176,12 +194,13 @@ class TodayScreen(Screen):
                     self.pakshae = query
                 elif query == thing[6]:
                     # print("Day:", query)
-                    pass
+                    self.vara = query
                 elif query == thing[7]:
                     # print("Thithi:", query)
                     self.thithi = query
         except:
             self.manager.current = "DateScreen"
+            # self.app.ids.datething.error = True
             # self.ids.datething.text = " "
 
 
@@ -214,10 +233,14 @@ class InterfaceApp(App):
 
     def build(self):
         # print(self.theme_cls.
-        self.theme_cls.theme_style = 'Dark'
+        # self.theme_cls.theme_style = 'Dark'
+        pass
 
     def on_pause(self):
         return True
+
+
+
 
 
 if __name__ == '__main__':
