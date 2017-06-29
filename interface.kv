@@ -88,7 +88,7 @@ ScreenManager:
                 helper_text_mode: "on_error"
     MDFlatButton:
         size_hint: None, None
-        pos_hint: {'center_y': 0.45, 'center_x': 0.5}
+        pos_hint: {'center_y': 0.55, 'center_x': 0.5}
         text: "Don't have an account yet? Make one!"
         theme_text_color: 'Secondary'
         # size: 3* dp(48), dp(48)
@@ -162,16 +162,21 @@ ScreenManager:
                 id: register_password
                 required: True
                 hint_text: "Password"
-    BoxLayout:
-        orientation: 'vertical'
-        size_hint: 0.88, 0.15
-        pos_hint: {'center_x': 0.5, 'center_y': 0.20}
-        # canvas.before:
-        #     Rectangle:
-        #         size: self.size
-        #         pos: self.pos
-        #     Color:
-        #         rgba: 1, 1, 0, 1
+    RelativeLayout:
+        size_hint: 1, None
+        pos_hint: {'right': 0.86, 'bottom': 0.95}
+        orientation: 'horizontal'
+        MDRaisedButton:
+            # size_hint: 0.1, 0.65
+            # size_hint: 0.10, None
+            size_hint: None, None
+            text: "Cancel"
+            # size: 3 * dp(48), dp(48)
+            opposite_colors: True
+            pos_hint: {'center_y': 1, 'right': 0.70}
+            on_release:
+                root.manager.transition = NoTransition()
+                root.cancel()
         MDRaisedButton:
             # size_hint: 0.1, 0.65
             # size_hint: 0.10, None
@@ -183,27 +188,49 @@ ScreenManager:
             on_release:
                 root.manager.transition = NoTransition()
                 root.register()
-    BoxLayout:
-        orientation: 'vertical'
-        size_hint: 0.88, 0.15
-        pos_hint: {'center_x': 0.36, 'center_y': 0.20}
-        # canvas.before:
-        #     Rectangle:
-        #         size: self.size
-        #         pos: self.pos
-        #     Color:
-        #         rgba: 1, 1, 0, 1
-        MDRaisedButton:
-            # size_hint: 0.1, 0.65
-            # size_hint: 0.10, None
-            size_hint: None, None
-            text: "Cancel"
-            # size: 3 * dp(48), dp(48)
-            opposite_colors: True
-            pos_hint: {'center_y': 1,'right': 1}
-            on_release:
-                root.manager.transition = NoTransition()
-                root.cancel()
+
+    # BoxLayout:
+    #     orientation: 'vertical'
+    #     size_hint: 0.88, 0.15
+    #     pos_hint: {'center_x': 0.5, 'center_y': 0.20}
+    #     # canvas.before:
+    #     #     Rectangle:
+    #     #         size: self.size
+    #     #         pos: self.pos
+    #     #     Color:
+    #     #         rgba: 1, 1, 0, 1
+    #     MDRaisedButton:
+    #         # size_hint: 0.1, 0.65
+    #         # size_hint: 0.10, None
+    #         size_hint: None, None
+    #         text: "Submit"
+    #         # size: 3 * dp(48), dp(48)
+    #         opposite_colors: True
+    #         pos_hint: {'center_y': 1,'right': 1}
+    #         on_release:
+    #             root.manager.transition = NoTransition()
+    #             root.register()
+    # BoxLayout:
+    #     orientation: 'vertical'
+    #     size_hint: 0.88, 0.15
+    #     pos_hint: {'center_x': 0.36, 'center_y': 0.20}
+    #     # canvas.before:
+    #     #     Rectangle:
+    #     #         size: self.size
+    #     #         pos: self.pos
+    #     #     Color:
+    #     #         rgba: 1, 1, 0, 1
+    #     MDRaisedButton:
+    #         # size_hint: 0.1, 0.65
+    #         # size_hint: 0.10, None
+    #         size_hint: None, None
+    #         text: "Cancel"
+    #         # size: 3 * dp(48), dp(48)
+    #         opposite_colors: True
+    #         pos_hint: {'center_y': 1,'right': 1}
+    #         on_release:
+    #             root.manager.transition = NoTransition()
+    #             root.cancel()
 
 
 
