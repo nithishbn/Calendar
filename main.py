@@ -6,7 +6,7 @@ from kivy.core.window import Window
 from kivy.properties import StringProperty, Clock, ListProperty
 from kivy.uix.screenmanager import Screen, ScreenManager, NoTransition
 from kivy.uix.scrollview import ScrollView
-#from argon2 import PasswordHasher
+# from argon2 import PasswordHasher
 from kivymd.button import MDIconButton
 from kivymd.date_picker import MDDatePicker
 from kivymd.list import ILeftBodyTouch
@@ -30,12 +30,23 @@ class LoginScreen(Screen):
     def login(self):
         username = self.ids.username.text
         password = self.ids.password.text
-        if len(username) == 0:
-            # self.ids.password.error = True
-            self.ids.username.error = True
-        else:  # username exists in textbox
-            conn = sqlite3.connect("data.sqlite")
-            cur = conn.cursor()
+        self.manager.current = "MenuScreen"
+        # if len(username) == 0:
+        #     # self.ids.password.error = True
+        #     self.ids.username.error = True
+        # else:  # username exists in textbox
+        #     conn = sqlite3.connect("data.sqlite")
+        #     cur = conn.cursor()
+        #
+        #     try:
+        #         cur.execute('''SELECT Hash from Main WHERE Username = ?''', (username,))
+        #         returnedhash = cur.fetchone()[0]
+        #         p = PasswordHasher()
+        #         isitquestion = p.verify(returnedhash, password)
+        #         if isitquestion:
+        #             self.manager.current = "MenuScreen"
+        #     except:
+        #         self.ids.password.error = True
 
             try:
                 cur.execute('''SELECT Hash from Main WHERE Username = ?''', (username,))
