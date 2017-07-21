@@ -1,5 +1,6 @@
 import sqlite3
 import datetime
+from random import random, randint
 from kivy.animation import Animation
 from kivy.app import App
 from kivy.core.window import Window
@@ -94,10 +95,8 @@ class MenuScreen(Screen):
         self.screenlist.append("MenuScreen")
         print("MenuScreen's list: ", self.screenlist)
 
-
 class IconLeftSampleWidget(ILeftBodyTouch, MDIconButton):
     pass
-
 
 class DateScreen(Screen):
     date = StringProperty('')
@@ -148,14 +147,34 @@ class DateScreen(Screen):
 class ConstructionScreen(Screen):
     screenlist = ListProperty([])
 
-
+class GalleryScreen(Screen):
+    screenlist = ListProperty([])
+    imagefile = StringProperty("./images/2014-10-01-01.00.23.jpg")
+    filenames = ListProperty([])
+    count = 0
+    def on_enter(self, *args):
+        for file in os.listdir("./images"):
+            self.filenames.append("./images/" + file)
+    def next_image(self):
+        self.imagefile = self.filenames[self.count]
+        self.count += 1
+        if self.count == len(self.filenames):
+            self.count = 0
+    def previous_image(self):
+        self.imagefile = self.filenames[self.count]
+        self.count -= 1
+        if self.count < 0:
+            self.count = len(self.filenames) - 1
 class ContactScreen(Screen):
     screenlist = ListProperty([])
     def on_enter(self, *args):
         super(ContactScreen, self).on_enter(*args)
     def call(self, *args):
         #tel = "4258020470"
-      	call.makecall(tel="4258020470")
+        try:
+      	    call.makecall(tel="2062195330")
+        except:
+            print("haha noob this ain't implemented yet")
         # call.makecall()
 #	call.dialcall()
 class TodayScreen(Screen):
