@@ -47,7 +47,6 @@ ScreenManager:
         date: date.date
         transition: NoTransition
         screenlist: menu.screenlist
-
     ConstructionScreen:
         name: 'ConstructionScreen'
         id: construction
@@ -59,6 +58,11 @@ ScreenManager:
         id: contact
         manager: sm
         transition: "NoTransition"
+        screenlist: menu.screenlist
+    GalleryScreen:
+        name: 'GalleryScreen'
+        id: gallery
+        manager: sm
         screenlist: menu.screenlist
 
 <LoginScreen>:
@@ -256,10 +260,6 @@ ScreenManager:
     #         on_release:
     #             root.manager.transition = NoTransition()
     #             root.cancel()
-
-
-
-
 <MenuScreen>:
     NavigationLayout:
         pos_hint: {'top': 1}
@@ -297,7 +297,7 @@ ScreenManager:
                 text: "Gallery"
                 on_release:
                     root.manager.transition = NoTransition()
-                    root.manager.current = 'ConstructionScreen'
+                    root.manager.current = 'GalleryScreen'
             NavigationDrawerIconButton:
                 # icon: 'checkbox-blank-circle'
                 icon: 'contact-mail'
@@ -351,10 +351,8 @@ ScreenManager:
                             height: dp(36)
                             # halign: 'center'
                             # padding: 50
-
                         MDSeparator:
                             height: dp(1)
-
                             # padding: 50
                             spacing: -10
                         SmartTile:
@@ -372,6 +370,86 @@ ScreenManager:
             ScrollLabel:
                 id: scrolllabelthing
                 size_hint_y: None
+<GalleryScreen>:
+    NavigationLayout:
+        pos_hint: {'top': 1}
+        id: nav_layout
+        MDNavigationDrawer:
+            pos_hint: {'top': 1}
+            id: nav_drawer
+            NavigationDrawerToolbar:
+                #
+                title: "Navigation"
+            NavigationDrawerIconButton:
+                # icon: 'home-outline'
+                icon: 'home'
+                text: "Home"
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'MenuScreen'
+
+            NavigationDrawerIconButton:
+                icon: 'calendar-today'
+                text: "Calendar"
+                # badge_text: '99+'
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'DateScreen'
+            NavigationDrawerIconButton:
+                # icon: 'checkbox-blank-circle'
+                icon: 'image'
+                text: "Gallery"
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'GalleryScreen'
+            NavigationDrawerIconButton:
+                # icon: 'checkbox-blank-circle'
+                icon: 'contact-mail'
+                text: "Contact"
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'ContactScreen'
+            # NavigationDrawerSubheader:
+            #     text: "More"
+            NavigationDrawerDivider
+            # Spacer:
+            NavigationDrawerIconButton:
+                icon: 'credit-card'
+                text: 'Donate'
+                active_color_type: 'accent'
+                on_release:
+                    root.manager.transition = NoTransition()
+                    webbrowser.open("https://lvtemple.org/new-donations/")
+        BoxLayout:
+            orientation: 'vertical'
+            # size_hint_y: None
+            spacing: 40
+            pos_hint: {'top': 1}
+            Toolbar:
+                pos_hint: {'top': 1}
+                size_hint_y: None
+                id: toolbar
+                title: 'SVETA Temple'
+                md_bg_color: app.theme_cls.primary_color
+                background_palette: 'Primary'
+                background_hue: '500'
+                left_action_items: [['menu', lambda x: root.ids.nav_layout.toggle_nav_drawer()]]
+            RelativeLayout:
+                Image:
+                    source: root.imagefile
+                MDRaisedButton:
+                    text: "Next"
+                    on_release:
+                        root.next_image()
+                    pos_hint: {'center_x': 0.5}
+                MDRaisedButton:
+                    text: "Previous"
+                    on_release:
+                        root.previous_image()
+
+# <Gallery>:
+#     ScrollView:
+#
 <DateScreen>:
     NavigationLayout:
         pos_hint: {'top': 1}
@@ -403,14 +481,14 @@ ScreenManager:
                 text: "Gallery"
                 on_release:
                     root.manager.transition = NoTransition()
-                    root.manager.current = 'ConstructionScreen'
+                    root.manager.current = 'GalleryScreen'
             NavigationDrawerIconButton:
                 # icon: 'checkbox-blank-circle'
                 icon: 'contact-mail'
                 text: "Contact"
                 on_release:
                     root.manager.transition = NoTransition()
-                    root.manager.current = 'ConstructionScreen'
+                    root.manager.current = 'ContactScreen'
             # NavigationDrawerSubheader:
             #     text: "More"
             NavigationDrawerDivider
@@ -519,7 +597,7 @@ ScreenManager:
                 text: "Gallery"
                 on_release:
                     root.manager.transition = NoTransition()
-                    root.manager.current = 'ConstructionScreen'
+                    root.manager.current = 'GalleryScreen'
             NavigationDrawerIconButton:
                 # icon: 'checkbox-blank-circle'
                 icon: 'contact-mail'
@@ -697,7 +775,7 @@ ScreenManager:
                 text: "Gallery"
                 on_release:
                     root.manager.transition = NoTransition()
-                    root.manager.current = 'ConstructionScreen'
+                    root.manager.current = 'GalleryScreen'
             NavigationDrawerIconButton:
                 # icon: 'checkbox-blank-circle'
                 icon: 'contact-mail'
@@ -746,31 +824,43 @@ ScreenManager:
                 GridLayout:
                     size_hint: None, None
                     # orientation: 'vertical'
+                    canvas:
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                        Color:
+                            rgba: 1, 1, 1, 0.2
                     rows: 3
                     cols: 2
                     pos_hint: {'center_x': 0.5, 'center_y': 0.6}
                     MDIconButton:
+                        pos_hint: {'center_x': 0.5}
                         icon: 'phone'
                         on_release:
                             root.call()
                     MDIconButton:
                         icon: 'facebook'
+                        pos_hint: {'center_x': 0.5}
                         on_release:
                             webbrowser.open("https://www.facebook.com/Svetalvtemple/")
                     MDIconButton:
                         icon: 'email'
+                        pos_hint: {'center_x': 0.5}
                         on_release:
                             webbrowser.open("mailto:info@lvtemple.org")
                     MDIconButton:
                         icon: 'google-maps'
+                        pos_hint: {'center_x': 0.5}
                         on_release:
                             webbrowser.open("https://www.google.com/maps/place/Sri+Lakshmi+Venkateswara+Temple,+Redmond")
                     MDIconButton:
                         icon: 'web'
+                        pos_hint: {'center_x': 0.5}
                         on_release:
                             webbrowser.open("https://www.lvtemple.org")
                     MDIconButton:
                         icon: 'youtube-play'
+                        pos_hint: {'center_x': 0.5}
                         on_release:
                             webbrowser.open("https://www.youtube.com/channel/UCm7YxQAkZFf80ODHxr9Yhdw")
 
@@ -812,7 +902,7 @@ ScreenManager:
                 text: "Gallery"
                 on_release:
                     root.manager.transition = NoTransition()
-                    root.manager.current = 'ConstructionScreen'
+                    root.manager.current = 'GalleryScreen'
             NavigationDrawerIconButton:
                 # icon: 'checkbox-blank-circle'
                 icon: 'contact-mail'
