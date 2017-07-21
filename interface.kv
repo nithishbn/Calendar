@@ -446,6 +446,8 @@ ScreenManager:
                     text: "Previous"
                     on_release:
                         root.previous_image()
+                MDLabel:
+                    text: str(root.count) + "/" + str(root.lengthoflist)
 
 # <Gallery>:
 #     ScrollView:
