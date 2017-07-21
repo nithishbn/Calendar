@@ -734,7 +734,7 @@ ScreenManager:
                     MDIconButton:
                         icon: 'phone'
                         on_release:
-                            root.callthing()
+                            root.call()
                     MDIconButton:
                         icon: 'facebook'
                         on_release:
@@ -745,6 +745,8 @@ ScreenManager:
                             webbrowser.open("mailto:info@lvtemple.org")
                     MDIconButton:
                         icon: 'google-maps'
+                        on_release:
+                            webbrowser.open("https://www.google.com/maps/place/Sri+Lakshmi+Venkateswara+Temple,+Redmond")
                     MDIconButton:
                         icon: 'web'
                         on_release:

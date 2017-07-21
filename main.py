@@ -162,8 +162,10 @@ class ContactScreen(Screen):
     screenlist = ListProperty([])
     def on_enter(self, *args):
         super(ContactScreen, self).on_enter(*args)
-    def callthing(self):
-        Call.makecall("12062195330")
+    def call(self, *args):
+        tel = "4258020470"
+        call.makecall(tel="4258020470")
+        # call.makecall()
 class TodayScreen(Screen):
     # screenlist = ListProperty([])
     samva = StringProperty('')
