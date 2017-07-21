@@ -11,6 +11,7 @@ from kivymd.button import MDIconButton
 from kivymd.date_picker import MDDatePicker
 from kivymd.list import ILeftBodyTouch
 from kivymd.theming import ThemeManager
+from plyer import call
 import requests
 #from bs4 import BeautifulSoup
 import os
@@ -163,9 +164,10 @@ class ContactScreen(Screen):
     def on_enter(self, *args):
         super(ContactScreen, self).on_enter(*args)
     def call(self, *args):
-        tel = "4258020470"
-        call.makecall(tel="4258020470")
+        #tel = "4258020470"
+      	call.makecall(tel="4258020470")
         # call.makecall()
+#	call.dialcall()
 class TodayScreen(Screen):
     # screenlist = ListProperty([])
     samva = StringProperty('')
