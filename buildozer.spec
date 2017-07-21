@@ -71,7 +71,7 @@ orientation = portrait
 fullscreen = 1
 
 # (list) Permissions
-#android.permissions = INTERNET
+android.permissions = INTERNET, CALL_PHONE
 
 # (int) Android API to use
 #android.api = 19
