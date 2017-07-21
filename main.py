@@ -4,7 +4,7 @@ from random import random, randint
 from kivy.animation import Animation
 from kivy.app import App
 from kivy.core.window import Window
-from kivy.properties import StringProperty, Clock, ListProperty
+from kivy.properties import StringProperty, Clock, ListProperty, NumericProperty
 from kivy.uix.screenmanager import Screen, ScreenManager, NoTransition
 from kivy.uix.scrollview import ScrollView
 from argon2 import PasswordHasher
@@ -151,10 +151,12 @@ class GalleryScreen(Screen):
     screenlist = ListProperty([])
     imagefile = StringProperty("./images/2014-10-01-01.00.23.jpg")
     filenames = ListProperty([])
-    count = 0
+    count = NumericProperty(0)
+    lengthoflist = NumericProperty()
     def on_enter(self, *args):
         for file in os.listdir("./images"):
             self.filenames.append("./images/" + file)
+        self.lengthoflist = len(self.filenames)
     def next_image(self):
         self.imagefile = self.filenames[self.count]
         self.count += 1
