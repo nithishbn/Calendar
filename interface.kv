@@ -423,7 +423,7 @@ ScreenManager:
         BoxLayout:
             orientation: 'vertical'
             # size_hint_y: None
-            spacing: 40
+            # spacing: 40
             pos_hint: {'top': 1}
             Toolbar:
                 pos_hint: {'top': 1}
@@ -435,19 +435,26 @@ ScreenManager:
                 background_hue: '500'
                 left_action_items: [['menu', lambda x: root.ids.nav_layout.toggle_nav_drawer()]]
             RelativeLayout:
+                pos_hint: {'top': 0.95}
                 Image:
                     source: root.imagefile
-                MDRaisedButton:
-                    text: "Next"
-                    on_release:
-                        root.next_image()
-                    pos_hint: {'center_x': 0.5}
-                MDRaisedButton:
-                    text: "Previous"
-                    on_release:
-                        root.previous_image()
-                MDLabel:
-                    text: str(root.count) + "/" + str(root.lengthoflist)
+                    pos_hint: {'center_x': 0.5, 'top': 1}
+                GridLayout:
+                    rows: 1
+                    cols: 2
+                    spacing: 10
+                    pos_hint: {'center_x': 0.85, 'bottom': 1}
+                    size_hint: 0.25, 0.1
+                    MDRaisedButton:
+                        text: "Previous"
+                        on_release:
+                            root.previous_image()
+                    MDRaisedButton:
+                        text: "Next"
+                        on_release:
+                            root.next_image()
+                # MDLabel:
+                #     text: str(root.count + 1) + "/" + str(root.lengthoflist + 1)
 
 # <Gallery>:
 #     ScrollView:

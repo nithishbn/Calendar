@@ -14,8 +14,9 @@ from kivymd.list import ILeftBodyTouch
 from kivymd.theming import ThemeManager
 from plyer import call
 import requests
-#from bs4 import BeautifulSoup
+# from bs4 import BeautifulSoup
 import os
+
 
 class LoginScreen(Screen):
     def register(self):
@@ -95,8 +96,10 @@ class MenuScreen(Screen):
         self.screenlist.append("MenuScreen")
         print("MenuScreen's list: ", self.screenlist)
 
+
 class IconLeftSampleWidget(ILeftBodyTouch, MDIconButton):
     pass
+
 
 class DateScreen(Screen):
     date = StringProperty('')
@@ -129,7 +132,8 @@ class DateScreen(Screen):
             # self.count -= 1
         else:
             return True
-        # MDDatePicker(self.set_previous_date).open()
+            # MDDatePicker(self.set_previous_date).open()
+
     def selectdate(self):
         # self.date = self.ids.datething.text
         print(self.ids.datething.text)
@@ -147,38 +151,51 @@ class DateScreen(Screen):
 class ConstructionScreen(Screen):
     screenlist = ListProperty([])
 
+
 class GalleryScreen(Screen):
     screenlist = ListProperty([])
     imagefile = StringProperty("./images/2014-10-01-01.00.23.jpg")
     filenames = ListProperty([])
     count = NumericProperty(0)
     lengthoflist = NumericProperty()
+
     def on_enter(self, *args):
         for file in os.listdir("./images"):
             self.filenames.append("./images/" + file)
         self.lengthoflist = len(self.filenames)
+        self.imagefile = self.filenames[0]
+        self.count += 1
+
     def next_image(self):
         self.imagefile = self.filenames[self.count]
+        print(self.count)
         self.count += 1
         if self.count == len(self.filenames):
             self.count = 0
+
     def previous_image(self):
         self.imagefile = self.filenames[self.count]
         self.count -= 1
         if self.count < 0:
             self.count = len(self.filenames) - 1
+
+
 class ContactScreen(Screen):
     screenlist = ListProperty([])
+
     def on_enter(self, *args):
         super(ContactScreen, self).on_enter(*args)
+
     def call(self, *args):
-        #tel = "4258020470"
+        # tel = "4258020470"
         try:
-      	    call.makecall(tel="2062195330")
+            call.makecall(tel="2062195330")
         except:
             print("haha noob this ain't implemented yet")
-        # call.makecall()
-#	call.dialcall()
+            # call.makecall()
+
+
+# call.dialcall()
 class TodayScreen(Screen):
     # screenlist = ListProperty([])
     samva = StringProperty('')
@@ -270,9 +287,6 @@ class InterfaceApp(App):
 
     def on_pause(self):
         return True
-
-
-
 
 
 if __name__ == '__main__':
