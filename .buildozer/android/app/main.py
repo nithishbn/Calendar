@@ -1,9 +1,10 @@
 import sqlite3
 import datetime
+from random import random, randint
 from kivy.animation import Animation
 from kivy.app import App
 from kivy.core.window import Window
-from kivy.properties import StringProperty, Clock, ListProperty
+from kivy.properties import StringProperty, Clock, ListProperty, NumericProperty
 from kivy.uix.screenmanager import Screen, ScreenManager, NoTransition
 from kivy.uix.scrollview import ScrollView
 #from argon2 import PasswordHasher
@@ -11,9 +12,11 @@ from kivymd.button import MDIconButton
 from kivymd.date_picker import MDDatePicker
 from kivymd.list import ILeftBodyTouch
 from kivymd.theming import ThemeManager
+from plyer import call
 import requests
-#from bs4 import BeautifulSoup
+# from bs4 import BeautifulSoup
 import os
+
 
 class LoginScreen(Screen):
     def register(self):
@@ -30,22 +33,23 @@ class LoginScreen(Screen):
     def login(self):
         username = self.ids.username.text
         password = self.ids.password.text
-        if len(username) == 0:
+        self.manager.current = "MenuScreen"
+        #if len(username) == 0:
             # self.ids.password.error = True
-            self.ids.username.error = True
-        else:  # username exists in textbox
-            conn = sqlite3.connect("data.sqlite")
-            cur = conn.cursor()
+        #    self.ids.username.error = True
+        #else:  # username exists in textbox
+         #   conn = sqlite3.connect("data.sqlite")
+          #  cur = conn.cursor()
 
-            try:
-                cur.execute('''SELECT Hash from Main WHERE Username = ?''', (username,))
-                returnedhash = cur.fetchone()[0]
-                p = PasswordHasher()
-                isitquestion = p.verify(returnedhash, password)
-                if isitquestion:
-                    self.manager.current = "MenuScreen"
-            except:
-                self.ids.password.error = True
+           # try:
+            #    cur.execute('''SELECT Hash from Main WHERE Username = ?''', (username,))
+             #   returnedhash = cur.fetchone()[0]
+              #  p = PasswordHasher()
+               # isitquestion = p.verify(returnedhash, password)
+                #if isitquestion:
+                 #   self.manager.current = "MenuScreen"
+#            except:
+ #               self.ids.password.error = True
 
 
 class RegisterScreen(Screen):
@@ -128,7 +132,8 @@ class DateScreen(Screen):
             # self.count -= 1
         else:
             return True
-        # MDDatePicker(self.set_previous_date).open()
+            # MDDatePicker(self.set_previous_date).open()
+
     def selectdate(self):
         # self.date = self.ids.datething.text
         print(self.ids.datething.text)
@@ -147,6 +152,50 @@ class ConstructionScreen(Screen):
     screenlist = ListProperty([])
 
 
+class GalleryScreen(Screen):
+    screenlist = ListProperty([])
+    imagefile = StringProperty("./images/2014-10-01-01.00.23.jpg")
+    filenames = ListProperty([])
+    count = NumericProperty(0)
+    lengthoflist = NumericProperty()
+
+    def on_enter(self, *args):
+        for file in os.listdir("./images"):
+            self.filenames.append("./images/" + file)
+        self.lengthoflist = len(self.filenames)
+        self.imagefile = self.filenames[0]
+        self.count += 1
+
+    def next_image(self):
+        self.imagefile = self.filenames[self.count]
+        print(self.count)
+        self.count += 1
+        if self.count == len(self.filenames):
+            self.count = 0
+
+    def previous_image(self):
+        self.imagefile = self.filenames[self.count]
+        self.count -= 1
+        if self.count < 0:
+            self.count = len(self.filenames) - 1
+
+
+class ContactScreen(Screen):
+    screenlist = ListProperty([])
+
+    def on_enter(self, *args):
+        super(ContactScreen, self).on_enter(*args)
+
+    def call(self, *args):
+        # tel = "4258020470"
+        try:
+            call.makecall(tel="2062195330")
+        except:
+            print("haha noob this ain't implemented yet")
+            # call.makecall()
+
+
+# call.dialcall()
 class TodayScreen(Screen):
     # screenlist = ListProperty([])
     samva = StringProperty('')
@@ -238,9 +287,6 @@ class InterfaceApp(App):
 
     def on_pause(self):
         return True
-
-
-
 
 
 if __name__ == '__main__':
