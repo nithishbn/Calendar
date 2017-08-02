@@ -139,11 +139,11 @@ ScreenManager:
             theme_text_color: 'Secondary'
     BoxLayout:
         BoxLayout:
-            pos_hint: {'top': 0.90}
+            pos_hint: {'top': 0.85}
             orientation: 'vertical'
             height: self.minimum_height
             size_hint_y: None
-            padding: 50
+            padding: 25
             spacing: 20
             MDTextField:
                 multiline: False
@@ -169,32 +169,50 @@ ScreenManager:
                 id: register_password
                 required: True
                 hint_text: "Password"
-    RelativeLayout:
-        size_hint: 1, None
-        pos_hint: {'right': 0.86, 'bottom': 0.95}
-        orientation: 'horizontal'
+    # RelativeLayout:
+    #     size_hint: 1, None
+    #     pos_hint: {'right': 0.86, 'bottom': 0.95}
+    #     orientation: 'horizontal'
+    GridLayout:
+        rows: 1
+        cols: 2
+        spacing: 10
+        pos_hint: {'center_x': 0.50, 'y': 0.1}
+        size_hint: 0.25, 0.1
         MDRaisedButton:
-            # size_hint: 0.1, 0.65
-            # size_hint: 0.10, None
+            text: "Previous"
             size_hint: None, None
-            text: "Cancel"
-            # size: 3 * dp(48), dp(48)
-            opposite_colors: True
-            pos_hint: {'center_y': 1, 'right': 0.70}
             on_release:
                 root.manager.transition = NoTransition()
                 root.cancel()
         MDRaisedButton:
-            # size_hint: 0.1, 0.65
-            # size_hint: 0.10, None
-            size_hint: None, None
-            text: "Submit"
-            # size: 3 * dp(48), dp(48)
-            opposite_colors: True
-            pos_hint: {'center_y': 1,'right': 1}
+            text: "Next"
             on_release:
                 root.manager.transition = NoTransition()
                 root.register()
+
+        # MDRaisedButton:
+        #     # size_hint: 0.1, 0.65
+        #     # size_hint: 0.10, None
+        #     size_hint: None, None
+        #     text: "Cancel"
+        #     # size: 3 * dp(48), dp(48)
+        #     opposite_colors: True
+        #     pos_hint: {'center_y': 1, 'right': 0.70}
+        #     on_release:
+        #         root.manager.transition = NoTransition()
+        #         root.cancel()
+        # MDRaisedButton:
+        #     # size_hint: 0.1, 0.65
+        #     # size_hint: 0.10, None
+        #     size_hint: None, None
+        #     text: "Submit"
+        #     # size: 3 * dp(48), dp(48)
+        #     opposite_colors: True
+        #     pos_hint: {'center_y': 1,'right': 1}
+        #     on_release:
+        #         root.manager.transition = NoTransition()
+        #         root.register()
 
     # BoxLayout:
     #     orientation: 'vertical'
