@@ -279,7 +279,8 @@ class ScrollLabel(ScrollView):
 class InterfaceApp(App):
     theme_cls = ThemeManager()
     title = "SVETA Temple"
-
+    width = 1440
+    height = 2560
     def build(self):
         # print(self.theme_cls.
         # self.theme_cls.theme_style = 'Dark'
