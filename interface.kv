@@ -438,15 +438,16 @@ ScreenManager:
                 pos_hint: {'top': 0.95}
                 Image:
                     source: root.imagefile
-                    pos_hint: {'center_x': 0.5, 'top': 1}
+                    pos_hint: {'center_x': 0.5, 'top': 1.25}
                 GridLayout:
                     rows: 1
                     cols: 2
                     spacing: 10
-                    pos_hint: {'center_x': 0.85, 'bottom': 1}
+                    pos_hint: {'center_x': 0.50, 'top': 0.5}
                     size_hint: 0.25, 0.1
                     MDRaisedButton:
                         text: "Previous"
+                        size_hint: None, None
                         on_release:
                             root.previous_image()
                     MDRaisedButton:
