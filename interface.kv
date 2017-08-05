@@ -135,7 +135,7 @@ NavigationLayout:
                 font_size: '50'
                 write_tab: False
                 id: username
-                text: "Nithish"
+                text: "nithishthegreat7@gmail.com"
                 required: True
                 pos_hint: {'top': 1}
                 hint_text: "Email Address"
@@ -248,7 +248,7 @@ NavigationLayout:
         pos_hint: {'center_x': 0.50, 'y': 0.1}
         size_hint: 0.25, 0.1
         MDRaisedButton:
-            text: "Previous"
+            text: "Back"
             size_hint: None, None
             on_release:
                 root.manager.transition = NoTransition()
@@ -341,8 +341,8 @@ NavigationLayout:
         RelativeLayout:
             orientation: 'vertical'
             MDCard:
-                size_hint: 0.40, 0.85
-                pos_hint: {'top' :1,'x': 0.15}
+                size_hint: 0.8, 0.85
+                pos_hint: {'top' :1,'center_x': 0.5}
                 elevation: 10
                 active_color_type: 'Custom'
                 active_color : [1, 0, 1, 1]
@@ -413,8 +413,9 @@ NavigationLayout:
                     text: "Next"
                     on_release:
                         root.next_image()
-            # MDLabel:
-            #     text: str(root.count + 1) + "/" + str(root.lengthoflist + 1)
+            MDLabel:
+                text: str(root.count + 1) + "/" + str(root.lengthoflist + 1)
+                pos_hint: {'x': 0.1}
 
 # <Gallery>:
 #     ScrollView:
@@ -715,10 +716,11 @@ NavigationLayout:
 
         width: self.minimum_width
         Spacer:
-        Label:
+        MDLabel:
             size_hint_x: None
             text: "Today is a great day at the temple"
-            width: self.texture_size[0]
+            # width: self.texture_size[0]
+            font_style: 'Display2'
             font_size: 20
             # font_style: 'Title'
             color: [0, 0, 0, 1]
