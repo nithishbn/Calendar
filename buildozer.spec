@@ -28,7 +28,7 @@ source.exclude_dirs = randomfolderthing, data, bin
 #source.exclude_patterns = license,images/*/*.jpg
 
 # (str) Application versioning (method 1)
-version = 0.5
+version = 0.7
 
 # (str) Application versioning (method 2)
 # version.regex = __version__ = ['"](.*)['"]
@@ -36,7 +36,7 @@ version = 0.5
 
 # (list) Application requirements
 # comma seperated e.g. requirements = sqlite3,kivy
-requirements = kivy, sqlite3, plyer, kivy==master,git+https://gitlab.com/kivymd/KivyMD.git, argon2_cffi
+requirements = kivy, sqlite3, plyer, kivy==master,git+https://gitlab.com/kivymd/KivyMD.git, requests, python2, hostpython2
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
