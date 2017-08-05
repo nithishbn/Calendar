@@ -7,7 +7,7 @@ from kivy.core.window import Window
 from kivy.properties import StringProperty, Clock, ListProperty, NumericProperty
 from kivy.uix.screenmanager import Screen, ScreenManager, NoTransition
 from kivy.uix.scrollview import ScrollView
-#from argon2 import PasswordHasher
+# from argon2 import PasswordHasher
 from kivymd.button import MDIconButton
 from kivymd.date_picker import MDDatePicker
 from kivymd.list import ILeftBodyTouch
@@ -34,22 +34,23 @@ class LoginScreen(Screen):
         username = self.ids.username.text
         password = self.ids.password.text
         self.manager.current = "MenuScreen"
-        #if len(username) == 0:
-            # self.ids.password.error = True
+        # if len(username) == 0:
+        # self.ids.password.error = True
         #    self.ids.username.error = True
-        #else:  # username exists in textbox
-         #   conn = sqlite3.connect("data.sqlite")
-          #  cur = conn.cursor()
+        # else:  # username exists in textbox
+        #   conn = sqlite3.connect("data.sqlite")
+        #  cur = conn.cursor()
 
-           # try:
-            #    cur.execute('''SELECT Hash from Main WHERE Username = ?''', (username,))
-             #   returnedhash = cur.fetchone()[0]
-              #  p = PasswordHasher()
-               # isitquestion = p.verify(returnedhash, password)
-                #if isitquestion:
-                 #   self.manager.current = "MenuScreen"
-#            except:
- #               self.ids.password.error = True
+        # try:
+        #    cur.execute('''SELECT Hash from Main WHERE Username = ?''', (username,))
+        #   returnedhash = cur.fetchone()[0]
+        #  p = PasswordHasher()
+        # isitquestion = p.verify(returnedhash, password)
+        # if isitquestion:
+        #   self.manager.current = "MenuScreen"
+
+    #            except:
+    #               self.ids.password.error = True
 
 
 class RegisterScreen(Screen):
@@ -59,12 +60,11 @@ class RegisterScreen(Screen):
         password = self.ids.register_password.text
         verify = self.ids.verify.text
         if len(email) or len(phone) or len(password) or len(verify) == 0:
-            self.
+            print("asdf")
         print(email, phone, password, verify)
-        conn= sqlite3.connect("data.sqlite")
+        conn = sqlite3.connect("data.sqlite")
         cur = conn.cursor()
         cur.execute('''''')
-
 
     def cancel(self):
         self.ids.email.text = ""
@@ -105,8 +105,10 @@ class MenuScreen(Screen):
         print("MenuScreen's list: ", self.screenlist)
 
 
-class IconLeftSampleWidget(ILeftBodyTouch, MDIconButton):
-    pass
+#
+#
+# class IconLeftSampleWidget(ILeftBodyTouch, MDIconButton):
+#     pass
 
 
 class DateScreen(Screen):
@@ -287,6 +289,7 @@ class ScrollLabel(ScrollView):
 class InterfaceApp(App):
     theme_cls = ThemeManager()
     title = "SVETA Temple"
+
     def build(self):
         # print(self.theme_cls.
         # self.theme_cls.theme_style = 'Dark'
