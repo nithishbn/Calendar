@@ -54,9 +54,17 @@ class LoginScreen(Screen):
 
 class RegisterScreen(Screen):
     def register(self):
-        print("Wow well played!")
-        return True
-        # TODO finish this lol
+        email = self.ids.email.text
+        phone = self.ids.phone_number.text
+        password = self.ids.register_password.text
+        verify = self.ids.verify.text
+        if len(email) or len(phone) or len(password) or len(verify) == 0:
+            self.
+        print(email, phone, password, verify)
+        conn= sqlite3.connect("data.sqlite")
+        cur = conn.cursor()
+        cur.execute('''''')
+
 
     def cancel(self):
         self.ids.email.text = ""
@@ -279,8 +287,6 @@ class ScrollLabel(ScrollView):
 class InterfaceApp(App):
     theme_cls = ThemeManager()
     title = "SVETA Temple"
-    width = 1440
-    height = 2560
     def build(self):
         # print(self.theme_cls.
         # self.theme_cls.theme_style = 'Dark'
