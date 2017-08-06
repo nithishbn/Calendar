@@ -170,6 +170,8 @@ class GalleryScreen(Screen):
     lengthoflist = NumericProperty()
 
     def on_enter(self, *args):
+        self.count = 0
+        self.filenames = []
         for file in os.listdir("./images"):
             self.filenames.append("./images/" + file)
         self.lengthoflist = len(self.filenames)
