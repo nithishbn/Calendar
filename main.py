@@ -132,6 +132,7 @@ class DateScreen(Screen):
         self.ids.datething.text = actualdate
         self.date = str(actualdate)
         self.count -= 1
+        self.selectdate()
         # self.root.ids.date_picker_label.text = str(date_obj)
 
     def show_date_picker(self):
@@ -200,8 +201,8 @@ class ContactScreen(Screen):
 
     def call(self):
         # tel = "4258020470"
-	print("asdfasdfasdf")
-    	call.makecall(tel="12062195330")
+        print("asdfasdfasdf")
+        call.makecall(tel="12062195330")
 
 
 # call.dialcall()
