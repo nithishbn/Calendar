@@ -200,11 +200,11 @@ class ContactScreen(Screen):
 
     def call(self, *args):
         # tel = "4258020470"
-        try:
-            call.makecall(tel="2062195330")
-        except:
-            print("haha noob this ain't implemented yet")
-            # call.makecall()
+        # try:
+        call.makecall(tel=2062195330)
+        # except:
+        #     print("haha noob this ain't implemented yet")
+        #     # call.makecall()
 
 
 # call.dialcall()
