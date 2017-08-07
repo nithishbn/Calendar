@@ -471,7 +471,9 @@ NavigationLayout:
                     size_hint: 0.55, None
                     pos_hint: {'center_x': 0.5, 'center_y': 0.5}
                     # on_text_validate: root.selectdate()
-                    on_focus: root.show_date_picker()
+                    on_focus:
+                        focus = False
+                        root.show_date_picker()
                 MDRaisedButton:
                     font_size: 35
                     size_hint: None, None
