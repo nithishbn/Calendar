@@ -69,9 +69,7 @@ NavigationLayout:
             icon: 'credit-card'
             text: 'Donate'
             active_color_type: 'accent'
-            on_release:
-                app.root.ids.sm.transition = NoTransition()
-                webbrowser.open("https://lvtemple.org/new-donations/")
+            on_release: webbrowser.open("https://www.lvtemple.org/new-donations/", autoraise=True)
 
     ScreenManager:
         id: sm
