@@ -198,13 +198,10 @@ class ContactScreen(Screen):
     def on_enter(self, *args):
         super(ContactScreen, self).on_enter(*args)
 
-    def call(self, *args):
+    def call(self):
         # tel = "4258020470"
-        # try:
-        call.makecall(tel=2062195330)
-        # except:
-        #     print("haha noob this ain't implemented yet")
-        #     # call.makecall()
+	print("asdfasdfasdf")
+    	call.makecall(tel="12062195330")
 
 
 # call.dialcall()
