@@ -366,7 +366,7 @@ NavigationLayout:
                     SmartTile:
                         mipmap: True
                         size_hint: 1, 0.7
-                        source: './Temple-Front-View-V1.jpg'
+                        source: './images/20141012_142533.jpg'
                         # md_bg_color: 'Secondary'
                         # text: 'asdf'
                     MDLabel:
@@ -611,75 +611,66 @@ NavigationLayout:
                 #         theme_text_color: 'Secondary'
                 #         font_size: 25
 <ContactScreen>:
-
     BoxLayout:
-        orientation: 'vertical'
-        BoxLayout:
-            size_hint_y: 0.2
-            Toolbar:
-                pos_hint: {'top': 1}
+        size_hint_y: 0.2
+        pos_hint: {'top': 1}
+        Toolbar:
+            pos_hint: {'top': 1}
 
-                id: toolbar
-                title: 'SVETA Temple'
-                md_bg_color: app.theme_cls.primary_color
-                background_palette: 'Primary'
-                background_hue: '500'
-                left_action_items: [['menu', lambda x: app.root.toggle_nav_drawer()]]
-        RelativeLayout:
-            pos_hint: {'top': 1, 'center_x': 0.5}
-            # BoxLayout:
-            #     # pos_hint: {'top': 1, 'center_x': 0.5}
-            #     orientation: 'vertical'
-            size_hint: 1, 0.8
-            MDLabel:
-                size_hint_y: None
-                pos_hint: {'top': 1}
-                text: 'Contact Us'
-                font_style: 'Display2'
-                halign: 'center'
-                valign: 'top'
-            GridLayout:
-                size_hint: None, None
-                # orientation: 'vertical'
-                canvas:
-                    Rectangle:
-                        size: self.size
-                        pos: self.pos
-                    Color:
-                        rgba: 1, 1, 1, 0.2
-                rows: 3
-                cols: 2
-                pos_hint: {'center_x': 0.5, 'center_y': 0.6}
-                MDIconButton:
-                    pos_hint: {'center_x': 0.5}
-                    icon: 'phone'
-                    on_release:
-                        root.call()
-                MDIconButton:
-                    icon: 'facebook'
-                    pos_hint: {'center_x': 0.5}
-                    on_release:
-                        webbrowser.open("https://www.facebook.com/Svetalvtemple/")
-                MDIconButton:
-                    icon: 'email'
-                    pos_hint: {'center_x': 0.5}
-                    on_release:
-                        webbrowser.open("mailto:info@lvtemple.org")
-                MDIconButton:
-                    icon: 'google-maps'
-                    pos_hint: {'center_x': 0.5}
-                    on_release:
-                        webbrowser.open("https://www.google.com/maps/place/Sri+Lakshmi+Venkateswara+Temple,+Redmond")
-                MDIconButton:
-                    icon: 'web'
-                    pos_hint: {'center_x': 0.5}
-                    on_release:
-                        webbrowser.open("https://www.lvtemple.org")
-                MDIconButton:
-                    icon: 'youtube-play'
-                    pos_hint: {'center_x': 0.5}
-                    on_release:
-                        webbrowser.open("https://www.youtube.com/channel/UCm7YxQAkZFf80ODHxr9Yhdw")
+            id: toolbar
+            title: 'SVETA Temple'
+            md_bg_color: app.theme_cls.primary_color
+            background_palette: 'Primary'
+            background_hue: '500'
+            left_action_items: [['menu', lambda x: app.root.toggle_nav_drawer()]]
+    RelativeLayout:
+        pos_hint: {'top': 0.8, 'center_x': 0.5}
+        # BoxLayout:
+        #     # pos_hint: {'top': 1, 'center_x': 0.5}
+        #     orientation: 'vertical'
+        size_hint: 1, 0.8
+        MDLabel:
+            size_hint_y: None
+            pos_hint: {'top': 1.1}
+            text: 'Contact Us'
+            font_style: 'Display2'
+            halign: 'center'
+            valign: 'top'
+        GridLayout:
+            size_hint: 0.25, 0.35
+            # orientation: 'vertical'
+            rows: 3
+            cols: 2
+            pos_hint: {'center_x': 0.5, 'center_y': 0.7}
+            MDIconButton:
+                # pos_hint: {'center_x': 0.5}
+                icon: 'phone'
+                on_release: root.call()
+            MDIconButton:
+                icon: 'facebook'
+                # pos_hint: {'center_x': 0.5}
+                on_release:
+                    webbrowser.open("https://www.facebook.com/Svetalvtemple/")
+            MDIconButton:
+                icon: 'email'
+                # pos_hint: {'center_x': 0.5}
+                on_release:
+                    webbrowser.open("mailto:info@lvtemple.org")
+            MDIconButton:
+                icon: 'google-maps'
+                # pos_hint: {'center_x': 0.5}
+                on_release:
+                    webbrowser.open("https://www.google.com/maps/place/Sri+Lakshmi+Venkateswara+Temple,+Redmond")
+            MDIconButton:
+                icon: 'web'
+                # pos_hint: {'center_x': 0.5}
+                on_release:
+                    webbrowser.open("https://www.lvtemple.org")
+            MDIconButton:
+                icon: 'youtube-play'
+                # pos_hint: {'center_x': 0.5}
+                on_release:
+                    webbrowser.open("https://www.youtube.com/channel/UCm7YxQAkZFf80ODHxr9Yhdw")
 
 
 <ConstructionScreen>:
@@ -716,12 +707,12 @@ NavigationLayout:
 
         width: self.minimum_width
         Spacer:
-        MDLabel:
+        Label:
             size_hint_x: None
             text: "Today is a great day at the temple"
-            # width: self.texture_size[0]
-            font_style: 'Display2'
-            font_size: 20
+            width: self.texture_size[0]
+            # font_style: 'Display2'
+            font_size: 50
             # font_style: 'Title'
             color: [0, 0, 0, 1]
         Spacer:
