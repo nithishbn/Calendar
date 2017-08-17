@@ -17,6 +17,7 @@
 # :import NDIconLabel kivymd.navigationdrawer.NDIconLabel
 #:import OneLineIconListItem kivymd.list.OneLineIconListItem
 #:import SmartTile kivymd.grid.SmartTile
+#: import softinput_mode kivy.core.window.Window
 NavigationLayout:
     pos_hint: {'top': 1}
     id: nav_layout
@@ -126,18 +127,18 @@ NavigationLayout:
             orientation: 'vertical'
             height: self.minimum_height
             size_hint_y: None
-            padding: 50
+            padding: 20
             spacing: 20
             MDTextField:
                 multiline: False
                 font_size: '50'
                 write_tab: False
                 id: username
-                text: "nithishthegreat7@gmail.com"
+                text: "Nithish"
                 required: True
                 pos_hint: {'top': 1}
-                hint_text: "Email Address"
-                helper_text: "Email Address or Password is incorrect"
+                hint_text: "Username"
+                helper_text: "Username or Password is incorrect"
                 helper_text_mode: "on_error"
             MDTextField:
                 multiline: False
@@ -149,11 +150,11 @@ NavigationLayout:
                 required: True
                 text: "password"
                 hint_text: "Password"
-                helper_text: "Email Address or Password is incorrect"
+                helper_text: "Username or Password is incorrect"
                 helper_text_mode: "on_error"
     MDFlatButton:
         size_hint: None, None
-        pos_hint: {'center_y': 0.55, 'center_x': 0.5}
+        pos_hint: {'center_y': 0.45, 'center_x': 0.5}
         text: "Don't have an account yet? Make one!"
         theme_text_color: 'Secondary'
         # size: 3* dp(48), dp(48)
@@ -185,56 +186,86 @@ NavigationLayout:
                 root.login()
         # padding: 15
 <RegisterScreen>:
+    MDLabel:
+        size_hint_y: 0.05
+        text: "Register"
+        font_style: 'Display1'
+        pos_hint: {'top': 0.95, 'center_x': 0.5}
+        halign: 'center'
+        theme_text_color: 'Secondary'
     BoxLayout:
-        pos_hint: {'top': 1, 'center_x': 0.5}
+        pos_hint: {'top': 0.90}
+        orientation: 'vertical'
+        height: self.minimum_height
         size_hint_y: None
-        MDLabel:
-            # size_hint_y: None
-            text: "Register"
-            font_style: 'Display2'
-            pos_hint: {'top': 0.95, 'center_x': 0.5}
-            halign: 'center'
-            theme_text_color: 'Secondary'
-    BoxLayout:
-        BoxLayout:
-            pos_hint: {'top': 0.85}
-            orientation: 'vertical'
-            height: self.minimum_height
-            size_hint_y: None
-            padding: 25
-            spacing: 20
-            MDTextField:
-                multiline: False
-                font_size: '50'
-                write_tab: False
-                id: email
-                required: True
-                pos_hint: {'top': 1}
-                hint_text: "Email Address"
-            MDTextField:
-                multiline: False
-                font_size: '50'
-                write_tab: False
-                id: phone_number
-                required: True
-                hint_text: "Phone Number"
-                input_filter: 'int'
-            MDTextField:
-                multiline: False
-                font_size: '50'
-                password: True
-                write_tab: False
-                id: register_password
-                required: True
-                hint_text: "Password"
-            MDTextField:
-                multiline: False
-                font_size: '50'
-                password: True
-                write_tab: False
-                id: verify
-                required: True
-                hint_text: "Password"
+        padding: 20
+        # spacing: 20
+        MDTextField:
+            multiline: False
+            font_size: '25'
+            write_tab: False
+            id: usernameregister
+            required: True
+            pos_hint: {'top': 1}
+            hint_text: "Username"
+            helper_text: "Username already in use!"
+            helper_text_mode: "on_error"
+            on_focus:
+                root.count = -1
+                print("asdfusername")
+        MDTextField:
+            multiline: False
+            font_size: '25'
+            write_tab: False
+            id: email
+            required: True
+            pos_hint: {'top': 1}
+            hint_text: "Email Address"
+            helper_text: "Email address already in use!"
+            helper_text_mode: "on_error"
+            on_focus:
+                root.count = 0
+                print("asdfemail")
+        MDTextField:
+            multiline: False
+            font_size: '25'
+            write_tab: False
+            id: phone_number
+            required: True
+            hint_text: "Phone Number"
+            input_filter: 'int'
+            helper_text: "Phone number already in use!"
+            helper_text_mode: "on_error"
+            on_focus:
+                root.count = 1
+                print("asdfphone")
+        MDTextField:
+            multiline: False
+            font_size: '25'
+            password: True
+            write_tab: False
+            id: register_password
+            required: True
+            hint_text: "Password"
+            on_focus:
+                softinput_mode = 'pan'
+                print("panned!")
+        MDTextField:
+            multiline: False
+            font_size: '25'
+            password: True
+            write_tab: False
+            id: verify
+            required: True
+            hint_text: "Re-enter password"
+            helper_text: "Passwords do not match"
+            helper_text_mode: "on_error"
+            on_focus:
+                softinput_mode = 'pan'
+                print("panned!")
+            on_text_validate:
+                root.manager.transition = NoTransition()
+                root.register()
     # RelativeLayout:
     #     size_hint: 1, None
     #     pos_hint: {'right': 0.86, 'bottom': 0.95}
@@ -243,7 +274,7 @@ NavigationLayout:
         rows: 1
         cols: 2
         spacing: 10
-        pos_hint: {'center_x': 0.50, 'y': 0.1}
+        pos_hint: {'center_x': 0.55, 'bottom': 0.95}
         size_hint: 0.25, 0.1
         MDRaisedButton:
             text: "Back"
@@ -470,7 +501,7 @@ NavigationLayout:
                     pos_hint: {'center_x': 0.5, 'center_y': 0.5}
                     # on_text_validate: root.selectdate()
                     on_focus:
-                        root.focus= False
+                        root.focus = False
                         root.show_date_picker()
                 MDRaisedButton:
                     font_size: 35
