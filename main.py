@@ -4,7 +4,7 @@ from random import random, randint
 from kivy.animation import Animation
 from kivy.app import App
 from kivy.core.window import Window
-from kivy.properties import StringProperty, Clock, ListProperty, NumericProperty
+from kivy.properties import StringProperty, Clock, ListProperty, NumericProperty, ObjectProperty
 from kivy.uix.screenmanager import Screen, ScreenManager, NoTransition
 from kivy.uix.scrollview import ScrollView
 # from argon2 import PasswordHasher
@@ -49,27 +49,101 @@ class LoginScreen(Screen):
         # if isitquestion:
         #   self.manager.current = "MenuScreen"
 
-    #            except:
-    #               self.ids.password.error = True
+        #            except:
+        #               self.ids.password.error = True
 
 
 class RegisterScreen(Screen):
+    emailvar = StringProperty('')
+    phonevar = StringProperty('')
+    usernamevar = StringProperty('')
+
+    def __init__(self, **kwargs):
+        super(RegisterScreen, self).__init__(**kwargs)
+
+    def on_enter(self, *args):
+        self.count = 0
+        self.conn = sqlite3.connect("data.sqlite")
+        self.cur = self.conn.cursor()
+        self.ids.email.bind(text=self.settext)
+        self.ids.phone_number.bind(text=self.settext)
+        self.ids.usernameregister.bind(text=self.settext)
+        # print(self.emailvar)
+
+    def settext(self, *args):
+        # if args == 'email':
+        print(self.count)
+        if self.count == 0:
+            self.emailvar = self.ids.email.text
+            # print(str(self.emailvar))
+            self.cur.execute('''SELECT key from Main where Email = "{0}"'''.format(str(self.emailvar)))
+            results = self.cur.fetchall()
+            # print(results)
+            if len(results) == 0:
+                self.ids.email.error = False
+            elif len(results) != 0:
+                self.ids.email.error = True
+        # elif type == 'phone':
+        elif self.count > 0:
+            self.phonevar = self.ids.phone_number.text
+            # print(str(self.emailvar))
+            self.cur.execute('''SELECT key from Main where Phone = "{0}"'''.format(str(self.phonevar)))
+            results2 = self.cur.fetchall()
+            # print(results2)
+            if len(results2) == 0:
+                self.ids.phone_number.error = False
+            elif len(results2) != 0:
+                self.ids.phone_number.error = True
+        elif self.count < 0:
+            # print("we're in bois")
+            self.usernamevar = self.ids.usernameregister.text
+            # print(str(self.emailvar))
+            self.cur.execute('''SELECT key from Main where Username = "{0}"'''.format(str(self.usernamevar)))
+            results3 = self.cur.fetchall()
+            # print(results3)
+            if len(results3) == 0:
+                self.ids.usernameregister.error = False
+            elif len(results3) != 0:
+                self.ids.usernameregister.error = True
+
     def register(self):
+        self.conn = sqlite3.connect("data.sqlite")
+        self.cur = self.conn.cursor()
         email = self.ids.email.text
         phone = self.ids.phone_number.text
         password = self.ids.register_password.text
         verify = self.ids.verify.text
+        if password != verify:
+            self.ids.verify.error = True
+            self.ids.register_password.error = True
+        if password == verify:
+            self.ids.verify.error = False
+            self.ids.register_password.error = False
         if len(email) or len(phone) or len(password) or len(verify) == 0:
             print("asdf")
-        print(email, phone, password, verify)
-        conn = sqlite3.connect("data.sqlite")
-        cur = conn.cursor()
-        cur.execute('''''')
+        # print(email, phone, password, verify)
+        if self.ids.verify.error or self.ids.register_password.error or self.ids.email.error or self.ids.usernameregister.error or self.ids.phone_number.error:
+            print("fail")
+        else:
+            self.cur.execute('''INSERT INTO Main (Username, Hash, Email, Phone) VALUES ("{}","{}","{}","{}")'''.format(
+                self.ids.usernameregister.text, "dummy", self.ids.email.text, self.ids.phone_number.text))
+            self.conn.commit()
+            self.ids.verify.text = ''
+            self.ids.register_password.text = ''
+            self.ids.phone_number.text = ''
+            self.ids.usernameregister.text = ''
+            self.ids.email.text = ''
+            self.emailvar = ''
+            self.phonevar = ''
+            self.usernamevar = ''
+            self.manager.current = "LoginScreen"
 
     def cancel(self):
         self.ids.email.text = ""
         self.ids.phone_number.text = ""
         self.ids.register_password.text = ""
+        self.ids.verify.text = ''
+        self.ids.usernameregister.text = ''
         self.manager.current = "LoginScreen"
 
 
@@ -103,12 +177,6 @@ class MenuScreen(Screen):
     def on_leave(self, *args):
         self.screenlist.append("MenuScreen")
         print("MenuScreen's list: ", self.screenlist)
-
-
-#
-#
-# class IconLeftSampleWidget(ILeftBodyTouch, MDIconButton):
-#     pass
 
 
 class DateScreen(Screen):
