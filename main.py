@@ -1,6 +1,8 @@
 import sqlite3
 import datetime
 from random import random, randint
+
+from argon2 import PasswordHasher
 from kivy.animation import Animation
 from kivy.app import App
 from kivy.core.window import Window
@@ -33,24 +35,29 @@ class LoginScreen(Screen):
     def login(self):
         username = self.ids.username.text
         password = self.ids.password.text
-        self.manager.current = "MenuScreen"
-        # if len(username) == 0:
-        # self.ids.password.error = True
-        #    self.ids.username.error = True
-        # else:  # username exists in textbox
-        #   conn = sqlite3.connect("data.sqlite")
-        #  cur = conn.cursor()
-
-        # try:
-        #    cur.execute('''SELECT Hash from Main WHERE Username = ?''', (username,))
-        #   returnedhash = cur.fetchone()[0]
-        #  p = PasswordHasher()
-        # isitquestion = p.verify(returnedhash, password)
-        # if isitquestion:
-        #   self.manager.current = "MenuScreen"
-
-        #            except:
-        #               self.ids.password.error = True
+        # self.manager.current = "MenuScreen"
+        if len(username) == 0:
+            # self.ids.password.error = True
+            self.ids.username.error = True
+            self.ids.username.focus = False
+            self.ids.username.focus = True
+        else:  # username exists in textbox
+            conn = sqlite3.connect("data.sqlite")
+            cur = conn.cursor()
+            try:
+                cur.execute('''SELECT Hash from Main WHERE Username = ?''', (username,))
+                returnedhash = cur.fetchone()[0]
+                p = PasswordHasher()
+                isitquestion = p.verify(returnedhash, password)
+                if isitquestion:
+                    self.manager.current = "MenuScreen"
+            except:
+                self.ids.username.error = True
+                self.ids.username.focus = True
+                # self.ids.password.error = True
+                # self.ids.password.focus = True
+                self.ids.username.focus = False
+                # self.ids.password.focus = False
 
 
 class RegisterScreen(Screen):
@@ -68,43 +75,63 @@ class RegisterScreen(Screen):
         self.ids.email.bind(text=self.settext)
         self.ids.phone_number.bind(text=self.settext)
         self.ids.usernameregister.bind(text=self.settext)
-        # print(self.emailvar)
 
     def settext(self, *args):
         # if args == 'email':
         print(self.count)
+        self.emailvar = self.ids.email.text
+        self.phonevar = self.ids.phone_number.text
+        self.usernamevar = self.ids.usernameregister.text
         if self.count == 0:
-            self.emailvar = self.ids.email.text
-            # print(str(self.emailvar))
-            self.cur.execute('''SELECT key from Main where Email = "{0}"'''.format(str(self.emailvar)))
-            results = self.cur.fetchall()
-            # print(results)
-            if len(results) == 0:
+            if len(self.ids.email.text) == 0:
                 self.ids.email.error = False
-            elif len(results) != 0:
-                self.ids.email.error = True
-        # elif type == 'phone':
+            else:
+                # print(str(self.emailvar))
+                self.cur.execute('''SELECT key from Main where Email = "{0}"'''.format(str(self.emailvar)))
+                results = self.cur.fetchall()
+                print(results)
+                if len(results) == 0:
+                    self.ids.email.error = False
+                    self.ids.email.focus = False
+                    self.ids.email.focus = True
+                elif len(results) != 0:
+                    self.ids.email.error = True
+                    self.ids.email.focus = False
+                    self.ids.email.focus = True
         elif self.count > 0:
-            self.phonevar = self.ids.phone_number.text
-            # print(str(self.emailvar))
-            self.cur.execute('''SELECT key from Main where Phone = "{0}"'''.format(str(self.phonevar)))
-            results2 = self.cur.fetchall()
-            # print(results2)
-            if len(results2) == 0:
+
+            if len(self.ids.phone_number.text) == 0:
                 self.ids.phone_number.error = False
-            elif len(results2) != 0:
-                self.ids.phone_number.error = True
+            else:
+                self.cur.execute('''SELECT key from Main where Phone = "{0}"'''.format(str(self.phonevar)))
+                results2 = self.cur.fetchall()
+                if len(results2) == 0:
+                    self.ids.phone_number.error = False
+                    self.ids.phone_number.focus = False
+                    self.ids.phone_number.focus = True
+                elif len(results2) != 0:
+                    self.ids.phone_number.error = True
+                    self.ids.phone_number.focus = False
+                    self.ids.phone_number.focus = True
         elif self.count < 0:
-            # print("we're in bois")
-            self.usernamevar = self.ids.usernameregister.text
-            # print(str(self.emailvar))
-            self.cur.execute('''SELECT key from Main where Username = "{0}"'''.format(str(self.usernamevar)))
-            results3 = self.cur.fetchall()
-            # print(results3)
-            if len(results3) == 0:
+
+            if len(self.ids.usernameregister.text) == 0:
                 self.ids.usernameregister.error = False
-            elif len(results3) != 0:
-                self.ids.usernameregister.error = True
+                self.ids.usernameregister.focus = False
+                self.ids.usernameregister.focus = True
+            else:
+                self.cur.execute('''SELECT key from Main where Username = "{0}"'''.format(str(self.usernamevar)))
+                results3 = self.cur.fetchall()
+                print("database fetch:", results3)
+                if len(results3) == 0:
+                    self.ids.usernameregister.error = False
+                    self.ids.usernameregister.focus = False
+                    self.ids.usernameregister.focus = True
+                elif len(results3) != 0:
+                    print(self.usernamevar)
+                    self.ids.usernameregister.error = True
+                    self.ids.usernameregister.focus = False
+                    self.ids.usernameregister.focus = True
 
     def register(self):
         self.conn = sqlite3.connect("data.sqlite")
@@ -113,20 +140,26 @@ class RegisterScreen(Screen):
         phone = self.ids.phone_number.text
         password = self.ids.register_password.text
         verify = self.ids.verify.text
-        if password != verify:
+        p = PasswordHasher()
+        register = p.hash(self.ids.register_password.text)
+        print(register)
+        verifypassword = p.hash(self.ids.verify.text)
+        print(verifypassword)
+        if p.verify(register, verify) == None:
             self.ids.verify.error = True
             self.ids.register_password.error = True
-        if password == verify:
+        elif p.verify(register, verify):
             self.ids.verify.error = False
             self.ids.register_password.error = False
         if len(email) or len(phone) or len(password) or len(verify) == 0:
-            print("asdf")
+            # print("asdf")
+            pass
         # print(email, phone, password, verify)
         if self.ids.verify.error or self.ids.register_password.error or self.ids.email.error or self.ids.usernameregister.error or self.ids.phone_number.error:
             print("fail")
         else:
             self.cur.execute('''INSERT INTO Main (Username, Hash, Email, Phone) VALUES ("{}","{}","{}","{}")'''.format(
-                self.ids.usernameregister.text, "dummy", self.ids.email.text, self.ids.phone_number.text))
+                self.ids.usernameregister.text, register, self.ids.email.text, self.ids.phone_number.text))
             self.conn.commit()
             self.ids.verify.text = ''
             self.ids.register_password.text = ''
