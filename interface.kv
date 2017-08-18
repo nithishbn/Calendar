@@ -134,7 +134,7 @@ NavigationLayout:
                 font_size: '50'
                 write_tab: False
                 id: username
-                text: "Nithish"
+                # text: ""
                 required: True
                 pos_hint: {'top': 1}
                 hint_text: "Username"
@@ -148,7 +148,7 @@ NavigationLayout:
                 id: password
                 on_text_validate: root.login()
                 required: True
-                text: "password"
+                # text: "password"
                 hint_text: "Password"
                 helper_text: "Username or Password is incorrect"
                 helper_text_mode: "on_error"
@@ -212,7 +212,6 @@ NavigationLayout:
             helper_text_mode: "on_error"
             on_focus:
                 root.count = -1
-                print("asdfusername")
         MDTextField:
             multiline: False
             font_size: '25'
@@ -225,7 +224,6 @@ NavigationLayout:
             helper_text_mode: "on_error"
             on_focus:
                 root.count = 0
-                print("asdfemail")
         MDTextField:
             multiline: False
             font_size: '25'
@@ -238,7 +236,6 @@ NavigationLayout:
             helper_text_mode: "on_error"
             on_focus:
                 root.count = 1
-                print("asdfphone")
         MDTextField:
             multiline: False
             font_size: '25'
@@ -249,7 +246,6 @@ NavigationLayout:
             hint_text: "Password"
             on_focus:
                 softinput_mode = 'pan'
-                print("panned!")
         MDTextField:
             multiline: False
             font_size: '25'
@@ -262,7 +258,6 @@ NavigationLayout:
             helper_text_mode: "on_error"
             on_focus:
                 softinput_mode = 'pan'
-                print("panned!")
             on_text_validate:
                 root.manager.transition = NoTransition()
                 root.register()
