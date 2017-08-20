@@ -78,7 +78,7 @@ class RegisterScreen(Screen):
 
     def settext(self, *args):
         # if args == 'email':
-        print(self.count)
+        # print(self.count)
         self.emailvar = self.ids.email.text
         self.phonevar = self.ids.phone_number.text
         self.usernamevar = self.ids.usernameregister.text
@@ -89,7 +89,7 @@ class RegisterScreen(Screen):
                 # print(str(self.emailvar))
                 self.cur.execute('''SELECT key from Main where Email = "{0}"'''.format(str(self.emailvar)))
                 results = self.cur.fetchall()
-                print(results)
+                # print(results)
                 if len(results) == 0:
                     self.ids.email.error = False
                     self.ids.email.focus = False
@@ -142,9 +142,9 @@ class RegisterScreen(Screen):
         verify = self.ids.verify.text
         p = PasswordHasher()
         register = p.hash(self.ids.register_password.text)
-        print(register)
+        # print(register)
         verifypassword = p.hash(self.ids.verify.text)
-        print(verifypassword)
+        # print(verifypassword)
         if p.verify(register, verify) == None:
             self.ids.verify.error = True
             self.ids.register_password.error = True

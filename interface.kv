@@ -123,15 +123,15 @@ NavigationLayout:
 <LoginScreen>:
     BoxLayout:
         BoxLayout:
-            pos_hint: {'top': 1}
+            pos_hint: {'top': 0.95}
             orientation: 'vertical'
             height: self.minimum_height
             size_hint_y: None
-            padding: 20
-            spacing: 20
+            padding: [25,0,25,0]
+            spacing: 25
             MDTextField:
                 multiline: False
-                font_size: '50'
+                font_size: '20'
                 write_tab: False
                 id: username
                 # text: ""
@@ -142,7 +142,7 @@ NavigationLayout:
                 helper_text_mode: "on_error"
             MDTextField:
                 multiline: False
-                font_size: '50'
+                font_size: '20'
                 password: True
                 write_tab: False
                 id: password
@@ -154,7 +154,7 @@ NavigationLayout:
                 helper_text_mode: "on_error"
     MDFlatButton:
         size_hint: None, None
-        pos_hint: {'center_y': 0.45, 'center_x': 0.5}
+        pos_hint: {'center_y': 0.55, 'center_x': 0.5}
         text: "Don't have an account yet? Make one!"
         theme_text_color: 'Secondary'
         # size: 3* dp(48), dp(48)
@@ -165,7 +165,7 @@ NavigationLayout:
     BoxLayout:
         orientation: 'vertical'
         size_hint: 0.88, 0.15
-        pos_hint: {'center_x': 0.5, 'center_y': 0.35}
+        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
         # canvas.before:
         #     Rectangle:
         #         size: self.size
@@ -179,6 +179,7 @@ NavigationLayout:
             text: "Submit"
             # size: 3 * dp(48), dp(48)
             opposite_colors: True
+            # font_style: 'Display1'
             pos_hint: {'center_y': 1,'right': 1}
             on_release:
                 # self.transition = NoTransition()
@@ -190,7 +191,7 @@ NavigationLayout:
         size_hint_y: 0.05
         text: "Register"
         font_style: 'Display1'
-        pos_hint: {'top': 0.95, 'center_x': 0.5}
+        pos_hint: {'top': 0.96, 'center_x': 0.5}
         halign: 'center'
         theme_text_color: 'Secondary'
     BoxLayout:
@@ -198,11 +199,11 @@ NavigationLayout:
         orientation: 'vertical'
         height: self.minimum_height
         size_hint_y: None
-        padding: 20
-        # spacing: 20
+        padding: [20,0,20,0]
+        spacing: 20
         MDTextField:
             multiline: False
-            font_size: '25'
+            font_size: '20'
             write_tab: False
             id: usernameregister
             required: True
@@ -214,7 +215,7 @@ NavigationLayout:
                 root.count = -1
         MDTextField:
             multiline: False
-            font_size: '25'
+            font_size: '20'
             write_tab: False
             id: email
             required: True
@@ -226,7 +227,7 @@ NavigationLayout:
                 root.count = 0
         MDTextField:
             multiline: False
-            font_size: '25'
+            font_size: '20'
             write_tab: False
             id: phone_number
             required: True
@@ -238,7 +239,7 @@ NavigationLayout:
                 root.count = 1
         MDTextField:
             multiline: False
-            font_size: '25'
+            font_size: '20'
             password: True
             write_tab: False
             id: register_password
@@ -248,7 +249,7 @@ NavigationLayout:
                 softinput_mode = 'pan'
         MDTextField:
             multiline: False
-            font_size: '25'
+            font_size: '20'
             password: True
             write_tab: False
             id: verify
@@ -269,7 +270,7 @@ NavigationLayout:
         rows: 1
         cols: 2
         spacing: 10
-        pos_hint: {'center_x': 0.55, 'bottom': 0.95}
+        pos_hint: {'center_x': 0.55, 'y': 0.05}
         size_hint: 0.25, 0.1
         MDRaisedButton:
             text: "Back"
