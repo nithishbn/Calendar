@@ -1,16 +1,17 @@
 import sqlite3
 import datetime
 from random import random, randint
-
 from argon2 import PasswordHasher
 from kivy.animation import Animation
 from kivy.app import App
 from kivy.core.window import Window
+from kivy.factory import Factory
 from kivy.properties import StringProperty, Clock, ListProperty, NumericProperty, ObjectProperty
 from kivy.uix.screenmanager import Screen, ScreenManager, NoTransition
 from kivy.uix.scrollview import ScrollView
 # from argon2 import PasswordHasher
 from kivymd.button import MDIconButton
+from kivymd.textfields import TextInput
 from kivymd.date_picker import MDDatePicker
 from kivymd.list import ILeftBodyTouch
 from kivymd.theming import ThemeManager
@@ -21,12 +22,18 @@ import os
 
 
 class LoginScreen(Screen):
+    count = 0
+
     def register(self):
         self.manager.current = "RegisterScreen"
 
     def on_enter(self, *args):
         super(LoginScreen, self).on_enter(*args)
-        print("Login")
+        if self.count > 0:
+            self.ids.username.error = False
+            self.ids.username.text = ''
+            self.ids.password.error = False
+            self.ids.password.text = ''
 
     def onBackBtn(self, **kwargs):
         super(LoginScreen, self).onBackBtn(**kwargs)
@@ -37,7 +44,6 @@ class LoginScreen(Screen):
         password = self.ids.password.text
         # self.manager.current = "MenuScreen"
         if len(username) == 0:
-            # self.ids.password.error = True
             self.ids.username.error = True
             self.ids.username.focus = False
             self.ids.username.focus = True
@@ -45,19 +51,16 @@ class LoginScreen(Screen):
             conn = sqlite3.connect("data.sqlite")
             cur = conn.cursor()
             try:
-                cur.execute('''SELECT Hash from Main WHERE Username = ?''', (username,))
+                cur.execute('''SELECT Hash FROM users WHERE Username = ?''', (username,))
                 returnedhash = cur.fetchone()[0]
                 p = PasswordHasher()
                 isitquestion = p.verify(returnedhash, password)
                 if isitquestion:
                     self.manager.current = "MenuScreen"
             except:
-                self.ids.username.error = True
-                self.ids.username.focus = True
-                # self.ids.password.error = True
-                # self.ids.password.focus = True
-                self.ids.username.focus = False
-                # self.ids.password.focus = False
+                self.ids.password.error = True
+                self.ids.password.focus = True
+                self.ids.password.focus = False
 
 
 class RegisterScreen(Screen):
@@ -87,7 +90,7 @@ class RegisterScreen(Screen):
                 self.ids.email.error = False
             else:
                 # print(str(self.emailvar))
-                self.cur.execute('''SELECT key from Main where Email = "{0}"'''.format(str(self.emailvar)))
+                self.cur.execute('''SELECT key FROM users WHERE Email = ?''', (self.emailvar,))
                 results = self.cur.fetchall()
                 # print(results)
                 if len(results) == 0:
@@ -103,7 +106,7 @@ class RegisterScreen(Screen):
             if len(self.ids.phone_number.text) == 0:
                 self.ids.phone_number.error = False
             else:
-                self.cur.execute('''SELECT key from Main where Phone = "{0}"'''.format(str(self.phonevar)))
+                self.cur.execute('''SELECT key FROM users WHERE Phone = ?''', (str(self.phonevar),))
                 results2 = self.cur.fetchall()
                 if len(results2) == 0:
                     self.ids.phone_number.error = False
@@ -114,15 +117,13 @@ class RegisterScreen(Screen):
                     self.ids.phone_number.focus = False
                     self.ids.phone_number.focus = True
         elif self.count < 0:
-
             if len(self.ids.usernameregister.text) == 0:
                 self.ids.usernameregister.error = False
                 self.ids.usernameregister.focus = False
                 self.ids.usernameregister.focus = True
             else:
-                self.cur.execute('''SELECT key from Main where Username = "{0}"'''.format(str(self.usernamevar)))
+                self.cur.execute('''SELECT key FROM users WHERE Username = ?''', (str(self.usernamevar),))
                 results3 = self.cur.fetchall()
-                print("database fetch:", results3)
                 if len(results3) == 0:
                     self.ids.usernameregister.error = False
                     self.ids.usernameregister.focus = False
@@ -140,36 +141,36 @@ class RegisterScreen(Screen):
         phone = self.ids.phone_number.text
         password = self.ids.register_password.text
         verify = self.ids.verify.text
-        p = PasswordHasher()
-        register = p.hash(self.ids.register_password.text)
-        # print(register)
-        verifypassword = p.hash(self.ids.verify.text)
-        # print(verifypassword)
-        if p.verify(register, verify) == None:
-            self.ids.verify.error = True
-            self.ids.register_password.error = True
-        elif p.verify(register, verify):
-            self.ids.verify.error = False
-            self.ids.register_password.error = False
+        # self.remove_widget(self.ids.err)
         if len(email) or len(phone) or len(password) or len(verify) == 0:
-            # print("asdf")
-            pass
-        # print(email, phone, password, verify)
-        if self.ids.verify.error or self.ids.register_password.error or self.ids.email.error or self.ids.usernameregister.error or self.ids.phone_number.error:
-            print("fail")
+            w = Factory.MDLabel(id="err", text="Error!")
+            self.add_widget(w)
         else:
-            self.cur.execute('''INSERT INTO Main (Username, Hash, Email, Phone) VALUES ("{}","{}","{}","{}")'''.format(
-                self.ids.usernameregister.text, register, self.ids.email.text, self.ids.phone_number.text))
-            self.conn.commit()
-            self.ids.verify.text = ''
-            self.ids.register_password.text = ''
-            self.ids.phone_number.text = ''
-            self.ids.usernameregister.text = ''
-            self.ids.email.text = ''
-            self.emailvar = ''
-            self.phonevar = ''
-            self.usernamevar = ''
-            self.manager.current = "LoginScreen"
+            p = PasswordHasher()
+            register = p.hash(self.ids.register_password.text)
+            if p.verify(register, verify) == None:
+                self.ids.verify.error = True
+                self.ids.register_password.error = True
+            elif p.verify(register, verify):
+                self.ids.verify.error = False
+                self.ids.register_password.error = False
+
+            if self.ids.verify.error or self.ids.register_password.error or self.ids.email.error or self.ids.usernameregister.error or self.ids.phone_number.error:
+                print("fail")
+            else:
+                self.cur.execute(
+                    '''INSERT INTO users (Username, Hash, Email, Phone) VALUES ("{}","{}","{}","{}")'''.format(
+                        self.ids.usernameregister.text, register, self.ids.email.text, self.ids.phone_number.text))
+                self.conn.commit()
+                self.ids.verify.text = ''
+                self.ids.register_password.text = ''
+                self.ids.phone_number.text = ''
+                self.ids.usernameregister.text = ''
+                self.ids.email.text = ''
+                self.emailvar = ''
+                self.phonevar = ''
+                self.usernamevar = ''
+                self.manager.current = "LoginScreen"
 
     def cancel(self):
         self.ids.email.text = ""
@@ -187,6 +188,7 @@ class MenuScreen(Screen):
         super(MenuScreen, self).__init__(**kwargs)
         # self.screenlist.append("MenuScreen")
         print(self.screenlist)
+
         Window.bind(on_keyboard=self.onBackBtn)
 
     def onBackBtn(self, window, key, *args):
@@ -272,6 +274,7 @@ class GalleryScreen(Screen):
     lengthoflist = NumericProperty()
 
     def on_enter(self, *args):
+        print(self.manager)
         self.count = 0
         self.filenames = []
         for file in os.listdir("./images"):
@@ -301,8 +304,6 @@ class ContactScreen(Screen):
         super(ContactScreen, self).on_enter(*args)
 
     def call(self):
-        # tel = "4258020470"
-        print("asdfasdfasdf")
         call.makecall(tel="12062195330")
 
 
@@ -325,11 +326,11 @@ class TodayScreen(Screen):
         date = self.date
         print("search date function thing: ", date)
         # print(date)
-        conn = sqlite3.connect('calendar.sqlite')
+        conn = sqlite3.connect('data.sqlite')
         cur = conn.cursor()
         try:
             cur.execute(
-                '''SELECT date, S.Name, A.Name, R.Name, M.Name, P.Name, V.Name, T.Name FROM Main JOIN Samvatsaram S on Main.samvatsaram = S.SID JOIN Ayanam A on Main.ayanam = A.AID JOIN Rithu R on Main.rithu = R.RID JOIN Maasae M on Main.maasa = M.MID JOIN Pakshae P on Main.pakshae = P.PID JOIN Vaaram V on Main.Vaaram = V.VID JOIN Thithi T on Main.thithi = T.TID WHERE date = ?''',
+                '''SELECT date, S.Name, A.Name, R.Name, M.Name, P.Name, V.Name, T.Name FROM Calendar JOIN Samvatsaram S ON Calendar.samvatsaram = S.SID JOIN Ayanam A ON Calendar.ayanam = A.AID JOIN Rithu R ON Calendar.rithu = R.RID JOIN Maasae M ON Calendar.maasa = M.MID JOIN Pakshae P ON Calendar.pakshae = P.PID JOIN Vaaram V ON Calendar.Vaaram = V.VID JOIN Thithi T ON Calendar.thithi = T.TID WHERE date = ?''',
                 (date,))
             thing = cur.fetchone()
             print(thing)
@@ -359,6 +360,7 @@ class TodayScreen(Screen):
                     # print("Thithi:", query)
                     self.thithi = query
         except:
+            print("wat")
             self.manager.current = "DateScreen"
             # self.app.ids.datething.error = True
             # self.ids.datething.text = " "
