@@ -1,24 +1,16 @@
 import sqlite3
 import datetime
-from random import random, randint
-from argon2 import PasswordHasher
 from kivy.animation import Animation
 from kivy.app import App
 from kivy.core.window import Window
-from kivy.factory import Factory
-from kivy.properties import StringProperty, Clock, ListProperty, NumericProperty, ObjectProperty
-from kivy.uix.screenmanager import Screen, ScreenManager, NoTransition
+from kivy.properties import StringProperty, Clock, ListProperty, NumericProperty
+from kivy.uix.screenmanager import Screen
 from kivy.uix.scrollview import ScrollView
-# from argon2 import PasswordHasher
-from kivymd.button import MDIconButton
-from kivymd.textfields import TextInput
 from kivymd.date_picker import MDDatePicker
-from kivymd.list import ILeftBodyTouch
 from kivymd.theming import ThemeManager
 from plyer import call
-import requests
-# from bs4 import BeautifulSoup
 import os
+from passlib.hash import argon2
 
 
 class LoginScreen(Screen):
@@ -53,8 +45,8 @@ class LoginScreen(Screen):
             try:
                 cur.execute('''SELECT Hash FROM users WHERE Username = ?''', (username,))
                 returnedhash = cur.fetchone()[0]
-                p = PasswordHasher()
-                isitquestion = p.verify(returnedhash, password)
+
+                isitquestion = argon2.verify(password, returnedhash)
                 if isitquestion:
                     self.manager.current = "MenuScreen"
             except:
@@ -141,36 +133,35 @@ class RegisterScreen(Screen):
         phone = self.ids.phone_number.text
         password = self.ids.register_password.text
         verify = self.ids.verify.text
-        # self.remove_widget(self.ids.err)
-        if len(email) or len(phone) or len(password) or len(verify) == 0:
-            w = Factory.MDLabel(id="err", text="Error!")
-            self.add_widget(w)
+        register = argon2.hash(self.ids.register_password.text)
+        if not argon2.verify(verify, register):
+            self.ids.verify.error = True
+            self.ids.register_password.error = True
         else:
-            p = PasswordHasher()
-            register = p.hash(self.ids.register_password.text)
-            if p.verify(register, verify) == None:
-                self.ids.verify.error = True
-                self.ids.register_password.error = True
-            elif p.verify(register, verify):
-                self.ids.verify.error = False
-                self.ids.register_password.error = False
+            self.ids.verify.error = False
+            self.ids.register_password.error = False
 
-            if self.ids.verify.error or self.ids.register_password.error or self.ids.email.error or self.ids.usernameregister.error or self.ids.phone_number.error:
-                print("fail")
-            else:
-                self.cur.execute(
-                    '''INSERT INTO users (Username, Hash, Email, Phone) VALUES ("{}","{}","{}","{}")'''.format(
-                        self.ids.usernameregister.text, register, self.ids.email.text, self.ids.phone_number.text))
-                self.conn.commit()
-                self.ids.verify.text = ''
-                self.ids.register_password.text = ''
-                self.ids.phone_number.text = ''
-                self.ids.usernameregister.text = ''
-                self.ids.email.text = ''
-                self.emailvar = ''
-                self.phonevar = ''
-                self.usernamevar = ''
-                self.manager.current = "LoginScreen"
+        if self.ids.verify.error or self.ids.register_password.error or self.ids.email.error or self.ids.usernameregister.error or self.ids.phone_number.error:
+            print(self.ids.verify.error)
+            print(self.ids.register_password.error)
+            print(self.ids.email.error)
+            print(self.ids.usernameregister.error)
+            print(self.ids.phone_number.error)
+            print("fail")
+        else:
+            self.cur.execute(
+                '''INSERT INTO users (Username, Hash, Email, Phone) VALUES ("{}","{}","{}","{}")'''.format(
+                    self.ids.usernameregister.text, register, self.ids.email.text, self.ids.phone_number.text))
+            self.conn.commit()
+            self.ids.verify.text = ''
+            self.ids.register_password.text = ''
+            self.ids.phone_number.text = ''
+            self.ids.usernameregister.text = ''
+            self.ids.email.text = ''
+            self.emailvar = ''
+            self.phonevar = ''
+            self.usernamevar = ''
+            self.manager.current = "LoginScreen"
 
     def cancel(self):
         self.ids.email.text = ""
