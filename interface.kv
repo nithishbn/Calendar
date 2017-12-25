@@ -18,15 +18,63 @@
 #:import OneLineIconListItem kivymd.list.OneLineIconListItem
 #:import SmartTile kivymd.grid.SmartTile
 #: import softinput_mode kivy.core.window.Window
-NavigationLayout:
-    pos_hint: {'top': 1}
+Navigation:
+    ScreenManager:
+        id: sm
+        # LoginScreen:
+        #     name: 'LoginScreen'
+        #     id: login
+        #     # transition: NoTransition
+        # RegisterScreen:
+        #     name: 'RegisterScreen'
+        #     id: register
+        #     transition: NoTransition
+
+        MenuScreen:
+            name: 'MenuScreen'
+            id: menu
+            manager: sm
+            transition: NoTransition
+
+        DateScreen:
+            name: 'DateScreen'
+            id: date
+            manager: sm
+            transition: "NoTransition"
+            screenlist: menu.screenlist
+
+        TodayScreen:
+            name: 'TodayScreen'
+            id: today
+            manager: sm
+            date: date.date
+            transition: NoTransition
+            screenlist: menu.screenlist
+
+        ConstructionScreen:
+            name: 'ConstructionScreen'
+            id: construction
+            manager: sm
+            transition: "NoTransition"
+            screenlist: menu.screenlist
+
+        ContactScreen:
+            name: 'ContactScreen'
+            id: contact
+            manager: sm
+            transition: "NoTransition"
+            screenlist: menu.screenlist
+
+        GalleryScreen:
+            name: 'GalleryScreen'
+            id: gallery
+            manager: sm
+            screenlist: menu.screenlist
+
+
+<Navigation>:
     id: nav_layout
-    # canvas:
-    #     Rectangle:
-    #         size: self.size
-    #         pos: self.pos
-    #     Color:
-    #         rgba: 1, 1, 1, 0.2
+    pos_hint: {'top': 1}
     MDNavigationDrawer:
         pos_hint: {'top': 1}
         id: nav_drawer
@@ -71,55 +119,6 @@ NavigationLayout:
             text: 'Donate'
             active_color_type: 'accent'
             on_release: webbrowser.open("https://www.lvtemple.org/new-donations/", autoraise=True)
-
-    ScreenManager:
-        id: sm
-        LoginScreen:
-            name: 'LoginScreen'
-            id: login
-            manager: sm
-            # transition: NoTransition
-        RegisterScreen:
-            name: 'RegisterScreen'
-            id: register
-            manager: sm
-            transition: NoTransition
-        MenuScreen:
-            name: 'MenuScreen'
-            id: menu
-            manager: sm
-            transition: NoTransition
-        DateScreen:
-            name: 'DateScreen'
-            id: date
-            manager: sm
-            transition: "NoTransition"
-            screenlist: menu.screenlist
-        TodayScreen:
-            name: 'TodayScreen'
-            id: today
-            manager: sm
-            date: date.date
-            transition: NoTransition
-            screenlist: menu.screenlist
-        ConstructionScreen:
-            name: 'ConstructionScreen'
-            id: construction
-            manager: sm
-            transition: "NoTransition"
-            screenlist: menu.screenlist
-        ContactScreen:
-            name: 'ContactScreen'
-            id: contact
-            manager: sm
-            transition: "NoTransition"
-            screenlist: menu.screenlist
-        GalleryScreen:
-            name: 'GalleryScreen'
-            id: gallery
-            manager: sm
-            screenlist: menu.screenlist
-
 <LoginScreen>:
     BoxLayout:
         BoxLayout:
@@ -182,8 +181,6 @@ NavigationLayout:
             # font_style: 'Display1'
             pos_hint: {'center_y': 1,'right': 1}
             on_release:
-                # self.transition = NoTransition()
-                root.manager.transition = NoTransition()
                 root.login()
         # padding: 15
 <RegisterScreen>:
@@ -284,85 +281,13 @@ NavigationLayout:
                 root.manager.transition = NoTransition()
                 root.register()
 
-        # MDRaisedButton:
-        #     # size_hint: 0.1, 0.65
-        #     # size_hint: 0.10, None
-        #     size_hint: None, None
-        #     text: "Cancel"
-        #     # size: 3 * dp(48), dp(48)
-        #     opposite_colors: True
-        #     pos_hint: {'center_y': 1, 'right': 0.70}
-        #     on_release:
-        #         root.manager.transition = NoTransition()
-        #         root.cancel()
-        # MDRaisedButton:
-        #     # size_hint: 0.1, 0.65
-        #     # size_hint: 0.10, None
-        #     size_hint: None, None
-        #     text: "Submit"
-        #     # size: 3 * dp(48), dp(48)
-        #     opposite_colors: True
-        #     pos_hint: {'center_y': 1,'right': 1}
-        #     on_release:
-        #         root.manager.transition = NoTransition()
-        #         root.register()
-
-    # BoxLayout:
-    #     orientation: 'vertical'
-    #     size_hint: 0.88, 0.15
-    #     pos_hint: {'center_x': 0.5, 'center_y': 0.20}
-    #     # canvas.before:
-    #     #     Rectangle:
-    #     #         size: self.size
-    #     #         pos: self.pos
-    #     #     Color:
-    #     #         rgba: 1, 1, 0, 1
-    #     MDRaisedButton:
-    #         # size_hint: 0.1, 0.65
-    #         # size_hint: 0.10, None
-    #         size_hint: None, None
-    #         text: "Submit"
-    #         # size: 3 * dp(48), dp(48)
-    #         opposite_colors: True
-    #         pos_hint: {'center_y': 1,'right': 1}
-    #         on_release:
-    #             root.manager.transition = NoTransition()
-    #             root.register()
-    # BoxLayout:
-    #     orientation: 'vertical'
-    #     size_hint: 0.88, 0.15
-    #     pos_hint: {'center_x': 0.36, 'center_y': 0.20}
-    #     # canvas.before:
-    #     #     Rectangle:
-    #     #         size: self.size
-    #     #         pos: self.pos
-    #     #     Color:
-    #     #         rgba: 1, 1, 0, 1
-    #     MDRaisedButton:
-    #         # size_hint: 0.1, 0.65
-    #         # size_hint: 0.10, None
-    #         size_hint: None, None
-    #         text: "Cancel"
-    #         # size: 3 * dp(48), dp(48)
-    #         opposite_colors: True
-    #         pos_hint: {'center_y': 1,'right': 1}
-    #         on_release:
-    #             root.manager.transition = NoTransition()
-    #             root.cancel()
 <MenuScreen>:
+
     BoxLayout:
         orientation: 'vertical'
         BoxLayout:
             size_hint_y: 0.2
-            Toolbar:
-                pos_hint: {'top': 1}
-
-                id: toolbar
-                title: 'SVETA Temple'
-                md_bg_color: app.theme_cls.primary_color
-                background_palette: 'Primary'
-                background_hue: '500'
-                left_action_items: [['menu', lambda x: app.root.toggle_nav_drawer()]]
+            AToolbar
         RelativeLayout:
             orientation: 'vertical'
             MDCard:
@@ -406,18 +331,13 @@ NavigationLayout:
 <GalleryScreen>:
     BoxLayout:
         orientation: 'vertical'
+
         # size_hint_y: None
         # spacing: 40
         pos_hint: {'top': 1}
-        Toolbar:
-            pos_hint: {'top': 1}
-            size_hint_y: None
-            id: toolbar
-            title: 'SVETA Temple'
-            md_bg_color: app.theme_cls.primary_color
-            background_palette: 'Primary'
-            background_hue: '500'
-            left_action_items: [['menu', lambda x: app.root.toggle_nav_drawer()]]
+        BoxLayout:
+            size_hint_y:0.2
+            AToolbar
         RelativeLayout:
             pos_hint: {'top': 0.95}
             Image:
@@ -442,38 +362,20 @@ NavigationLayout:
                 text: str(root.count + 1) + "/" + str(root.lengthoflist + 1)
                 pos_hint: {'x': 0.1}
 
-# <Gallery>:
-#     ScrollView:
-#
+
 <DateScreen>:
 
     BoxLayout:
         orientation: 'vertical'
-        # size_hint_y: None
+
         spacing: 40
         pos_hint: {'top': 1}
-        Toolbar:
-            pos_hint: {'top': 1}
-            size_hint_y: None
-            id: toolbar
-            title: 'SVETA Temple'
-            md_bg_color: app.theme_cls.primary_color
-            background_palette: 'Primary'
-            background_hue: '500'
-            left_action_items: [['menu', lambda x: app.root.toggle_nav_drawer()]]
-
-        # BoxLayout:
-        #     pos_hint: {'top': 0.85}
-        #     size_hint_y: 0.5
+        BoxLayout:
+            size_hint_y: 0.2
+            AToolbar
         RelativeLayout:
             orientation: 'vertical'
             spacing: 100
-            # size_hint_y: 0.95
-            # pos_hint: {'y': 0.6}
-            # BoxLayout:
-            #     # orientation: 'vertical'
-            #     pos_hint: {'top': 1}
-            #     size_hint_y: None
             MDLabel:
                 text: "Enter Date for details"
                 pos_hint: {'top': 1}
@@ -508,21 +410,12 @@ NavigationLayout:
                     on_press: root.selectdate()
 
 <TodayScreen>:
-    on_pre_enter:
-        root.search()
+    Navigation
     BoxLayout:
         orientation: 'vertical'
         BoxLayout:
             size_hint_y: 0.2
-            Toolbar:
-                pos_hint: {'top': 1}
-
-                id: toolbar
-                title: 'SVETA Temple'
-                md_bg_color: app.theme_cls.primary_color
-                background_palette: 'Primary'
-                background_hue: '500'
-                left_action_items: [['menu', lambda x: app.root.toggle_nav_drawer()]]
+            AToolbar
     BoxLayout:
         orientation: 'vertical'
         # padding: 0, -30
@@ -616,58 +509,12 @@ NavigationLayout:
                         theme_text_color: 'Secondary'
                         # font_size: 25
                         halign: 'left'
-                # BoxLayout:
-                #     orientation: 'vertical'
-                #     pos_hint: {'top': 1}
-                #     MDLabel:
-                #         text: "Samvatsram"
-                #         size_hint: 0.5, 0.25
-                #         theme_text_color: 'Secondary'
-                #         pos_hint:{'x':0.25,'top':0.15}
-                #         font_size: 25
-                #     MDLabel:
-                #         text: "Avanam"
-                #         size_hint: 0.5, 0.25
-                #         pos_hint:{'x':0.25,'top':0.15}
-                #         theme_text_color: 'Secondary'
-                #         font_size: 25
-                #     MDLabel:
-                #         text: "Rithu"
-                #         size_hint: 0.5, 0.25
-                #         pos_hint:{'x':0.25,'top':0.15}
-                #         theme_text_color: 'Secondary'
-                #         font_size: 25
-                #     MDLabel:
-                #         text: "Maasae"
-                #         size_hint: 0.5, 0.25
-                #         pos_hint:{'x':0.25,'top':0.15}
-                #         theme_text_color: 'Secondary'
-                #         font_size: 25
-                #     MDLabel:
-                #         text: "Pakshae"
-                #         size_hint: 0.5, 0.25
-                #         pos_hint:{'x':0.25,'top':0.15}
-                #         theme_text_color: 'Secondary'
-                #         font_size: 25
-                #     MDLabel:
-                #         text: "Thithi"
-                #         size_hint: 0.5, 0.25
-                #         pos_hint:{'x':0.25,'top':0.15}
-                #         theme_text_color: 'Secondary'
-                #         font_size: 25
+
 <ContactScreen>:
+    Navigation
     BoxLayout:
         size_hint_y: 0.2
-        pos_hint: {'top': 1}
-        Toolbar:
-            pos_hint: {'top': 1}
-
-            id: toolbar
-            title: 'SVETA Temple'
-            md_bg_color: app.theme_cls.primary_color
-            background_palette: 'Primary'
-            background_hue: '500'
-            left_action_items: [['menu', lambda x: app.root.toggle_nav_drawer()]]
+        AToolbar
     RelativeLayout:
         pos_hint: {'top': 0.8, 'center_x': 0.5}
         # BoxLayout:
@@ -719,21 +566,13 @@ NavigationLayout:
 
 
 <ConstructionScreen>:
-
+    Navigation
 
     BoxLayout:
         orientation: 'vertical'
         BoxLayout:
             size_hint_y: 0.2
-            Toolbar:
-                pos_hint: {'top': 1}
-
-                id: toolbar
-                title: 'SVETA Temple'
-                md_bg_color: app.theme_cls.primary_color
-                background_palette: 'Primary'
-                background_hue: '500'
-                left_action_items: [['menu', lambda x: app.root.toggle_nav_drawer()]]
+            AToolbar
         MDLabel:
             pos_hint: {'center_x': 0.5, 'center_y': 0.5}
             halign: 'center'
@@ -757,7 +596,16 @@ NavigationLayout:
             text: "Today is a great day at the temple"
             width: self.texture_size[0]
             # font_style: 'Display2'
-            font_size: 50
+            font_size: 25
             # font_style: 'Title'
             color: [0, 0, 0, 1]
         Spacer:
+<AToolbar>:
+    pos_hint: {'top': 1}
+    size_hint_y: None
+    id: toolbar
+    title: 'SVETA Temple'
+    md_bg_color: app.theme_cls.primary_color
+    background_palette: 'Primary'
+    background_hue: '500'
+    left_action_items: [['menu', lambda x: app.root.toggle_nav_drawer()]]

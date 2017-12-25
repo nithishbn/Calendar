@@ -4,19 +4,28 @@ from kivy.animation import Animation
 from kivy.app import App
 from kivy.core.window import Window
 from kivy.properties import StringProperty, Clock, ListProperty, NumericProperty
-from kivy.uix.screenmanager import Screen
+from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.uix.scrollview import ScrollView
+from kivy.uix.widget import Widget
 from kivymd.date_picker import MDDatePicker
+from kivymd.navigationdrawer import NavigationLayout
+
 from kivymd.theming import ThemeManager
+from kivymd.toolbar import Toolbar
 from plyer import call
 import os
 from passlib.hash import argon2
+
+
+class Navigation(NavigationLayout):
+    pass
 
 
 class LoginScreen(Screen):
     count = 0
 
     def register(self):
+        print(self.manager)
         self.manager.current = "RegisterScreen"
 
     def on_enter(self, *args):
@@ -42,17 +51,18 @@ class LoginScreen(Screen):
         else:  # username exists in textbox
             conn = sqlite3.connect("data.sqlite")
             cur = conn.cursor()
-            try:
-                cur.execute('''SELECT Hash FROM users WHERE Username = ?''', (username,))
-                returnedhash = cur.fetchone()[0]
 
-                isitquestion = argon2.verify(password, returnedhash)
-                if isitquestion:
-                    self.manager.current = "MenuScreen"
-            except:
+            cur.execute('''SELECT Hash FROM users WHERE Username = ?''', (username,))
+            returnedhash = cur.fetchone()
+            if len(returnedhash) == 0:
+                print("hi there")
                 self.ids.password.error = True
                 self.ids.password.focus = True
                 self.ids.password.focus = False
+            else:
+                isitquestion = argon2.verify(password, returnedhash[0])
+                if isitquestion:
+                    self.manager.current = "MenuScreen"
 
 
 class RegisterScreen(Screen):
@@ -196,9 +206,10 @@ class MenuScreen(Screen):
                 else:
                     return False
 
-    def on_enter(self):
+    def on_enter(self, *args):
         super(MenuScreen, self).on_enter()
-        self.ids.scrolllabelthing.update_self()
+        print(self.ids)
+        # self.scrolllabelthing.update_self()
 
     def on_leave(self, *args):
         self.screenlist.append("MenuScreen")
@@ -311,8 +322,12 @@ class TodayScreen(Screen):
     date = StringProperty('')
     screenlist = ListProperty([])
 
+    def on_pre_enter(self, *args):
+        self.search()
+
     # DO NOT TOUCH THIS AT ALL
     # if you do, you will be decimated by Nithish Narasimman idk though
+
     def search(self):
         date = self.date
         print("search date function thing: ", date)
@@ -376,17 +391,13 @@ class ScrollLabel(ScrollView):
         if self.collide_point(*touch.pos):
             return 0
 
-
-# class ScreenManager(ScreenManager):
-#     def toggle_nav_drawer(self):
-#         self.toggle_state()
+class AToolbar(Toolbar):
+    pass
 class InterfaceApp(App):
     theme_cls = ThemeManager()
     title = "SVETA Temple"
 
     def build(self):
-        # print(self.theme_cls.
-        # self.theme_cls.theme_style = 'Dark'
         pass
 
     def on_pause(self):
