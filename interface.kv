@@ -41,6 +41,7 @@ Navigation:
             date: date.date
             transition: NoTransition
             screenlist: menu.screenlist
+            count: date.count
 
         ConstructionScreen:
             name: 'ConstructionScreen'
@@ -195,52 +196,28 @@ Navigation:
 
 
 <DateScreen>:
-
     BoxLayout:
         orientation: 'vertical'
-
-        spacing: 40
+        # spacing: 15
         pos_hint: {'top': 1}
         BoxLayout:
             size_hint_y: 0.2
             AToolbar
         RelativeLayout:
-            orientation: 'vertical'
-            spacing: 100
-            MDLabel:
-                text: "Enter Date for details"
-                pos_hint: {'top': 1}
-                font_style: 'Display1'
-                theme_text_color: 'Primary'
-                halign: 'center'
-                size_hint_y: None
-            BoxLayout:
-                orientation: 'vertical'
-                pos_hint: {'top': 0.80, 'center_x': 0.5}
-                size_hint_y: None
-                size_hint_x: 0.85
-                # size: root.size
-                MDTextField:
-                    # text: root.figuretime()
-                    write_tab: False
-                    multiline: False
-                    id: datething
-                    font_size: 25
-                    size_hint: 0.55, None
-                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                    # on_text_validate: root.selectdate()
-                    on_focus:
-                        root.focus = False
-                        root.show_date_picker()
-                MDRaisedButton:
-                    font_size: 35
-                    size_hint: None, None
-                    font_style: 'Icon'
-                    pos_hint: {'right': 0.775}
-                    text: "Submit"
-                    on_press: root.selectdate()
+            MDCard:
+                size_hint: 0.90, 0.85
+                pos_hint: {'center_x':0.5,'top':1}
+                BoxLayout:
+                    MDLabel:
+                        text: "hello there!"
+
+            MDRaisedButton:
+                pos_hint: {'center_x':0.5, 'center_y':0.75}
+                text: "Show Calendar"
+                on_press: root.show_date_picker()
 
 <TodayScreen>:
+
     Navigation
     BoxLayout:
         orientation: 'vertical'

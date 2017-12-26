@@ -4,17 +4,14 @@ from kivy.animation import Animation
 from kivy.app import App
 from kivy.core.window import Window
 from kivy.properties import StringProperty, Clock, ListProperty, NumericProperty
-from kivy.uix.screenmanager import Screen, ScreenManager
+from kivy.uix.screenmanager import Screen
 from kivy.uix.scrollview import ScrollView
-from kivy.uix.widget import Widget
 from kivymd.date_picker import MDDatePicker
 from kivymd.navigationdrawer import NavigationLayout
-
 from kivymd.theming import ThemeManager
 from kivymd.toolbar import Toolbar
 from plyer import call
 import os
-# from passlib.hash import argon2
 
 
 class Navigation(NavigationLayout):
@@ -22,16 +19,15 @@ class Navigation(NavigationLayout):
 
 
 class MenuScreen(Screen):
-    screenlist = ListProperty([])
+    screenlist = ListProperty()
 
     def __init__(self, **kwargs):
         super(MenuScreen, self).__init__(**kwargs)
-        # self.screenlist.append("MenuScreen")
         print(self.screenlist)
 
         Window.bind(on_keyboard=self.onBackBtn)
 
-    def onBackBtn(self, window, key, *args):
+    def onBackBtn(self, window, key,*args):
         if key == 27:
             print("onBackBtn function call", self.screenlist)
             if self.manager.current == "LoginScreen" or self.manager.current == "RegisterScreen":
@@ -48,7 +44,6 @@ class MenuScreen(Screen):
     def on_enter(self, *args):
         super(MenuScreen, self).on_enter()
         print(self.ids)
-        # self.scrolllabelthing.update_self()
 
     def on_leave(self, *args):
         self.screenlist.append("MenuScreen")
@@ -58,59 +53,46 @@ class MenuScreen(Screen):
 class DateScreen(Screen):
     date = StringProperty('')
     otherdate = StringProperty('')
-    screenlist = ListProperty
+    screenlist = ListProperty()
     count = 0
 
     def __init__(self, **kwargs):
-        screenlist = self.screenlist
+        # screenlist = self.screenlist
         super(DateScreen, self).__init__(**kwargs)
+
+    def on_enter(self, *args):
+        self.show_date_picker()
 
     def set_previous_date(self, date_obj):
         self.previous_date = date_obj
-        # print(date_obj)
         dt = datetime.datetime.strptime(str(date_obj), '%Y-%m-%d')
-        # print("dt", dt)
-        actualdate = '{0}/{1}/{2:02}'.format(dt.month, dt.day, dt.year % 100)
-        # print(actualdate)
-        # print(self.previous_date)
-        self.ids.datething.text = actualdate
-        self.date = str(actualdate)
-        self.count -= 1
+        actualDate = '{0}-{1}-{2}'.format(dt.day, dt.strftime("%b"), dt.year % 100)
+        self.date = str(actualDate)
         self.selectdate()
-        # self.root.ids.date_picker_label.text = str(date_obj)
 
     def show_date_picker(self):
-        # self.focus = False
-        if self.count == 0:
-            self.count += 1
+        if self.count != -1:
             MDDatePicker(self.set_previous_date).open()
             # self.count -= 1
         else:
+            print("nope")
             return True
             # MDDatePicker(self.set_previous_date).open()
 
     def selectdate(self):
-        # self.date = self.ids.datething.text
-        print(self.ids.datething.text)
         if self.manager.current not in self.screenlist:
             self.screenlist.append(self.manager.current)
-        # print("date selection", self.screenlist)
         self.manager.current = "TodayScreen"
-
-    def figuretime(self):
-        dt = datetime.datetime.strptime(str(datetime.date.today()), '%Y-%m-%d')
-        actualdate = '{0}/{1}/{2:02}'.format(dt.month, dt.day, dt.year % 100)
-        return actualdate
 
 
 class ConstructionScreen(Screen):
-    screenlist = ListProperty([])
+    screenlist = ListProperty()
 
 
 class GalleryScreen(Screen):
-    screenlist = ListProperty([])
+    screenlist = ListProperty()
     imagefile = StringProperty("./images/2014-10-01-01.00.23.jpg")
-    filenames = ListProperty([])
+    filenames = ListProperty()
     count = NumericProperty(0)
     lengthoflist = NumericProperty()
 
@@ -139,7 +121,7 @@ class GalleryScreen(Screen):
 
 
 class ContactScreen(Screen):
-    screenlist = ListProperty([])
+    screenlist = ListProperty()
 
     def on_enter(self, *args):
         super(ContactScreen, self).on_enter(*args)
@@ -150,7 +132,6 @@ class ContactScreen(Screen):
 
 # call.dialcall()
 class TodayScreen(Screen):
-    # screenlist = ListProperty([])
     samva = StringProperty('')
     avanam = StringProperty('')
     rithu = StringProperty('')
@@ -159,10 +140,15 @@ class TodayScreen(Screen):
     thithi = StringProperty('')
     vara = StringProperty('')
     date = StringProperty('')
-    screenlist = ListProperty([])
+    screenlist = ListProperty()
+    count = NumericProperty()
 
     def on_pre_enter(self, *args):
-        self.search()
+        self.count = 0
+        success = self.search()
+        if success == -1:
+            self.count += 1
+            self.manager.current = "DateScreen"
 
     # DO NOT TOUCH THIS AT ALL
     # if you do, you will be decimated by Nithish Narasimman idk though
@@ -170,45 +156,48 @@ class TodayScreen(Screen):
     def search(self):
         date = self.date
         print("search date function thing: ", date)
-        # print(date)
         conn = sqlite3.connect('data.sqlite')
         cur = conn.cursor()
-        try:
-            cur.execute(
-                '''SELECT date, S.Name, A.Name, R.Name, M.Name, P.Name, V.Name, T.Name FROM Calendar JOIN Samvatsaram S ON Calendar.samvatsaram = S.SID JOIN Ayanam A ON Calendar.ayanam = A.AID JOIN Rithu R ON Calendar.rithu = R.RID JOIN Maasae M ON Calendar.maasa = M.MID JOIN Pakshae P ON Calendar.pakshae = P.PID JOIN Vaaram V ON Calendar.Vaaram = V.VID JOIN Thithi T ON Calendar.thithi = T.TID WHERE date = ?''',
-                (date,))
-            thing = cur.fetchone()
-            print(thing)
+
+        cur.execute(
+            '''SELECT
+Date,
+S.Samvatsaram,
+A.Ayanam,
+R.Rithu,
+M.TamilMaasa,
+V.Vaaram,
+T.Thithi,
+N.Nakshatra,
+C.Notes1,
+C.Notes2,
+C.Notes3,
+C.Notes4
+FROM Calendar2018 C, Samvatsaram S, Ayanam A, Rithu R, TamilMaasa M, Vaaram V, Thithi T, Nakshatra N
+WHERE date = ? AND S.ID =
+                        C.samvatsaram AND A.ID = C.ayanam AND R.ID = C.rithu AND M.ID = C.TamilMaasa AND
+  V.ID = C.vaaram AND T.ID = C.Thithi1 AND N.ID = C.Nakshtra1''',
+            (date,))
+        thing = cur.fetchone()
+        print(thing)
+        if thing is None:
+            return -1
+        else:
             for query in thing:
-                if query == thing[0]:
-                    # print("Date:", query)
-                    pass
-                elif query == thing[1]:
-                    # print("Samvatsaramam:", query)
+                if query == thing[1]:
                     self.samva = query
                 elif query == thing[2]:
-                    # print("Ayanam:", query)
                     self.avanam = query
                 elif query == thing[3]:
-                    # print("Rithu:", query)
                     self.rithu = query
                 elif query == thing[4]:
-                    # print("Maasae:", query)
                     self.maasae = query
                 elif query == thing[5]:
-                    # print("Pakshae:", query)
                     self.pakshae = query
                 elif query == thing[6]:
-                    # print("Day:", query)
                     self.vara = query
                 elif query == thing[7]:
-                    # print("Thithi:", query)
                     self.thithi = query
-        except:
-            print("wat")
-            self.manager.current = "DateScreen"
-            # self.app.ids.datething.error = True
-            # self.ids.datething.text = " "
 
 
 class ScrollLabel(ScrollView):
@@ -230,8 +219,11 @@ class ScrollLabel(ScrollView):
         if self.collide_point(*touch.pos):
             return 0
 
+
 class AToolbar(Toolbar):
     pass
+
+
 class InterfaceApp(App):
     theme_cls = ThemeManager()
     title = "SVETA Temple"
