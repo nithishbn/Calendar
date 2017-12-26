@@ -1,12 +1,17 @@
 import sqlite3
-import datetime
+from datetime import datetime
 from kivy.animation import Animation
 from kivy.app import App
 from kivy.core.window import Window
+from kivy.metrics import dp
 from kivy.properties import StringProperty, Clock, ListProperty, NumericProperty
 from kivy.uix.screenmanager import Screen
 from kivy.uix.scrollview import ScrollView
+from kivymd.button import MDIconButton
 from kivymd.date_picker import MDDatePicker
+from kivymd.dialog import MDDialog
+from kivymd.label import MDLabel
+from kivymd.list import ILeftBodyTouch
 from kivymd.navigationdrawer import NavigationLayout
 from kivymd.theming import ThemeManager
 from kivymd.toolbar import Toolbar
@@ -19,7 +24,24 @@ class Navigation(NavigationLayout):
 
 
 class MenuScreen(Screen):
-    screenlist = ListProperty()
+    screenlist = ListProperty([])
+    samva = StringProperty('')
+    avanam = StringProperty('')
+    rithu = StringProperty('')
+    maasa = StringProperty('')
+    tmaasa = StringProperty('')
+    paksha = StringProperty('')
+    thithi = StringProperty('')
+    vara = StringProperty('')
+    date = StringProperty('')
+    nakshatra = StringProperty('')
+    nakshatraTime = StringProperty('')
+    nakshatra2 = StringProperty('')
+    nakshatra2Time = StringProperty('')
+    note1 = StringProperty('')
+    note2 = StringProperty('')
+    note3 = StringProperty('')
+    note4 = StringProperty('')
 
     def __init__(self, **kwargs):
         super(MenuScreen, self).__init__(**kwargs)
@@ -27,23 +49,110 @@ class MenuScreen(Screen):
 
         Window.bind(on_keyboard=self.onBackBtn)
 
-    def onBackBtn(self, window, key,*args):
+    def search(self):
+        date = datetime.today().strftime("%d-%b-%y")
+        conn = sqlite3.connect('data.sqlite')
+        cur = conn.cursor()
+
+        cur.execute(
+            '''SELECT
+    Date,
+    S.Samvatsaram,
+    A.Ayanam,
+    R.Rithu,
+    M.TamilMaasa,
+    TM.TeluguMaasa,
+    V.Vaaram,
+    T.Thithi,
+    N.Nakshatra,
+    C.Nakshtra1Time,
+    C.Nakshtra2Time,
+    C.Notes1,
+    C.Notes2,
+    C.Notes3,
+    C.Notes4
+    FROM Calendar2018 C, Samvatsaram S, Ayanam A, Rithu R, TamilMaasa M, TeluguMaasa TM, Vaaram V, Thithi T, Nakshatra N
+    WHERE date = ? AND S.ID =
+                            C.samvatsaram AND A.ID = C.ayanam AND R.ID = C.rithu AND M.ID = C.TamilMaasa AND TM.ID = C.TeluguMaasa AND
+      V.ID = C.vaaram AND T.ID = C.Thithi1 AND N.ID = C.Nakshtra1 ''',
+            (date,))
+        thing = cur.fetchone()
+        print(thing)
+        if thing is None:
+            print(self.ids)
+            self.samva = "null"
+            self.avanam = "null"
+            self.nakshatraTime = "null"
+            self.paksha = "null"
+            self.rithu = "null"
+            self.maasa = "null"
+            self.tmaasa = "null"
+            self.vara = "null"
+            self.thithi = "null"
+            self.nakshatraTime = "null"
+            self.nakshatra = "null"
+            self.nakshatra2Time = "null"
+            self.nakshatra2 = "null"
+
+        else:
+            self.samva = thing[1] + " nama samvatsarae"
+            self.avanam = thing[2]
+            self.rithu = thing[3] + "a rithu"
+            self.maasa = "Tamil Maasa: " + thing[4] + " maasae"
+            self.tmaasa = "Telugu Maasa: " + thing[5] + " maasae"
+            self.paksha = "heehee" + " paksha"
+            self.vara = thing[6]
+            self.thithi = thing[7] + " thithu"
+            self.nakshatraTime = thing[9]
+            self.nakshatra = thing[8] + " nakshatra starts at " + self.nakshatraTime
+            self.nakshatra2Time = thing[11]
+            self.nakshatra2 = thing[10] + " nakshatra starts at " + self.nakshatra2Time
+
+    def onBackBtn(self, window, key, *args):
         if key == 27:
             print("onBackBtn function call", self.screenlist)
-            if self.manager.current == "LoginScreen" or self.manager.current == "RegisterScreen":
+            if len(self.screenlist) != 0:
+                print("escaping")
+                self.manager.current = self.screenlist[len(self.screenlist) - 1]
+                self.screenlist.pop(len(self.screenlist) - 1)
                 return True
             else:
-                if len(self.screenlist) != 0:
-                    print("escaping")
-                    self.manager.current = self.screenlist[len(self.screenlist) - 1]
-                    self.screenlist.pop(len(self.screenlist) - 1)
-                    return True
-                else:
-                    return False
+                return False
 
     def on_enter(self, *args):
-        super(MenuScreen, self).on_enter()
-        print(self.ids)
+        with open("used.txt", "r") as file:
+            used = file.read()
+
+            if used == "0":
+                content = MDLabel(font_style='Body1',
+                                  theme_text_color='Secondary',
+                                  text="Lorem ipsum dolor sit amet, consectetur "
+                                       "adipiscing elit, sed do eiusmod tempor "
+                                       "incididunt ut labore et dolore magna aliqua. "
+                                       "Ut enim ad minim veniam, quis nostrud "
+                                       "exercitation ullamco laboris nisi ut aliquip "
+                                       "ex ea commodo consequat. Duis aute irure "
+                                       "dolor in reprehenderit in voluptate velit "
+                                       "esse cillum dolore eu fugiat nulla pariatur. "
+                                       "Excepteur sint occaecat cupidatat non "
+                                       "proident, sunt in culpa qui officia deserunt "
+                                       "mollit anim id est laborum.",
+                                  size_hint_y=None,
+                                  valign='top')
+                content.bind(texture_size=content.setter('size'))
+                self.dialog = MDDialog(title="This is a long test dialog",
+                                       content=content,
+                                       size_hint=(.8, None),
+                                       height=dp(200),
+                                       auto_dismiss=False)
+
+                self.dialog.add_action_button("Dismiss",
+                                              action=lambda *x: self.dialog.dismiss())
+                self.dialog.open()
+                print("opened?")
+        with open("used.txt", "w") as file:
+            file.write("1")
+        self.search()
 
     def on_leave(self, *args):
         self.screenlist.append("MenuScreen")
@@ -53,7 +162,7 @@ class MenuScreen(Screen):
 class DateScreen(Screen):
     date = StringProperty('')
     otherdate = StringProperty('')
-    screenlist = ListProperty()
+    screenlist = ListProperty([])
     count = 0
 
     def __init__(self, **kwargs):
@@ -61,12 +170,14 @@ class DateScreen(Screen):
         super(DateScreen, self).__init__(**kwargs)
 
     def on_enter(self, *args):
+        self.screenlist.append("DateScreen")
         self.show_date_picker()
 
     def set_previous_date(self, date_obj):
         self.previous_date = date_obj
-        dt = datetime.datetime.strptime(str(date_obj), '%Y-%m-%d')
-        actualDate = '{0}-{1}-{2}'.format(dt.day, dt.strftime("%b"), dt.year % 100)
+        dt = datetime.strptime(str(date_obj), '%Y-%m-%d')
+        # actualDate = '{0}-{1}-{2}'.format(dt.day, dt.strftime("%b"), dt.year % 100)
+        actualDate = dt.strftime("%#d-%b-%y")
         self.date = str(actualDate)
         self.selectdate()
 
@@ -82,17 +193,17 @@ class DateScreen(Screen):
     def selectdate(self):
         if self.manager.current not in self.screenlist:
             self.screenlist.append(self.manager.current)
-        self.manager.current = "TodayScreen"
+        self.manager.current = "DetailsScreen"
 
 
 class ConstructionScreen(Screen):
-    screenlist = ListProperty()
+    screenlist = ListProperty([])
 
 
 class GalleryScreen(Screen):
-    screenlist = ListProperty()
+    screenlist = ListProperty([])
     imagefile = StringProperty("./images/2014-10-01-01.00.23.jpg")
-    filenames = ListProperty()
+    filenames = ListProperty([])
     count = NumericProperty(0)
     lengthoflist = NumericProperty()
 
@@ -121,7 +232,7 @@ class GalleryScreen(Screen):
 
 
 class ContactScreen(Screen):
-    screenlist = ListProperty()
+    screenlist = ListProperty([])
 
     def on_enter(self, *args):
         super(ContactScreen, self).on_enter(*args)
@@ -131,27 +242,35 @@ class ContactScreen(Screen):
 
 
 # call.dialcall()
-class TodayScreen(Screen):
+class DetailsScreen(Screen):
     samva = StringProperty('')
     avanam = StringProperty('')
     rithu = StringProperty('')
-    maasae = StringProperty('')
-    pakshae = StringProperty('')
+    maasa = StringProperty('')
+    tmaasa = StringProperty('')
+    paksha = StringProperty('')
     thithi = StringProperty('')
     vara = StringProperty('')
     date = StringProperty('')
-    screenlist = ListProperty()
+    nakshatra = StringProperty('')
+    nakshatraTime = StringProperty('')
+    nakshatra2 = StringProperty('')
+    nakshatra2Time = StringProperty('')
+    note1 = StringProperty('')
+    note2 = StringProperty('')
+    note3 = StringProperty('')
+    note4 = StringProperty('')
+    screenlist = ListProperty([])
     count = NumericProperty()
 
     def on_pre_enter(self, *args):
         self.count = 0
+        self.screenlist.append("DateScreen")
+        print(self.screenlist)
         success = self.search()
         if success == -1:
             self.count += 1
             self.manager.current = "DateScreen"
-
-    # DO NOT TOUCH THIS AT ALL
-    # if you do, you will be decimated by Nithish Narasimman idk though
 
     def search(self):
         date = self.date
@@ -166,38 +285,38 @@ S.Samvatsaram,
 A.Ayanam,
 R.Rithu,
 M.TamilMaasa,
+TM.TeluguMaasa,
 V.Vaaram,
 T.Thithi,
 N.Nakshatra,
+C.Nakshtra1Time,
+C.Nakshtra2Time,
 C.Notes1,
 C.Notes2,
 C.Notes3,
 C.Notes4
-FROM Calendar2018 C, Samvatsaram S, Ayanam A, Rithu R, TamilMaasa M, Vaaram V, Thithi T, Nakshatra N
+FROM Calendar2018 C, Samvatsaram S, Ayanam A, Rithu R, TamilMaasa M, TeluguMaasa TM, Vaaram V, Thithi T, Nakshatra N
 WHERE date = ? AND S.ID =
-                        C.samvatsaram AND A.ID = C.ayanam AND R.ID = C.rithu AND M.ID = C.TamilMaasa AND
-  V.ID = C.vaaram AND T.ID = C.Thithi1 AND N.ID = C.Nakshtra1''',
+                        C.samvatsaram AND A.ID = C.ayanam AND R.ID = C.rithu AND M.ID = C.TamilMaasa AND TM.ID = C.TeluguMaasa AND
+  V.ID = C.vaaram AND T.ID = C.Thithi1 AND N.ID = C.Nakshtra1 ''',
             (date,))
         thing = cur.fetchone()
         print(thing)
         if thing is None:
             return -1
         else:
-            for query in thing:
-                if query == thing[1]:
-                    self.samva = query
-                elif query == thing[2]:
-                    self.avanam = query
-                elif query == thing[3]:
-                    self.rithu = query
-                elif query == thing[4]:
-                    self.maasae = query
-                elif query == thing[5]:
-                    self.pakshae = query
-                elif query == thing[6]:
-                    self.vara = query
-                elif query == thing[7]:
-                    self.thithi = query
+            self.samva = thing[1] + " nama samvatsarae"
+            self.avanam = thing[2]
+            self.rithu = thing[3] + "a rithu"
+            self.maasa = "Tamil Maasa: " + thing[4] + " maasae"
+            self.tmaasa = "Telugu Maasa: " + thing[5] + " maasae"
+            self.paksha = "heehee" + " paksha"
+            self.vara = thing[6]
+            self.thithi = thing[7] + " thithu"
+            self.nakshatraTime = thing[9]
+            self.nakshatra = thing[8] + " nakshatra starts at " + self.nakshatraTime
+            self.nakshatra2Time = thing[11]
+            self.nakshatra2 = thing[10] + " nakshatra starts at " + self.nakshatra2Time
 
 
 class ScrollLabel(ScrollView):
@@ -221,6 +340,10 @@ class ScrollLabel(ScrollView):
 
 
 class AToolbar(Toolbar):
+    pass
+
+
+class IconLeftSampleWidget(ILeftBodyTouch, MDIconButton):
     pass
 
 

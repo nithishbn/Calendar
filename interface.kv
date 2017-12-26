@@ -18,6 +18,7 @@
 #:import OneLineIconListItem kivymd.list.OneLineIconListItem
 #:import SmartTile kivymd.grid.SmartTile
 #: import softinput_mode kivy.core.window.Window
+#:import MDList kivymd.list.MDList
 Navigation:
     ScreenManager:
         id: sm
@@ -34,9 +35,9 @@ Navigation:
             transition: "NoTransition"
             screenlist: menu.screenlist
 
-        TodayScreen:
-            name: 'TodayScreen'
-            id: today
+        DetailsScreen:
+            name: 'DetailsScreen'
+            id: details
             manager: sm
             date: date.date
             transition: NoTransition
@@ -56,7 +57,6 @@ Navigation:
             manager: sm
             transition: "NoTransition"
             screenlist: menu.screenlist
-
         GalleryScreen:
             name: 'GalleryScreen'
             id: gallery
@@ -114,52 +114,150 @@ Navigation:
 
 
 <MenuScreen>:
-
     BoxLayout:
         orientation: 'vertical'
+        # spacing:
         BoxLayout:
-            size_hint_y: 0.2
+            size_hint_y: 0.15
             AToolbar
-        RelativeLayout:
-            orientation: 'vertical'
-            MDCard:
-                size_hint: 0.8, 0.85
-                pos_hint: {'top' :1,'center_x': 0.5}
-                elevation: 10
-                active_color_type: 'Custom'
-                active_color : [1, 0, 1, 1]
-                BoxLayout:
-                    orientation:'vertical'
-                    padding: dp(8)
-                    spacing: 10
-                    MDLabel:
 
-                        text: "Today's View"
-                        theme_text_color: 'Secondary'
-                        font_style:"Display1"
-                        size_hint_y: None
-                        height: dp(36)
-                        # halign: 'center'
-                        # padding: 50
-                    MDSeparator:
-                        height: dp(1)
-                        # padding: 50
-                        spacing: -10
-                    SmartTile:
-                        mipmap: True
-                        size_hint: 1, 0.7
-                        source: './images/20141012_142533.jpg'
-                        # md_bg_color: 'Secondary'
-                        # text: 'asdf'
-                    MDLabel:
-                        # pos_hint: {'top': 0.85}
-                        size_hint_y: None
-                        text: "There are quite a few cool things that are available today at the Temple"
-                        theme_text_color: 'Primary'
-                        font_style: 'Body2'
-        ScrollLabel:
-            id: scrolllabelthing
-            size_hint_y: None
+        ScrollView:
+            width: root.width
+            pos_hint: {'top':1.0}
+            BoxLayout:
+                # pos_hint: {'top':0.95}
+                orientation: 'vertical'
+                size_hint_y: None
+                height: Window.height *1.5
+                spacing: 15
+                padding: 0,15,0,50
+                MDCard:
+                    size_hint: 0.8, 0.85
+                    pos_hint: {'top' :1,'center_x': 0.5}
+                    elevation: 1
+                    active_color_type: 'Custom'
+                    active_color : [1, 0, 1, 1]
+                    BoxLayout:
+                        orientation:'vertical'
+                        padding: dp(8)
+                        spacing: 15
+                        MDLabel:
+
+                            text: "Today's View"
+                            theme_text_color: 'Secondary'
+                            font_style:"Display1"
+                            size_hint_y: None
+                            height: dp(36)
+                            # halign: 'center'
+                            # padding: 50
+                        MDSeparator:
+                            height: dp(1)
+                            # padding: 50
+                            spacing: -10
+                        SmartTile:
+                            mipmap: True
+                            size_hint: 1, 0.7
+                            source: './images/20141012_142533.jpg'
+                            # md_bg_color: 'Secondary'
+                            # text: 'asdf'
+                        MDLabel:
+                            # pos_hint: {'top': 0.85}
+                            size_hint_y: None
+                            text: "There are quite a few cool things that are available today at the Temple"
+                            theme_text_color: 'Primary'
+                            font_style: 'Subhead'
+                MDCard:
+                    size_hint: 0.8, 0.85
+                    pos_hint: {'top' :1,'center_x': 0.5}
+                    elevation: 10
+                    active_color_type: 'Custom'
+                    active_color : [1, 0, 1, 1]
+
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: dp(8)
+                        spacing: 15
+                        MDLabel:
+                            text: "Details"
+                            theme_text_color: 'Secondary'
+                            font_style:"Display1"
+                            size_hint_y: None
+                            height: dp(30)
+                            spacing: 10
+                        MDSeparator:
+                            height: dp(2)
+                            # padding: 50
+                            spacing: 10
+                        MDLabel:
+                            id: samva
+                            text: root.samva
+                            # texture_size: self.texture_size
+                            # size_hint: 0.5, 0.25
+                            pos_hint:{'x':0.05}
+                            theme_text_color: 'Secondary'
+                            # font_size: 25
+                            halign: 'left'
+                        MDLabel:
+                            id: avanam
+                            text: root.avanam
+                            # size_hint: 0.5, 0.25
+                            pos_hint:{'x':0.05}
+                            theme_text_color: 'Secondary'
+                            # font_size: 25
+                            halign: 'left'
+                        MDLabel:
+                            id: rithu
+                            text: root.rithu
+                            pos_hint:{'x':0.05}
+                            theme_text_color: 'Secondary'
+                            halign: 'left'
+                        MDLabel:
+                            id: maasa
+                            text: root.maasa
+                            pos_hint:{'x':0.05}
+                            theme_text_color: 'Secondary'
+                            halign: 'left'
+                        MDLabel:
+                            id: tmaasa
+                            text: root.tmaasa
+                            # size_hint: 0.5, 0.25
+                            pos_hint:{'x':0.05}
+                            theme_text_color: 'Secondary'
+                            # font_size: 25
+                            halign: 'left'
+                        MDLabel:
+                            id: paksha
+                            text: root.paksha
+                            pos_hint:{'x':0.05}
+                            theme_text_color: 'Secondary'
+
+                            halign: 'left'
+                        MDLabel:
+                            id: vara
+                            text: root.vara
+                            pos_hint:{'x':0.05}
+                            theme_text_color: 'Secondary'
+                            # font_size: 25
+                            halign: 'left'
+                        MDLabel:
+                            id: thithi
+                            text: root.thithi
+                            # size_hint: 0.5, 0.25
+                            # pos_hint:{'x':0.15,'top':0.15}
+                            pos_hint:{'x':0.05}
+                            theme_text_color: 'Secondary'
+                            # font_size: 25
+                            halign: 'left'
+                        MDLabel:
+                            id: nakshatra1
+                            text: root.nakshatra
+                            # size_hint: 0.5, 0.25
+                            pos_hint:{'x':0.05}
+                            theme_text_color: 'Secondary'
+                            halign: 'left'
+        # ScrollLabel:
+        #     id: scrolllabelthing
+        #     size_hint_y: 0.12
 <GalleryScreen>:
     BoxLayout:
         orientation: 'vertical'
@@ -168,7 +266,7 @@ Navigation:
         # spacing: 40
         pos_hint: {'top': 1}
         BoxLayout:
-            size_hint_y:0.2
+            size_hint_y:0.15
             AToolbar
         RelativeLayout:
             pos_hint: {'top': 0.95}
@@ -201,7 +299,7 @@ Navigation:
         # spacing: 15
         pos_hint: {'top': 1}
         BoxLayout:
-            size_hint_y: 0.2
+            size_hint_y: 0.15
             AToolbar
         RelativeLayout:
             MDCard:
@@ -210,176 +308,210 @@ Navigation:
                 BoxLayout:
                     MDLabel:
                         text: "hello there!"
+                        pos_hint: {'top':1,'center_x':0.5}
 
             MDRaisedButton:
                 pos_hint: {'center_x':0.5, 'center_y':0.75}
                 text: "Show Calendar"
                 on_press: root.show_date_picker()
 
-<TodayScreen>:
+<DetailsScreen>:
+    BoxLayout:
+        orientation: 'vertical'
 
-    Navigation
-    BoxLayout:
-        orientation: 'vertical'
         BoxLayout:
-            size_hint_y: 0.2
+            size_hint_y: 0.15
             AToolbar
-    BoxLayout:
-        orientation: 'vertical'
-        # padding: 0, -30
-        pos_hint: {'top': 0.85}
-        # BoxLayout:
-        #     orientation: 'vertical'
-        #     size_hint: 1, None
-        #     MDLabel:
-        #         text: 'Details'
-        #         # font_size: 45
-        #         size_hint_y: None
-        #         font_style: 'Display2'
-        #         theme_text_color: 'Primary'
-        #         # size_hint: None, 0.05
-        #         pos_hint: {'center_x':0.5, 'top': 1.2}
-        #         halign: 'center'
         BoxLayout:
             orientation: 'horizontal'
             # padding: [100, 100]
-            padding: dp(6)
-            pos_hint: {'top': 1}
+            padding: dp(15)
+            pos_hint: {'top': 0.85}
             MDCard:
-                size_hint: 0.6, 0.6
-                pos_hint: {'top': 1}
+                size_hint: 0.8, 0.85
+                pos_hint: {'top' :1,'center_x': 0.5}
                 elevation: 10
                 active_color_type: 'Custom'
                 active_color : [1, 0, 1, 1]
+
                 BoxLayout:
                     orientation: 'vertical'
-                    padding: dp(4)
-                    spacing: 10
+                    padding: dp(8)
+                    spacing: 15
                     MDLabel:
                         text: "Details"
                         theme_text_color: 'Secondary'
                         font_style:"Display1"
                         size_hint_y: None
                         height: dp(30)
-                        # halign: 'center'
-                        # padding: 50
+                        spacing: 10
                     MDSeparator:
                         height: dp(2)
                         # padding: 50
                         spacing: 10
                     MDLabel:
-                        text: root.samva + " nama samvatsarae"
+                        id: samva
+                        text: root.samva
                         # texture_size: self.texture_size
-                        size_hint: 0.5, 0.25
-                        pos_hint:{'x':0.25,'top':0.15}
+                        # size_hint: 0.5, 0.25
+                        pos_hint:{'x':0.05}
                         theme_text_color: 'Secondary'
                         # font_size: 25
                         halign: 'left'
                     MDLabel:
+                        id: avanam
                         text: root.avanam
-                        size_hint: 0.5, 0.25
-                        pos_hint:{'x':0.25,'top':0.15}
+                        # size_hint: 0.5, 0.25
+                        pos_hint:{'x':0.05}
                         theme_text_color: 'Secondary'
                         # font_size: 25
                         halign: 'left'
                     MDLabel:
-                        text: root.rithu +"a rithu"
-                        size_hint: 0.5, 0.25
-                        pos_hint:{'x':0.25,'top':0.15}
+                        id: rithu
+                        text: root.rithu
+                        pos_hint:{'x':0.05}
+                        theme_text_color: 'Secondary'
+                        halign: 'left'
+                    MDLabel:
+                        id: maasa
+                        text: root.maasa
+                        pos_hint:{'x':0.05}
+                        theme_text_color: 'Secondary'
+                        halign: 'left'
+                    MDLabel:
+                        id: tmaasa
+                        text: root.tmaasa
+                        # size_hint: 0.5, 0.25
+                        pos_hint:{'x':0.05}
                         theme_text_color: 'Secondary'
                         # font_size: 25
                         halign: 'left'
                     MDLabel:
-                        text: root.maasae + " maasae"
-                        size_hint: 0.5, 0.25
-                        pos_hint:{'x':0.25,'top':0.15}
+                        id: paksha
+                        text: root.paksha
+                        pos_hint:{'x':0.05}
                         theme_text_color: 'Secondary'
-                        # font_size: 25
+
                         halign: 'left'
                     MDLabel:
-                        text: root.pakshae + " pakshae"
-                        size_hint: 0.5, 0.25
-                        pos_hint:{'x':0.25,'top':0.15}
-                        theme_text_color: 'Secondary'
-                        # font_size: 25
-                        halign: 'left'
-                    MDLabel:
+                        id: vara
                         text: root.vara
-                        size_hint: 0.5, 0.25
-                        pos_hint:{'x':0.25,'top':0.15}
+                        pos_hint:{'x':0.05}
                         theme_text_color: 'Secondary'
                         # font_size: 25
                         halign: 'left'
                     MDLabel:
+                        id: thithi
                         text: root.thithi
-                        size_hint: 0.5, 0.25
-                        pos_hint:{'x':0.25,'top':0.15}
+                        # size_hint: 0.5, 0.25
+                        # pos_hint:{'x':0.15,'top':0.15}
+                        pos_hint:{'x':0.05}
                         theme_text_color: 'Secondary'
                         # font_size: 25
+                        halign: 'left'
+                    MDLabel:
+                        id: nakshatra1
+                        text: root.nakshatra
+                        # size_hint: 0.5, 0.25
+                        pos_hint:{'x':0.05}
+                        theme_text_color: 'Secondary'
                         halign: 'left'
 
 <ContactScreen>:
-    Navigation
-    BoxLayout:
-        size_hint_y: 0.2
-        AToolbar
-    RelativeLayout:
-        pos_hint: {'top': 0.8, 'center_x': 0.5}
-        # BoxLayout:
-        #     # pos_hint: {'top': 1, 'center_x': 0.5}
-        #     orientation: 'vertical'
-        size_hint: 1, 0.8
-        MDLabel:
-            size_hint_y: None
-            pos_hint: {'top': 1.1}
-            text: 'Contact Us'
-            font_style: 'Display2'
-            halign: 'center'
-            valign: 'top'
-        GridLayout:
-            size_hint: 0.25, 0.35
-            # orientation: 'vertical'
-            rows: 3
-            cols: 2
-            pos_hint: {'center_x': 0.5, 'center_y': 0.7}
-            MDIconButton:
-                # pos_hint: {'center_x': 0.5}
-                icon: 'phone'
-                on_release: root.call()
-            MDIconButton:
-                icon: 'facebook'
-                # pos_hint: {'center_x': 0.5}
-                on_release:
-                    webbrowser.open("https://www.facebook.com/Svetalvtemple/")
-            MDIconButton:
-                icon: 'email'
-                # pos_hint: {'center_x': 0.5}
-                on_release:
-                    webbrowser.open("mailto:info@lvtemple.org")
-            MDIconButton:
-                icon: 'google-maps'
-                # pos_hint: {'center_x': 0.5}
-                on_release:
-                    webbrowser.open("https://www.google.com/maps/place/Sri+Lakshmi+Venkateswara+Temple,+Redmond")
-            MDIconButton:
-                icon: 'web'
-                # pos_hint: {'center_x': 0.5}
-                on_release:
-                    webbrowser.open("https://www.lvtemple.org")
-            MDIconButton:
-                icon: 'youtube-play'
-                # pos_hint: {'center_x': 0.5}
-                on_release:
-                    webbrowser.open("https://www.youtube.com/channel/UCm7YxQAkZFf80ODHxr9Yhdw")
-
-
-<ConstructionScreen>:
-    Navigation
-
     BoxLayout:
         orientation: 'vertical'
         BoxLayout:
-            size_hint_y: 0.2
+            size_hint_y: 0.15
+            AToolbar
+        RelativeLayout:
+            pos_hint: {'top': 0.95, 'center_x': 0.5}
+            spacing: 50
+            # padding: 50
+            MDLabel:
+                size_hint_y: 0.01
+                pos_hint: {'top': 0.95}
+                text: 'Contact Us'
+                font_style: 'Display1'
+                halign: 'center'
+                valign: 'top'
+            BoxLayout:
+
+                MDList:
+                    pos_hint: {'top':0.9}
+                    spacing: 15
+                    OneLineIconListItem:
+                        text: "Call"
+                        IconLeftSampleWidget:
+                            icon: 'phone'
+                            on_release: root.call()
+                    OneLineIconListItem:
+                        text: "Facebook"
+                        IconLeftSampleWidget:
+                            icon: 'facebook'
+                            on_release: webbrowser.open("https://www.facebook.com/Svetalvtemple/")
+                    OneLineIconListItem:
+                        text: "Email"
+                        IconLeftSampleWidget:
+                            icon: 'email'
+                            on_release: webbrowser.open("mailto:info@lvtemple.org")
+                    OneLineIconListItem:
+                        text: "Directions"
+                        IconLeftSampleWidget:
+                            icon: 'google-maps'
+                            on_release: webbrowser.open("https://www.google.com/maps/place/Sri+Lakshmi+Venkateswara+Temple,+Redmond")
+                    OneLineIconListItem:
+                        text: "Website"
+                        IconLeftSampleWidget:
+                            icon: 'web'
+                            on_release: webbrowser.open("https://www.lvtemple.org")
+                    OneLineIconListItem:
+                        text: "YouTube Channel"
+                        IconLeftSampleWidget:
+                            icon: 'youtube-play'
+                            on_release: webbrowser.open("https://www.youtube.com/channel/UCm7YxQAkZFf80ODHxr9Yhdw")
+
+            # GridLayout:
+            #     size_hint: 0.25, 0.35
+            #     # orientation: 'vertical'
+            #     rows: 3
+            #     cols: 2
+            #     pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+            #     MDIconButton:
+            #
+            #         icon: 'phone'
+            #         on_release: root.call()
+            #     MDIconButton:
+            #         icon: 'facebook'
+            #
+            #         on_release:
+            #             webbrowser.open("https://www.facebook.com/Svetalvtemple/")
+            #     MDIconButton:
+            #         icon: 'email'
+            #
+            #         on_release:
+            #             webbrowser.open("mailto:info@lvtemple.org")
+            #     MDIconButton:
+            #         icon: 'google-maps'
+            #
+            #         on_release:
+            #             webbrowser.open("https://www.google.com/maps/place/Sri+Lakshmi+Venkateswara+Temple,+Redmond")
+            #     MDIconButton:
+            #         icon: 'web'
+            #
+            #         on_release:
+            #             webbrowser.open("https://www.lvtemple.org")
+            #     MDIconButton:
+            #         icon: 'youtube-play'
+            #
+            #         on_release:
+            #             webbrowser.open("https://www.youtube.com/channel/UCm7YxQAkZFf80ODHxr9Yhdw")
+
+
+<ConstructionScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            size_hint_y: 0.15
             AToolbar
         MDLabel:
             pos_hint: {'center_x': 0.5, 'center_y': 0.5}
@@ -388,29 +520,30 @@ Navigation:
             text: "This screen is under construction."
             font_style: 'Display4'
             color: [1, 0, 0, 1]
-<Spacer@Widget>:
-    size_hint_x: None
-    width: 800
-
-<ScrollLabel>:
-    GridLayout:
-        rows:1
-        size_hint_x: None
-
-        width: self.minimum_width
-        Spacer:
-        Label:
-            size_hint_x: None
-            text: "Today is a great day at the temple"
-            width: self.texture_size[0]
-            # font_style: 'Display2'
-            font_size: 25
-            # font_style: 'Title'
-            color: [0, 0, 0, 1]
-        Spacer:
+# <Spacer@Widget>:
+#     size_hint_x: None
+#     width: 400
+#
+# <ScrollLabel>:
+#     GridLayout:
+#         rows:1
+#         size_hint_x: None
+#         width: self.minimum_width
+#         # height: self.minimum_height
+#         Spacer:
+#         Label:
+#             size_hint_x: None
+#             text: "Today is a great day at the temple"
+#             width: self.texture_size[0]
+#             # font_style: 'Display2'
+#             font_size: 35
+#             # font_style: 'Title'
+#
+#             color: [0, 0, 0, 1]
+#         Spacer:
 <AToolbar>:
     pos_hint: {'top': 1}
-    size_hint_y: None
+    size_hint_y: 1
     id: toolbar
     title: 'SVETA Temple'
     md_bg_color: app.theme_cls.primary_color
