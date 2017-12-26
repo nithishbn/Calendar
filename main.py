@@ -120,38 +120,38 @@ class MenuScreen(Screen):
                 return False
 
     def on_enter(self, *args):
-        with open("used.txt", "r") as file:
-            used = file.read()
-
-            if used == "0":
-                content = MDLabel(font_style='Body1',
-                                  theme_text_color='Secondary',
-                                  text="Lorem ipsum dolor sit amet, consectetur "
-                                       "adipiscing elit, sed do eiusmod tempor "
-                                       "incididunt ut labore et dolore magna aliqua. "
-                                       "Ut enim ad minim veniam, quis nostrud "
-                                       "exercitation ullamco laboris nisi ut aliquip "
-                                       "ex ea commodo consequat. Duis aute irure "
-                                       "dolor in reprehenderit in voluptate velit "
-                                       "esse cillum dolore eu fugiat nulla pariatur. "
-                                       "Excepteur sint occaecat cupidatat non "
-                                       "proident, sunt in culpa qui officia deserunt "
-                                       "mollit anim id est laborum.",
-                                  size_hint_y=None,
-                                  valign='top')
-                content.bind(texture_size=content.setter('size'))
-                self.dialog = MDDialog(title="This is a long test dialog",
-                                       content=content,
-                                       size_hint=(.8, None),
-                                       height=dp(200),
-                                       auto_dismiss=False)
-
-                self.dialog.add_action_button("Dismiss",
-                                              action=lambda *x: self.dialog.dismiss())
-                self.dialog.open()
-                print("opened?")
-        with open("used.txt", "w") as file:
-            file.write("1")
+        # with open("used.txt", "r") as file:
+        #     used = file.read()
+        #
+        #     if used == "0":
+        #         content = MDLabel(font_style='Body1',
+        #                           theme_text_color='Secondary',
+        #                           text="Lorem ipsum dolor sit amet, consectetur "
+        #                                "adipiscing elit, sed do eiusmod tempor "
+        #                                "incididunt ut labore et dolore magna aliqua. "
+        #                                "Ut enim ad minim veniam, quis nostrud "
+        #                                "exercitation ullamco laboris nisi ut aliquip "
+        #                                "ex ea commodo consequat. Duis aute irure "
+        #                                "dolor in reprehenderit in voluptate velit "
+        #                                "esse cillum dolore eu fugiat nulla pariatur. "
+        #                                "Excepteur sint occaecat cupidatat non "
+        #                                "proident, sunt in culpa qui officia deserunt "
+        #                                "mollit anim id est laborum.",
+        #                           size_hint_y=None,
+        #                           valign='top')
+        #         content.bind(texture_size=content.setter('size'))
+        #         self.dialog = MDDialog(title="This is a long test dialog",
+        #                                content=content,
+        #                                size_hint=(.8, None),
+        #                                height=dp(200),
+        #                                auto_dismiss=False)
+        #
+        #         self.dialog.add_action_button("Dismiss",
+        #                                       action=lambda *x: self.dialog.dismiss())
+        #         self.dialog.open()
+        #         print("opened?")
+        # with open("used.txt", "w") as file:
+        #     file.write("1")
         self.search()
 
     def on_leave(self, *args):
