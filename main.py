@@ -26,7 +26,6 @@ class Navigation(NavigationLayout):
         Window.bind(on_keyboard=App.get_running_app().onBackBtn)
 
     def onNextScreen(self, root, next_screen):
-        # add screen we were just in
         print(root)
         self.screenlist.append(root)
         print("just appeneded", self.screenlist)
@@ -43,18 +42,24 @@ class Navigation(NavigationLayout):
 
 class MenuScreen(Screen):
     samva = StringProperty('')
-    avanam = StringProperty('')
+    ayanam = StringProperty('')
     rithu = StringProperty('')
     maasa = StringProperty('')
     tmaasa = StringProperty('')
     paksha = StringProperty('')
-    thithi = StringProperty('')
+    thithi1 = StringProperty('')
+    thithi1Time = StringProperty('')
+    thithi2 = StringProperty('')
+    thithi2Time = StringProperty('')
     vara = StringProperty('')
-    date = StringProperty('')
+    date = datetime.today().strftime("%d-%b-%y")
     nakshatra = StringProperty('')
     nakshatraTime = StringProperty('')
     nakshatra2 = StringProperty('')
     nakshatra2Time = StringProperty('')
+    varjyam = StringProperty('')
+    durmuhurtam = StringProperty('')
+    rahu = StringProperty('')
     note1 = StringProperty('')
     note2 = StringProperty('')
     note3 = StringProperty('')
@@ -62,9 +67,11 @@ class MenuScreen(Screen):
 
     def __init__(self, **kwargs):
         super(MenuScreen, self).__init__(**kwargs)
+        Clock.schedule_once(self.search)
 
-    def search(self):
-        date = datetime.today().strftime("%d-%b-%y")
+    def search(self, *args):
+        # date = self.date
+        date = "13-Jan-18"
         conn = sqlite3.connect('data.sqlite')
         cur = conn.cursor()
 
@@ -108,70 +115,47 @@ WHERE "﻿Date" = ?
             (date,))
         data = cur.fetchone()
         print(data)
-        if data is None:
-            print(self.ids)
-            self.samva = "null"
-            self.avanam = "null"
-            self.nakshatraTime = "null"
-            self.paksha = "null"
-            self.rithu = "null"
-            self.maasa = "null"
-            self.tmaasa = "null"
-            self.vara = "null"
-            self.thithi = "null"
-            self.nakshatraTime = "null"
-            self.nakshatra = "null"
-            self.nakshatra2Time = "null"
-            self.nakshatra2 = "null"
-
-        else:
+        if data is not None:
             self.samva = data[1] + " nama samvatsarae"
-            self.avanam = data[2]
+            self.ayanam = data[2]
             self.rithu = data[3] + "a rithu"
             self.maasa = "Tamil Maasa: " + data[4] + " maasae"
             self.tmaasa = "Telugu Maasa: " + data[5] + " maasae"
-            self.paksha = "heehee" + " paksha"
-            self.vara = data[6]
-            self.thithi = data[7] + " thithu"
-            self.nakshatraTime = data[9]
-            self.nakshatra = data[8] + " nakshatra starts at " + self.nakshatraTime
-            self.nakshatra2Time = data[11]
-            self.nakshatra2 = data[10] + " nakshatra starts at " + self.nakshatra2Time
+            self.paksha = data[6] + " paksha"
+            self.thithi1Time = data[8]
+            self.thithi1 = data[7] + " thithu starts at " + self.thithi1Time.strip()
+            if data[9] is not None:
+                self.thithi2Time = data[10]
+                if self.thithi2Time == "(whole day)":
+                    self.thithi2 = data[9] + " thithu lasts the entire day"
+                else:
+                    self.thithi2 = data[9] + " thithu starts at " + self.thithi2Time.strip()
+            else:
+                self.ids.deets.remove_widget(self.ids.thithi2)
+            self.vara = data[11]
+            self.nakshatraTime = data[13]
+            self.nakshatra = data[12] + " nakshatra starts at " + self.nakshatraTime.strip()
 
-    def on_enter(self, *args):
-        with open("used.txt", "r") as file:
-            used = file.read()
-
-            if used == "0":
-                content = MDLabel(font_style='Body1',
-                                  theme_text_color='Secondary',
-                                  text="Lorem ipsum dolor sit amet, consectetur "
-                                       "adipiscing elit, sed do eiusmod tempor "
-                                       "incididunt ut labore et dolore magna aliqua. "
-                                       "Ut enim ad minim veniam, quis nostrud "
-                                       "exercitation ullamco laboris nisi ut aliquip "
-                                       "ex ea commodo consequat. Duis aute irure "
-                                       "dolor in reprehenderit in voluptate velit "
-                                       "esse cillum dolore eu fugiat nulla pariatur. "
-                                       "Excepteur sint occaecat cupidatat non "
-                                       "proident, sunt in culpa qui officia deserunt "
-                                       "mollit anim id est laborum.",
-                                  size_hint_y=None,
-                                  valign='top')
-                content.bind(texture_size=content.setter('size'))
-                self.dialog = MDDialog(title="This is a long test dialog",
-                                       content=content,
-                                       size_hint=(.8, None),
-                                       height=dp(200),
-                                       auto_dismiss=False)
-
-                self.dialog.add_action_button("Dismiss",
-                                              action=lambda *x: self.dialog.dismiss())
-                self.dialog.open()
-                print("opened?")
-        with open("used.txt", "w") as file:
-            file.write("1")
-        self.search()
+            if data[14] is not None:
+                self.nakshatra2Time = data[15]
+                if self.nakshatra2Time == "Whole day":
+                    self.nakshatra2 = data[14] + " nakshatra lasts the entire day"
+                else:
+                    self.nakshatra2 = data[14] + " nakshatra starts at " + self.nakshatra2Time.strip()
+            else:
+                self.ids.deets.remove_widget(self.ids.nakshatra2)
+            if data[16] is not "":
+                self.ids.md_list.add_widget(MDLabel(text=data[16], theme_text_color='Primary',
+                                                    font_style='Subhead', pos_hint={'x': 0.05}))
+            if data[17] is not "":
+                self.ids.md_list.add_widget(MDLabel(text=data[17], theme_text_color='Primary',
+                                                    font_style='Subhead', pos_hint={'x': 0.05}))
+            if data[18] is not "":
+                self.ids.md_list.add_widget(MDLabel(text=data[18], theme_text_color='Primary',
+                                                    font_style='Subhead', pos_hint={'x': 0.05}))
+            if data[19] is not "":
+                self.ids.md_list.add_widget(MDLabel(text=data[19], theme_text_color='Primary',
+                                                    font_style='Subhead', pos_hint={'x': 0.05}))
 
 
 class DateScreen(Screen):
@@ -227,6 +211,9 @@ class DetailsScreen(Screen):
     nakshatraTime = StringProperty('')
     nakshatra2 = StringProperty()
     nakshatra2Time = StringProperty('')
+    varjyam = StringProperty('')
+    durmuhurtam = StringProperty('')
+    rahu = StringProperty('')
     note1 = StringProperty('')
     note2 = StringProperty('')
     note3 = StringProperty('')
@@ -237,14 +224,13 @@ class DetailsScreen(Screen):
         self.screenlist.append("DateScreen")
         print(self.screenlist)
         print("on pre", self.count)
-        success = self.search()
+        success = self.search(self.date)
         if success == -1:
             self.count -= 1
             print("leaving detailsscreen", self.count)
             self.manager.current = "DateScreen"
 
-    def search(self):
-        date = self.date
+    def search(self, date):
         print("search date function data: ", date)
         conn = sqlite3.connect('data.sqlite')
         cur = conn.cursor()
@@ -270,7 +256,10 @@ class DetailsScreen(Screen):
   C.Notes1,
   C.Notes2,
   C.Notes3,
-  C.Notes4
+  C.Notes4,
+  C."Rahu Kalam",
+  C.Varjyam,
+  C.Durmuhurtam
 FROM Calendar2018 C
   JOIN Samvatsaram S ON C.Samvatsaram = S.ID
   JOIN Ayanam A ON C.Ayanam = A.ID
@@ -292,6 +281,9 @@ WHERE "﻿Date" = ?
         if data is None:
             return -1
         else:
+            date1 = datetime.strptime(date, "%d-%b-%y")
+            print(date1)
+            self.date = date1.strftime("%B %d") + "Events"
             self.samva = data[1] + " nama samvatsarae"
             self.ayanam = data[2]
             self.rithu = data[3] + "a rithu"
@@ -320,7 +312,34 @@ WHERE "﻿Date" = ?
                     self.nakshatra2 = data[14] + " nakshatra starts at " + self.nakshatra2Time.strip()
             else:
                 self.ids.labels.remove_widget(self.ids.nakshatra2)
-
+            if data[16] is "" and data[17] is "" and data[18] is "" and data[19] is "":
+                self.ids.holder.remove_widget(self.ids.events)
+                self.ids.holder.height = Window.height
+                print("DELETED")
+            else:
+                if data[16] is not "":
+                    self.ids.notes.add_widget(MDLabel(text=data[16], theme_text_color='Primary',
+                                                      font_style='Subhead', pos_hint={'x': 0.05}))
+                if data[17] is not "":
+                    self.ids.notes.add_widget(MDLabel(text=data[17], theme_text_color='Primary',
+                                                      font_style='Subhead', pos_hint={'x': 0.05}))
+                if data[18] is not "":
+                    print("rogerroger")
+                    self.ids.notes.add_widget(MDLabel(text=data[18], theme_text_color='Primary',
+                                                      font_style='Subhead', pos_hint={'x': 0.05}))
+                if data[19] is not "":
+                    print("roger")
+                    self.ids.notes.add_widget(MDLabel(text=data[19], theme_text_color='Primary',
+                                                      font_style='Subhead', pos_hint={'x': 0.05}))
+                if data[20] is not "":
+                    self.ids.labels.add_widget(MDLabel(text="Rahu Kalam: " + data[20], theme_text_color='Primary',
+                                                       font_style='Subhead', pos_hint={'x': 0.05}))
+                if data[21] is not "":
+                    self.ids.labels.add_widget(MDLabel(text="Varjyam: " + data[21], theme_text_color='Primary',
+                                                       font_style='Subhead', pos_hint={'x': 0.05}))
+                if data[22] is not "":
+                    self.ids.labels.add_widget(MDLabel(text="Durmhurtam: " + data[22], theme_text_color='Primary',
+                                                       font_style='Subhead', pos_hint={'x': 0.05}))
 
 
 class ConstructionScreen(Screen):
@@ -402,6 +421,7 @@ class IconLeftSampleWidget(ILeftBodyTouch, MDIconButton):
 class InterfaceApp(App):
     theme_cls = ThemeManager()
     title = "SVETA Temple"
+    icon = "./icon.png"
 
     def build(self):
         pass
@@ -415,16 +435,6 @@ class InterfaceApp(App):
             return self.root.onBackBtn()
         return False
 
-    # def onBackBtn(self, window, key, *args):
-    #     if key == 27:
-    #         print("onBackBtn function call", self.screenlist)
-    #         if len(self.screenlist) != 0:
-    #             print("escaping")
-    #             self.manager.current = self.screenlist[len(self.screenlist) - 1]
-    #             self.screenlist.pop(len(self.screenlist) - 1)
-    #             return True
-    #         else:
-    #             return False
     def on_pause(self):
         return True
 
