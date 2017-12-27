@@ -20,11 +20,28 @@ import os
 
 
 class Navigation(NavigationLayout):
-    pass
+    def __init__(self):
+        super(Navigation, self).__init__()
+        self.screenlist = []
+        Window.bind(on_keyboard=App.get_running_app().onBackBtn)
+
+    def onNextScreen(self, root, next_screen):
+        # add screen we were just in
+        print(root)
+        self.screenlist.append(root)
+        print("just appeneded", self.screenlist)
+        self.ids.sm.current = next_screen
+
+    def onBackBtn(self):
+        print("on back")
+        if self.screenlist:
+            print(self.screenlist)
+            self.ids.sm.current = self.screenlist.pop()
+            return True
+        return False
 
 
 class MenuScreen(Screen):
-    screenlist = ListProperty([])
     samva = StringProperty('')
     avanam = StringProperty('')
     rithu = StringProperty('')
@@ -45,9 +62,6 @@ class MenuScreen(Screen):
 
     def __init__(self, **kwargs):
         super(MenuScreen, self).__init__(**kwargs)
-        print(self.screenlist)
-
-        Window.bind(on_keyboard=self.onBackBtn)
 
     def search(self):
         date = datetime.today().strftime("%d-%b-%y")
@@ -56,29 +70,45 @@ class MenuScreen(Screen):
 
         cur.execute(
             '''SELECT
-    Date,
-    S.Samvatsaram,
-    A.Ayanam,
-    R.Rithu,
-    M.TamilMaasa,
-    TM.TeluguMaasa,
-    V.Vaaram,
-    T.Thithi,
-    N.Nakshatra,
-    C.Nakshtra1Time,
-    C.Nakshtra2Time,
-    C.Notes1,
-    C.Notes2,
-    C.Notes3,
-    C.Notes4
-    FROM Calendar2018 C, Samvatsaram S, Ayanam A, Rithu R, TamilMaasa M, TeluguMaasa TM, Vaaram V, Thithi T, Nakshatra N
-    WHERE date = ? AND S.ID =
-                            C.samvatsaram AND A.ID = C.ayanam AND R.ID = C.rithu AND M.ID = C.TamilMaasa AND TM.ID = C.TeluguMaasa AND
-      V.ID = C.vaaram AND T.ID = C.Thithi1 AND N.ID = C.Nakshtra1 ''',
+  C."﻿Date",
+  S.Samvatsaram,
+  A.Ayanam,
+  R.Rithu,
+  M.TamilMaasa,
+  TM.TeluguMaasa,
+  P.Paksha,
+  T.Thithi,
+  C."Thithi1 Time",
+  T2.Thithi,
+  C."Thithi2 Time",
+  V.Vaaram,
+  N.Nakshatra,
+  C.Nakshtra1Time,
+  N2.Nakshatra,
+  C.Nakshtra2Time,
+  C.Notes1,
+  C.Notes2,
+  C.Notes3,
+  C.Notes4
+FROM Calendar2018 C
+  JOIN Samvatsaram S ON C.Samvatsaram = S.ID
+  JOIN Ayanam A ON C.Ayanam = A.ID
+  JOIN Rithu R ON C.Rutau = R.ID
+  JOIN TamilMaasa M ON C.TamilMaasa = M.ID
+  JOIN TeluguMaasa TM ON C.TeluguMaasa = TM.ID
+  JOIN Paksha P ON C.Paksha = P.PID
+  JOIN Thithi T ON C.Thithi1 = T.ID
+  LEFT JOIN Thithi T2 ON C.Thithi2 = T2.ID
+  JOIN Vaaram V ON C.Vaaram = V.ID
+  JOIN Nakshatra N ON C.Nakshtra1 = N.ID
+  LEFT JOIN Nakshatra N2 ON C.Nakshtra2 = N2.ID
+WHERE "﻿Date" = ?
+
+''',
             (date,))
-        thing = cur.fetchone()
-        print(thing)
-        if thing is None:
+        data = cur.fetchone()
+        print(data)
+        if data is None:
             print(self.ids)
             self.samva = "null"
             self.avanam = "null"
@@ -95,81 +125,67 @@ class MenuScreen(Screen):
             self.nakshatra2 = "null"
 
         else:
-            self.samva = thing[1] + " nama samvatsarae"
-            self.avanam = thing[2]
-            self.rithu = thing[3] + "a rithu"
-            self.maasa = "Tamil Maasa: " + thing[4] + " maasae"
-            self.tmaasa = "Telugu Maasa: " + thing[5] + " maasae"
+            self.samva = data[1] + " nama samvatsarae"
+            self.avanam = data[2]
+            self.rithu = data[3] + "a rithu"
+            self.maasa = "Tamil Maasa: " + data[4] + " maasae"
+            self.tmaasa = "Telugu Maasa: " + data[5] + " maasae"
             self.paksha = "heehee" + " paksha"
-            self.vara = thing[6]
-            self.thithi = thing[7] + " thithu"
-            self.nakshatraTime = thing[9]
-            self.nakshatra = thing[8] + " nakshatra starts at " + self.nakshatraTime
-            self.nakshatra2Time = thing[11]
-            self.nakshatra2 = thing[10] + " nakshatra starts at " + self.nakshatra2Time
-
-    def onBackBtn(self, window, key, *args):
-        if key == 27:
-            print("onBackBtn function call", self.screenlist)
-            if len(self.screenlist) != 0:
-                print("escaping")
-                self.manager.current = self.screenlist[len(self.screenlist) - 1]
-                self.screenlist.pop(len(self.screenlist) - 1)
-                return True
-            else:
-                return False
+            self.vara = data[6]
+            self.thithi = data[7] + " thithu"
+            self.nakshatraTime = data[9]
+            self.nakshatra = data[8] + " nakshatra starts at " + self.nakshatraTime
+            self.nakshatra2Time = data[11]
+            self.nakshatra2 = data[10] + " nakshatra starts at " + self.nakshatra2Time
 
     def on_enter(self, *args):
-        # with open("used.txt", "r") as file:
-        #     used = file.read()
-        #
-        #     if used == "0":
-        #         content = MDLabel(font_style='Body1',
-        #                           theme_text_color='Secondary',
-        #                           text="Lorem ipsum dolor sit amet, consectetur "
-        #                                "adipiscing elit, sed do eiusmod tempor "
-        #                                "incididunt ut labore et dolore magna aliqua. "
-        #                                "Ut enim ad minim veniam, quis nostrud "
-        #                                "exercitation ullamco laboris nisi ut aliquip "
-        #                                "ex ea commodo consequat. Duis aute irure "
-        #                                "dolor in reprehenderit in voluptate velit "
-        #                                "esse cillum dolore eu fugiat nulla pariatur. "
-        #                                "Excepteur sint occaecat cupidatat non "
-        #                                "proident, sunt in culpa qui officia deserunt "
-        #                                "mollit anim id est laborum.",
-        #                           size_hint_y=None,
-        #                           valign='top')
-        #         content.bind(texture_size=content.setter('size'))
-        #         self.dialog = MDDialog(title="This is a long test dialog",
-        #                                content=content,
-        #                                size_hint=(.8, None),
-        #                                height=dp(200),
-        #                                auto_dismiss=False)
-        #
-        #         self.dialog.add_action_button("Dismiss",
-        #                                       action=lambda *x: self.dialog.dismiss())
-        #         self.dialog.open()
-        #         print("opened?")
-        # with open("used.txt", "w") as file:
-        #     file.write("1")
-        self.search()
+        with open("used.txt", "r") as file:
+            used = file.read()
 
-    def on_leave(self, *args):
-        self.screenlist.append("MenuScreen")
-        print("MenuScreen's list: ", self.screenlist)
+            if used == "0":
+                content = MDLabel(font_style='Body1',
+                                  theme_text_color='Secondary',
+                                  text="Lorem ipsum dolor sit amet, consectetur "
+                                       "adipiscing elit, sed do eiusmod tempor "
+                                       "incididunt ut labore et dolore magna aliqua. "
+                                       "Ut enim ad minim veniam, quis nostrud "
+                                       "exercitation ullamco laboris nisi ut aliquip "
+                                       "ex ea commodo consequat. Duis aute irure "
+                                       "dolor in reprehenderit in voluptate velit "
+                                       "esse cillum dolore eu fugiat nulla pariatur. "
+                                       "Excepteur sint occaecat cupidatat non "
+                                       "proident, sunt in culpa qui officia deserunt "
+                                       "mollit anim id est laborum.",
+                                  size_hint_y=None,
+                                  valign='top')
+                content.bind(texture_size=content.setter('size'))
+                self.dialog = MDDialog(title="This is a long test dialog",
+                                       content=content,
+                                       size_hint=(.8, None),
+                                       height=dp(200),
+                                       auto_dismiss=False)
+
+                self.dialog.add_action_button("Dismiss",
+                                              action=lambda *x: self.dialog.dismiss())
+                self.dialog.open()
+                print("opened?")
+        with open("used.txt", "w") as file:
+            file.write("1")
+        self.search()
 
 
 class DateScreen(Screen):
     date = StringProperty('')
     otherdate = StringProperty('')
     screenlist = ListProperty([])
-    count = 0
+    count = NumericProperty(0)
 
     def __init__(self, **kwargs):
         # screenlist = self.screenlist
         super(DateScreen, self).__init__(**kwargs)
 
     def on_enter(self, *args):
+        print(self.count)
         self.screenlist.append("DateScreen")
         self.show_date_picker()
 
@@ -191,9 +207,120 @@ class DateScreen(Screen):
             # MDDatePicker(self.set_previous_date).open()
 
     def selectdate(self):
-        if self.manager.current not in self.screenlist:
-            self.screenlist.append(self.manager.current)
-        self.manager.current = "DetailsScreen"
+        App.get_running_app().root.onNextScreen(self.manager.current, "DetailsScreen")
+
+
+class DetailsScreen(Screen):
+    samva = StringProperty('')
+    ayanam = StringProperty('')
+    rithu = StringProperty('')
+    maasa = StringProperty('')
+    tmaasa = StringProperty('')
+    paksha = StringProperty('')
+    thithi1 = StringProperty('')
+    thithi2 = StringProperty()
+    thithi1Time = StringProperty('')
+    thithi2Time = StringProperty('')
+    vara = StringProperty('')
+    date = StringProperty('')
+    nakshatra = StringProperty('')
+    nakshatraTime = StringProperty('')
+    nakshatra2 = StringProperty()
+    nakshatra2Time = StringProperty('')
+    note1 = StringProperty('')
+    note2 = StringProperty('')
+    note3 = StringProperty('')
+    note4 = StringProperty('')
+    screenlist = ListProperty([])
+
+    def on_pre_enter(self, *args):
+        self.screenlist.append("DateScreen")
+        print(self.screenlist)
+        print("on pre", self.count)
+        success = self.search()
+        if success == -1:
+            self.count -= 1
+            print("leaving detailsscreen", self.count)
+            self.manager.current = "DateScreen"
+
+    def search(self):
+        date = self.date
+        print("search date function data: ", date)
+        conn = sqlite3.connect('data.sqlite')
+        cur = conn.cursor()
+
+        cur.execute(
+            '''SELECT
+  C."﻿Date",
+  S.Samvatsaram,
+  A.Ayanam,
+  R.Rithu,
+  M.TamilMaasa,
+  TM.TeluguMaasa,
+  P.Paksha,
+  T.Thithi,
+  C."Thithi1 Time",
+  T2.Thithi,
+  C."Thithi2 Time",
+  V.Vaaram,
+  N.Nakshatra,
+  C.Nakshtra1Time,
+  N2.Nakshatra,
+  C.Nakshtra2Time,
+  C.Notes1,
+  C.Notes2,
+  C.Notes3,
+  C.Notes4
+FROM Calendar2018 C
+  JOIN Samvatsaram S ON C.Samvatsaram = S.ID
+  JOIN Ayanam A ON C.Ayanam = A.ID
+  JOIN Rithu R ON C.Rutau = R.ID
+  JOIN TamilMaasa M ON C.TamilMaasa = M.ID
+  JOIN TeluguMaasa TM ON C.TeluguMaasa = TM.ID
+  JOIN Paksha P ON C.Paksha = P.PID
+  JOIN Thithi T ON C.Thithi1 = T.ID
+  LEFT JOIN Thithi T2 ON C.Thithi2 = T2.ID
+  JOIN Vaaram V ON C.Vaaram = V.ID
+  JOIN Nakshatra N ON C.Nakshtra1 = N.ID
+  LEFT JOIN Nakshatra N2 ON C.Nakshtra2 = N2.ID
+WHERE "﻿Date" = ?
+
+''',
+            (date,))
+        data = cur.fetchone()
+        print(data)
+        if data is None:
+            return -1
+        else:
+            self.samva = data[1] + " nama samvatsarae"
+            self.ayanam = data[2]
+            self.rithu = data[3] + "a rithu"
+            self.maasa = "Tamil Maasa: " + data[4] + " maasae"
+            self.tmaasa = "Telugu Maasa: " + data[5] + " maasae"
+            self.paksha = data[6] + " paksha"
+            self.thithi1Time = data[8]
+            self.thithi1 = data[7] + " thithu starts at " + self.thithi1Time.strip()
+            if data[9] is not None:
+                self.thithi2Time = data[10]
+                if self.thithi2Time == "(whole day)":
+                    self.thithi2 = data[9] + " thithu lasts the entire day"
+                else:
+                    self.thithi2 = data[9] + " thithu starts at " + self.thithi2Time.strip()
+            else:
+                self.ids.labels.remove_widget(self.ids.thithi2)
+            self.vara = data[11]
+            self.nakshatraTime = data[13]
+            self.nakshatra = data[12] + " nakshatra starts at " + self.nakshatraTime.strip()
+
+            if data[14] is not None:
+                self.nakshatra2Time = data[15]
+                if self.nakshatra2Time == "Whole day":
+                    self.nakshatra2 = data[14] + " nakshatra lasts the entire day"
+                else:
+                    self.nakshatra2 = data[14] + " nakshatra starts at " + self.nakshatra2Time.strip()
+            else:
+                self.ids.labels.remove_widget(self.ids.nakshatra2)
+
 
 
 class ConstructionScreen(Screen):
@@ -242,81 +369,6 @@ class ContactScreen(Screen):
 
 
 # call.dialcall()
-class DetailsScreen(Screen):
-    samva = StringProperty('')
-    avanam = StringProperty('')
-    rithu = StringProperty('')
-    maasa = StringProperty('')
-    tmaasa = StringProperty('')
-    paksha = StringProperty('')
-    thithi = StringProperty('')
-    vara = StringProperty('')
-    date = StringProperty('')
-    nakshatra = StringProperty('')
-    nakshatraTime = StringProperty('')
-    nakshatra2 = StringProperty('')
-    nakshatra2Time = StringProperty('')
-    note1 = StringProperty('')
-    note2 = StringProperty('')
-    note3 = StringProperty('')
-    note4 = StringProperty('')
-    screenlist = ListProperty([])
-    count = NumericProperty()
-
-    def on_pre_enter(self, *args):
-        self.count = 0
-        self.screenlist.append("DateScreen")
-        print(self.screenlist)
-        success = self.search()
-        if success == -1:
-            self.count += 1
-            self.manager.current = "DateScreen"
-
-    def search(self):
-        date = self.date
-        print("search date function thing: ", date)
-        conn = sqlite3.connect('data.sqlite')
-        cur = conn.cursor()
-
-        cur.execute(
-            '''SELECT
-Date,
-S.Samvatsaram,
-A.Ayanam,
-R.Rithu,
-M.TamilMaasa,
-TM.TeluguMaasa,
-V.Vaaram,
-T.Thithi,
-N.Nakshatra,
-C.Nakshtra1Time,
-C.Nakshtra2Time,
-C.Notes1,
-C.Notes2,
-C.Notes3,
-C.Notes4
-FROM Calendar2018 C, Samvatsaram S, Ayanam A, Rithu R, TamilMaasa M, TeluguMaasa TM, Vaaram V, Thithi T, Nakshatra N
-WHERE date = ? AND S.ID =
-                        C.samvatsaram AND A.ID = C.ayanam AND R.ID = C.rithu AND M.ID = C.TamilMaasa AND TM.ID = C.TeluguMaasa AND
-  V.ID = C.vaaram AND T.ID = C.Thithi1 AND N.ID = C.Nakshtra1 ''',
-            (date,))
-        thing = cur.fetchone()
-        print(thing)
-        if thing is None:
-            return -1
-        else:
-            self.samva = thing[1] + " nama samvatsarae"
-            self.avanam = thing[2]
-            self.rithu = thing[3] + "a rithu"
-            self.maasa = "Tamil Maasa: " + thing[4] + " maasae"
-            self.tmaasa = "Telugu Maasa: " + thing[5] + " maasae"
-            self.paksha = "heehee" + " paksha"
-            self.vara = thing[6]
-            self.thithi = thing[7] + " thithu"
-            self.nakshatraTime = thing[9]
-            self.nakshatra = thing[8] + " nakshatra starts at " + self.nakshatraTime
-            self.nakshatra2Time = thing[11]
-            self.nakshatra2 = thing[10] + " nakshatra starts at " + self.nakshatra2Time
 
 
 class ScrollLabel(ScrollView):
@@ -354,6 +406,25 @@ class InterfaceApp(App):
     def build(self):
         pass
 
+    def onBackBtn(self, window, key, *args):
+        """ To be called whenever user presses Back/Esc key """
+        # 27 is back press number code
+        if key == 27:
+            print("hixd")
+            # Call the "OnBackBtn" method from the "ExampleRoot" instance
+            return self.root.onBackBtn()
+        return False
+
+    # def onBackBtn(self, window, key, *args):
+    #     if key == 27:
+    #         print("onBackBtn function call", self.screenlist)
+    #         if len(self.screenlist) != 0:
+    #             print("escaping")
+    #             self.manager.current = self.screenlist[len(self.screenlist) - 1]
+    #             self.screenlist.pop(len(self.screenlist) - 1)
+    #             return True
+    #         else:
+    #             return False
     def on_pause(self):
         return True
 

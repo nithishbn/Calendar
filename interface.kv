@@ -33,35 +33,29 @@ Navigation:
             id: date
             manager: sm
             transition: "NoTransition"
-            screenlist: menu.screenlist
 
         DetailsScreen:
             name: 'DetailsScreen'
             id: details
             manager: sm
             date: date.date
-            transition: NoTransition
-            screenlist: menu.screenlist
             count: date.count
 
         ConstructionScreen:
             name: 'ConstructionScreen'
             id: construction
             manager: sm
-            transition: "NoTransition"
-            screenlist: menu.screenlist
+
 
         ContactScreen:
             name: 'ContactScreen'
             id: contact
             manager: sm
-            transition: "NoTransition"
-            screenlist: menu.screenlist
+
         GalleryScreen:
             name: 'GalleryScreen'
             id: gallery
-            manager: sm
-            screenlist: menu.screenlist
+
 
 
 <Navigation>:
@@ -79,7 +73,8 @@ Navigation:
             text: "Home"
             on_release:
                 app.root.ids.sm.transition = NoTransition()
-                app.root.ids.sm.current = 'MenuScreen'
+                print("hi")
+                root.onNextScreen(app.root.ids.sm.current,"MenuScreen")
 
         NavigationDrawerIconButton:
             icon: 'calendar-today'
@@ -87,21 +82,22 @@ Navigation:
             # badge_text: '99+'
             on_release:
                 app.root.ids.sm.transition = NoTransition()
-                app.root.ids.sm.current= 'DateScreen'
+                print("hi")
+                root.onNextScreen(app.root.ids.sm.current,"DateScreen")
         NavigationDrawerIconButton:
             # icon: 'checkbox-blank-circle'
             icon: 'image'
             text: "Gallery"
             on_release:
                 app.root.ids.sm.transition = NoTransition()
-                app.root.ids.sm.current = 'GalleryScreen'
+                root.onNextScreen(app.root.ids.sm.current,"GalleryScreen")
         NavigationDrawerIconButton:
             # icon: 'checkbox-blank-circle'
             icon: 'contact-mail'
             text: "Contact"
             on_release:
                 app.root.ids.sm.transition = NoTransition()
-                app.root.ids.sm.current = 'ContactScreen'
+                root.onNextScreen(app.root.ids.sm.current,"ContactScreen")
         # NavigationDrawerSubheader:
         #     text: "More"
         NavigationDrawerDivider
@@ -255,6 +251,13 @@ Navigation:
                             pos_hint:{'x':0.05}
                             theme_text_color: 'Secondary'
                             halign: 'left'
+                        MDLabel:
+                            id: nakshatra2
+                            text: root.nakshatra2
+                            # size_hint: 0.5, 0.25
+                            pos_hint:{'x':0.05}
+                            theme_text_color: 'Secondary'
+                            halign: 'left'
         # ScrollLabel:
         #     id: scrolllabelthing
         #     size_hint_y: 0.12
@@ -302,13 +305,6 @@ Navigation:
             size_hint_y: 0.15
             AToolbar
         RelativeLayout:
-            MDCard:
-                size_hint: 0.90, 0.85
-                pos_hint: {'center_x':0.5,'top':1}
-                BoxLayout:
-                    MDLabel:
-                        text: "hello there!"
-                        pos_hint: {'top':1,'center_x':0.5}
 
             MDRaisedButton:
                 pos_hint: {'center_x':0.5, 'center_y':0.75}
@@ -327,8 +323,9 @@ Navigation:
             # padding: [100, 100]
             padding: dp(15)
             pos_hint: {'top': 0.85}
+
             MDCard:
-                size_hint: 0.8, 0.85
+                size_hint: 0.8, 0.90
                 pos_hint: {'top' :1,'center_x': 0.5}
                 elevation: 10
                 active_color_type: 'Custom'
@@ -336,6 +333,7 @@ Navigation:
 
                 BoxLayout:
                     orientation: 'vertical'
+                    id: labels
                     padding: dp(8)
                     spacing: 15
                     MDLabel:
@@ -352,69 +350,79 @@ Navigation:
                     MDLabel:
                         id: samva
                         text: root.samva
-                        # texture_size: self.texture_size
-                        # size_hint: 0.5, 0.25
                         pos_hint:{'x':0.05}
                         theme_text_color: 'Secondary'
-                        # font_size: 25
+                        font_style: 'Subhead'
                         halign: 'left'
                     MDLabel:
-                        id: avanam
-                        text: root.avanam
-                        # size_hint: 0.5, 0.25
+                        id: ayanam
+                        text: root.ayanam
                         pos_hint:{'x':0.05}
                         theme_text_color: 'Secondary'
-                        # font_size: 25
+                        font_style: 'Subhead'
                         halign: 'left'
                     MDLabel:
                         id: rithu
                         text: root.rithu
                         pos_hint:{'x':0.05}
                         theme_text_color: 'Secondary'
+                        font_style: 'Subhead'
                         halign: 'left'
                     MDLabel:
                         id: maasa
                         text: root.maasa
                         pos_hint:{'x':0.05}
                         theme_text_color: 'Secondary'
+                        font_style: 'Subhead'
                         halign: 'left'
                     MDLabel:
                         id: tmaasa
                         text: root.tmaasa
-                        # size_hint: 0.5, 0.25
                         pos_hint:{'x':0.05}
                         theme_text_color: 'Secondary'
-                        # font_size: 25
+                        font_style: 'Subhead'
                         halign: 'left'
                     MDLabel:
                         id: paksha
                         text: root.paksha
                         pos_hint:{'x':0.05}
                         theme_text_color: 'Secondary'
-
+                        font_style: 'Subhead'
                         halign: 'left'
                     MDLabel:
                         id: vara
                         text: root.vara
                         pos_hint:{'x':0.05}
                         theme_text_color: 'Secondary'
-                        # font_size: 25
+                        font_style: 'Subhead'
                         halign: 'left'
                     MDLabel:
-                        id: thithi
-                        text: root.thithi
-                        # size_hint: 0.5, 0.25
-                        # pos_hint:{'x':0.15,'top':0.15}
+                        id: thithi1
+                        text: root.thithi1
                         pos_hint:{'x':0.05}
                         theme_text_color: 'Secondary'
-                        # font_size: 25
+                        font_style: 'Subhead'
+                        halign: 'left'
+                    MDLabel:
+                        id: thithi2
+                        text: root.thithi2
+                        pos_hint:{'x':0.05}
+                        theme_text_color: 'Secondary'
+                        font_style: 'Subhead'
                         halign: 'left'
                     MDLabel:
                         id: nakshatra1
                         text: root.nakshatra
-                        # size_hint: 0.5, 0.25
                         pos_hint:{'x':0.05}
                         theme_text_color: 'Secondary'
+                        font_style: 'Subhead'
+                        halign: 'left'
+                    MDLabel:
+                        id: nakshatra2
+                        text: root.nakshatra2
+                        pos_hint:{'x':0.05}
+                        theme_text_color: 'Secondary'
+                        font_style: 'Subhead'
                         halign: 'left'
 
 <ContactScreen>:
