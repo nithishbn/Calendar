@@ -131,33 +131,33 @@ Navigation:
                 MDCard:
                     size_hint: 0.9, 0.85
                     pos_hint: {'top' :1,'center_x': 0.5}
-                    elevation: 1
+                    elevation: 10
                     active_color_type: 'Custom'
                     active_color : [1, 0, 1, 1]
                     BoxLayout:
                         id: notes
                         orientation:'vertical'
-                        padding: dp(6)
+                        padding: 10, 0, 8, 35
                         spacing: 15
                         MDLabel:
                             text: "Today's Events"
-                            theme_text_color: 'Secondary'
-                            font_style:"Display1"
+                            theme_text_color: 'Primary'
+                            font_style:"Headline"
                             size_hint_y: None
-                            height: dp(36)
+                            height: dp(35)
                             # halign: 'center'
                             # padding: 50
                         MDSeparator:
-                            height: dp(1)
+                            height: dp(2)
                             # padding: 50
-                            spacing: -10
+                            spacing: 10
                         Image:
                             mipmap: True
-                            size_hint: 1, 0.5
-                            source: './images/20141012_142533.jpg'
+                            source: './images/god.jpg'
                         MDList:
-                            id: md_list
-                            pos_hint:{'x':0.05}
+                            id: notesList
+                            # pos_hint:{'x':0.05}
+                            halign: 'left'
                             spacing: 15
                             size_hint_y: 0.2
 
@@ -165,117 +165,30 @@ Navigation:
                     size_hint: 0.8, 0.85
                     pos_hint: {'top' :1,'center_x': 0.5}
                     elevation: 10
-                    active_color_type: 'Custom'
-                    active_color : [1, 0, 1, 1]
+                    # active_color_type: 'Custom'
+                    # # active_color : [1, 0, 1, 1]
+                    # active_color: app.theme_cls.primary_color
 
                     BoxLayout:
-                        id: deets
+                        id: labels
                         orientation: 'vertical'
-                        padding: dp(8)
+                        padding: 8, 0, 8, 35
                         spacing: 15
                         MDLabel:
                             text: "Details"
-                            theme_text_color: 'Secondary'
-                            font_style:"Display1"
+                            theme_text_color: 'Primary'
+                            # text_color: app.theme_cls.accent_color
+                            font_style:"Headline"
                             size_hint_y: None
-                            height: dp(30)
-                            spacing: 10
+                            height: dp(35)
+
                         MDSeparator:
                             height: dp(2)
                             # padding: 50
                             spacing: 10
-                        MDLabel:
-                            id: samva
-                            text: root.samva
-                            # texture_size: self.texture_size
-                            # size_hint: 0.5, 0.25
-                            pos_hint:{'x':0.05}
-                            # theme_text_color: 'Secondary'
-                            font_style:'Subhead'
-                            # font_size: 25
-                            halign: 'left'
-                        MDLabel:
-                            id: ayanam
-                            text: root.ayanam
-                            # size_hint: 0.5, 0.25
-                            pos_hint:{'x':0.05}
-                            # theme_text_color: 'Secondary'
-                            # font_size: 25
-                            font_style:'Subhead'
-                            halign: 'left'
-                        MDLabel:
-                            id: rithu
-                            text: root.rithu
-                            pos_hint:{'x':0.05}
-                            # theme_text_color: 'Secondary'
-                            font_style:'Subhead'
-                            halign: 'left'
-                        MDLabel:
-                            id: maasa
-                            text: root.maasa
-                            pos_hint:{'x':0.05}
-                            # theme_text_color: 'Secondary'
-                            font_style:'Subhead'
-                            halign: 'left'
-                        MDLabel:
-                            id: tmaasa
-                            text: root.tmaasa
-                            # size_hint: 0.5, 0.25
-                            pos_hint:{'x':0.05}
-                            # theme_text_color: 'Secondary'
-                            font_style:'Subhead'
-                            # font_size: 25
-                            halign: 'left'
-                        MDLabel:
-                            id: paksha
-                            text: root.paksha
-                            pos_hint:{'x':0.05}
-                            # theme_text_color: 'Secondary'
-                            font_style:'Subhead'
+                            # theme_text_color: 'Custom'
+                            md_bg_color: app.theme_cls.accent_color
 
-                            halign: 'left'
-                        MDLabel:
-                            id: vara
-                            text: root.vara
-                            pos_hint:{'x':0.05}
-                            # theme_text_color: 'Secondary'
-                            font_style:'Subhead'
-                            # font_size: 25
-                            halign: 'left'
-                        MDLabel:
-                            id: thithi1
-                            text: root.thithi1
-                            # size_hint: 0.5, 0.25
-                            # pos_hint:{'x':0.15,'top':0.15}
-                            pos_hint:{'x':0.05}
-                            # theme_text_color: 'Secondary'
-                            font_style:'Subhead'
-                            # font_size: 25
-                            halign: 'left'
-                        MDLabel:
-                            id: thithi2
-                            text: root.thithi2
-                            # size_hint: 0.5, 0.25
-                            pos_hint:{'x':0.05}
-                            # theme_text_color: 'Secondary'
-                            font_style:'Subhead'
-                            halign: 'left'
-                        MDLabel:
-                            id: nakshatra1
-                            text: root.nakshatra
-                            # size_hint: 0.5, 0.25
-                            pos_hint:{'x':0.05}
-                            # theme_text_color: 'Secondary'
-                            font_style:'Subhead'
-                            halign: 'left'
-                        MDLabel:
-                            id: nakshatra2
-                            text: root.nakshatra2
-                            # size_hint: 0.5, 0.25
-                            pos_hint:{'x':0.05}
-                            # theme_text_color: 'Secondary'
-                            font_style:'Subhead'
-                            halign: 'left'
         # ScrollLabel:
         #     id: scrolllabelthing
         #     size_hint_y: 0.12
@@ -305,13 +218,13 @@ Navigation:
                         theme_text_color: 'Secondary'
                         font_style:"Display1"
                         size_hint_y: None
-                        height: dp(36)
+                        height: dp(35)
                         # halign: 'center'
                         # padding: 50
                     MDSeparator:
                         height: dp(1)
                         # padding: 50
-                        spacing: -10
+                        spacing: 10
                     Image:
                         mipmap: True
                         size_hint: 1, 0.7
@@ -382,19 +295,25 @@ Navigation:
                         orientation: 'vertical'
                         id: notes
                         padding: dp(8)
-                        spacing: 15
+                        spacing: 5
                         MDLabel:
                             text: root.date
                             # theme_text_color: 'Secondary'
-                            font_style:"Display1"
+                            font_style:"Headline"
                             size_hint_y: None
-                            width: dp(500)
-                            height: dp(30)
+                            # width: dp(500)
+                            width: root.width
+                            height: dp(35)
                             spacing: 10
+
                         MDSeparator:
                             height: dp(2)
                             # padding: 50
                             spacing: 10
+                        MDList:
+                            id: notesList
+                            pos_hint: {'top':0.85}
+                            size_hint_y: 0.75
                 MDCard:
                     id: details
                     size_hint: 0.85, 0.90
@@ -404,97 +323,25 @@ Navigation:
                     active_color : [1, 0, 1, 1]
 
                     BoxLayout:
-                        orientation: 'vertical'
                         id: labels
-                        padding: dp(8)
+                        orientation: 'vertical'
+                        padding: 8, 0, 8, 35
                         spacing: 15
                         MDLabel:
                             text: "Details"
-                            font_style:"Display1"
+                            theme_text_color: 'Primary'
+                            # text_color: app.theme_cls.accent_color
+                            font_style:"Headline"
                             size_hint_y: None
-                            height: dp(30)
-                            spacing: 10
+                            height: dp(35)
+
                         MDSeparator:
                             height: dp(2)
                             # padding: 50
                             spacing: 10
-                        MDLabel:
-                            id: samva
-                            text: root.samva
-                            pos_hint:{'x':0.05}
+                            # theme_text_color: 'Custom'
+                            md_bg_color: app.theme_cls.accent_color
 
-                            font_style: 'Subhead'
-                            halign: 'left'
-                        MDLabel:
-                            id: ayanam
-                            text: root.ayanam
-                            pos_hint:{'x':0.05}
-
-                            font_style: 'Subhead'
-                            halign: 'left'
-                        MDLabel:
-                            id: rithu
-                            text: root.rithu
-                            pos_hint:{'x':0.05}
-
-                            font_style: 'Subhead'
-                            halign: 'left'
-                        MDLabel:
-                            id: maasa
-                            text: root.maasa
-                            pos_hint:{'x':0.05}
-
-                            font_style: 'Subhead'
-                            halign: 'left'
-                        MDLabel:
-                            id: tmaasa
-                            text: root.tmaasa
-                            pos_hint:{'x':0.05}
-
-                            font_style: 'Subhead'
-                            halign: 'left'
-                        MDLabel:
-                            id: paksha
-                            text: root.paksha
-                            pos_hint:{'x':0.05}
-
-                            font_style: 'Subhead'
-                            halign: 'left'
-                        MDLabel:
-                            id: vara
-                            text: root.vara
-                            pos_hint:{'x':0.05}
-
-                            font_style: 'Subhead'
-                            halign: 'left'
-                        MDLabel:
-                            id: thithi1
-                            text: root.thithi1
-                            pos_hint:{'x':0.05}
-
-                            font_style: 'Subhead'
-                            halign: 'left'
-                        MDLabel:
-                            id: thithi2
-                            text: root.thithi2
-                            pos_hint:{'x':0.05}
-
-                            font_style: 'Subhead'
-                            halign: 'left'
-                        MDLabel:
-                            id: nakshatra1
-                            text: root.nakshatra
-                            pos_hint:{'x':0.05}
-
-                            font_style: 'Subhead'
-                            halign: 'left'
-                        MDLabel:
-                            id: nakshatra2
-                            text: root.nakshatra2
-                            pos_hint:{'x':0.05}
-
-                            font_style: 'Subhead'
-                            halign: 'left'
 
 <ContactScreen>:
     BoxLayout:
@@ -520,31 +367,39 @@ Navigation:
                     spacing: 15
                     OneLineIconListItem:
                         text: "Call"
+                        on_release: root.call()
                         IconLeftSampleWidget:
                             icon: 'phone'
                             on_release: root.call()
                     OneLineIconListItem:
                         text: "Facebook"
+                        on_release: webbrowser.open("https://www.facebook.com/Svetalvtemple/")
                         IconLeftSampleWidget:
                             icon: 'facebook'
                             on_release: webbrowser.open("https://www.facebook.com/Svetalvtemple/")
+
                     OneLineIconListItem:
                         text: "Email"
+                        on_release: webbrowser.open("mailto:info@lvtemple.org")
                         IconLeftSampleWidget:
                             icon: 'email'
                             on_release: webbrowser.open("mailto:info@lvtemple.org")
+
                     OneLineIconListItem:
                         text: "Directions"
+                        on_release: webbrowser.open("https://www.google.com/maps/place/Sri+Lakshmi+Venkateswara+Temple,+Redmond")
                         IconLeftSampleWidget:
                             icon: 'google-maps'
                             on_release: webbrowser.open("https://www.google.com/maps/place/Sri+Lakshmi+Venkateswara+Temple,+Redmond")
                     OneLineIconListItem:
                         text: "Website"
+                        on_release: webbrowser.open("https://www.lvtemple.org")
                         IconLeftSampleWidget:
                             icon: 'web'
                             on_release: webbrowser.open("https://www.lvtemple.org")
                     OneLineIconListItem:
                         text: "YouTube Channel"
+                        on_release: webbrowser.open("https://www.youtube.com/channel/UCm7YxQAkZFf80ODHxr9Yhdw")
                         IconLeftSampleWidget:
                             icon: 'youtube-play'
                             on_release: webbrowser.open("https://www.youtube.com/channel/UCm7YxQAkZFf80ODHxr9Yhdw")
