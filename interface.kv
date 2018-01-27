@@ -20,6 +20,7 @@
 #: import softinput_mode kivy.core.window.Window
 #:import MDList kivymd.list.MDList
 #:import datetime datetime.datetime
+
 Navigation:
     ScreenManager:
         id: sm
@@ -153,7 +154,7 @@ Navigation:
                             spacing: 10
                         Image:
                             mipmap: True
-                            source: './images/god.jpg'
+                            source: './images/god.JPG'
                         MDList:
                             id: notesList
                             # pos_hint:{'x':0.05}
@@ -195,40 +196,42 @@ Navigation:
 <GalleryScreen>:
     BoxLayout:
         orientation: 'vertical'
-
-        # size_hint_y: None
-        # spacing: 40
         pos_hint: {'top': 1}
         BoxLayout:
             size_hint_y:0.15
             AToolbar
-        RelativeLayout:
+        BoxLayout:
+            pos_hint: {'top': 0.9,'center_x': 0.5}
+            spacing: 15
+            padding: 0,15,0,50
             MDCard:
-                size_hint: 0.8, 0.85
+                size_hint: 0.9, 0.85
                 pos_hint: {'top' :1,'center_x': 0.5}
-                elevation: 1
+                elevation: 10
                 active_color_type: 'Custom'
                 active_color : [1, 0, 1, 1]
+
                 BoxLayout:
+                    id: notes
                     orientation:'vertical'
-                    padding: dp(8)
+                    padding: 10, 0, 8, 35
                     spacing: 15
                     MDLabel:
                         text: "Photos"
-                        theme_text_color: 'Secondary'
-                        font_style:"Display1"
+                        theme_text_color: 'Primary'
+                        font_style:"Headline"
                         size_hint_y: None
                         height: dp(35)
                         # halign: 'center'
                         # padding: 50
                     MDSeparator:
-                        height: dp(1)
+                        height: dp(2)
                         # padding: 50
                         spacing: 10
                     Image:
                         mipmap: True
-                        size_hint: 1, 0.7
                         source: root.imagefile
+
                     GridLayout:
                         rows: 1
                         cols: 2
@@ -247,6 +250,7 @@ Navigation:
                     MDLabel:
                         text: str(root.count + 1) + "/" + str(root.lengthoflist + 1)
                         pos_hint: {'x': 0.1}
+                        size_hint_y: 0.01
 
 
 <DateScreen>:
@@ -265,6 +269,9 @@ Navigation:
                 on_press: root.show_date_picker()
 
 <DetailsScreen>:
+    details: details
+    labels: labels
+    notesList: notesList
     BoxLayout:
         orientation: 'vertical'
 
@@ -286,7 +293,7 @@ Navigation:
                 padding: 0,15,0,50
                 MDCard:
                     id: events
-                    size_hint: 0.8, 0.35
+                    size_hint: 0.8, 0.25
                     pos_hint: {'top' :1,'center_x': 0.5}
                     elevation: 10
                     active_color_type: 'Custom'
@@ -316,6 +323,7 @@ Navigation:
                             size_hint_y: 0.75
                 MDCard:
                     id: details
+
                     size_hint: 0.85, 0.90
                     pos_hint: {'top' :1,'center_x': 0.5}
                     elevation: 10
@@ -324,6 +332,7 @@ Navigation:
 
                     BoxLayout:
                         id: labels
+
                         orientation: 'vertical'
                         padding: 8, 0, 8, 35
                         spacing: 15
