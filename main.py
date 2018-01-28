@@ -473,20 +473,23 @@ class GalleryScreen(Screen):
             self.filenames.append("./images/" + file)
         self.lengthoflist = len(self.filenames)
         self.imagefile = self.filenames[0]
-        self.count += 1
+        # self.count += 1
 
     def next_image(self):
-        self.imagefile = self.filenames[self.count]
-
         self.count += 1
         if self.count == len(self.filenames):
             self.count = 0
+        self.imagefile = self.filenames[self.count]
+
+
+
 
     def previous_image(self):
-        self.imagefile = self.filenames[self.count]
         self.count -= 1
         if self.count < 0:
             self.count = len(self.filenames) - 1
+        self.imagefile = self.filenames[self.count]
+
 
 
 class ContactScreen(Screen):
