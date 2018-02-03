@@ -46,9 +46,6 @@ class MenuScreen(Screen):
 
     def search(self, *args):
         date = self.date
-
-        if datetime.today().year == 2017:
-            date = "10-Mar-18"
         conn = sqlite3.connect('data.sqlite')
         cur = conn.cursor()
 
