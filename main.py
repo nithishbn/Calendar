@@ -1,24 +1,20 @@
+import os
 import sqlite3
 from datetime import datetime
-from kivy.animation import Animation
+from sys import platform
 from kivy.app import App
 from kivy.core.window import Window
 from kivy.metrics import dp
-from kivy.properties import StringProperty, Clock, ListProperty, NumericProperty, partial, ObjectProperty
+from kivy.properties import StringProperty, Clock, ListProperty, NumericProperty, ObjectProperty
 from kivy.uix.screenmanager import Screen
-from kivy.uix.scrollview import ScrollView
 from kivymd.button import MDIconButton
-from kivymd.card import MDCard, MDSeparator
 from kivymd.date_picker import MDDatePicker
-from kivymd.dialog import MDDialog
 from kivymd.label import MDLabel
 from kivymd.list import ILeftBodyTouch
 from kivymd.navigationdrawer import NavigationLayout
 from kivymd.theming import ThemeManager
 from kivymd.toolbar import Toolbar
 from plyer import call
-import os
-from sys import platform
 
 
 class Navigation(NavigationLayout):
@@ -455,10 +451,6 @@ WHERE "﻿Date" = ?
                 self.ids.notesList.add_widget(note4)
 
 
-class ConstructionScreen(Screen):
-    pass
-
-
 class GalleryScreen(Screen):
     imagefile = StringProperty("./images/2014-10-01-01.00.23.jpg")
     filenames = ListProperty([])
@@ -481,15 +473,11 @@ class GalleryScreen(Screen):
             self.count = 0
         self.imagefile = self.filenames[self.count]
 
-
-
-
     def previous_image(self):
         self.count -= 1
         if self.count < 0:
             self.count = len(self.filenames) - 1
         self.imagefile = self.filenames[self.count]
-
 
 
 class ContactScreen(Screen):
@@ -505,25 +493,25 @@ class ContactScreen(Screen):
 
 # call.dialcall()
 
-
-class ScrollLabel(ScrollView):
-    # DONT TOUCH THIS
-    def __init__(self, **kwargs):
-
-        super(ScrollLabel, self).__init__(**kwargs)
-        Clock.schedule_once(self.update_self)
-        Clock.schedule_interval(self.update_self, 2.5)
-
-    def update_self(self, *args):
-        if self.scroll_x == 0:
-            marquee = Animation(scroll_x=1.0, duration=10.0)
-            marquee.start(self)
-        elif self.scroll_x >= 0.99:
-            self.scroll_x = 0
-
-    def on_touch_down(self, touch):
-        if self.collide_point(*touch.pos):
-            return 0
+#
+# class ScrollLabel(ScrollView):
+#     # DONT TOUCH THIS
+#     def __init__(self, **kwargs):
+#
+#         super(ScrollLabel, self).__init__(**kwargs)
+#         Clock.schedule_once(self.update_self)
+#         Clock.schedule_interval(self.update_self, 2.5)
+#
+#     def update_self(self, *args):
+#         if self.scroll_x == 0:
+#             marquee = Animation(scroll_x=1.0, duration=10.0)
+#             marquee.start(self)
+#         elif self.scroll_x >= 0.99:
+#             self.scroll_x = 0
+#
+#     def on_touch_down(self, touch):
+#         if self.collide_point(*touch.pos):
+#             return 0
 
 
 class AToolbar(Toolbar):
